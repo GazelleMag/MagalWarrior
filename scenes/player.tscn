@@ -1,12 +1,37 @@
-[gd_scene load_steps=3 format=3 uid="uid://bq2pty2md6nxg"]
+[gd_scene load_steps=7 format=3 uid="uid://bq2pty2md6nxg"]
 
 [ext_resource type="Texture2D" uid="uid://b2m6ee63o1yr5" path="res://art/characters/Fighter/idle/idle down1.png" id="1_5pcqa"]
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_ifjxo"]
+[ext_resource type="Texture2D" uid="uid://88oeggaxnx0f" path="res://art/characters/Fighter/idle/idle down2.png" id="3_uf0n7"]
+[ext_resource type="Texture2D" uid="uid://fanjreyfkfpg" path="res://art/characters/Fighter/idle/idle down3.png" id="4_o65vi"]
+[ext_resource type="Texture2D" uid="uid://cwnhmvfqm0rkm" path="res://art/characters/Fighter/idle/idle down4.png" id="5_kdsvu"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q2g0p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_5pcqa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_uf0n7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_o65vi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_kdsvu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
 
 [node name="Player" type="Node2D"]
 script = ExtResource("1_ifjxo")
 
-[node name="PlayerSprite" type="Sprite2D" parent="."]
+[node name="PlayerAnimation" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 scale = Vector2(3, 3)
-texture = ExtResource("1_5pcqa")
+sprite_frames = SubResource("SpriteFrames_q2g0p")
+frame = 3
+frame_progress = 0.79341

@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://b7r0k2mobeq5q"]
+
+[ext_resource type="Texture2D" uid="uid://b2m6ee63o1yr5" path="res://art/characters/Fighter/idle/idle down1.png" id="1_48ewa"]
+[ext_resource type="Texture2D" uid="uid://88oeggaxnx0f" path="res://art/characters/Fighter/idle/idle down2.png" id="2_ma4nb"]
+[ext_resource type="Texture2D" uid="uid://fanjreyfkfpg" path="res://art/characters/Fighter/idle/idle down3.png" id="3_4dsbr"]
+[ext_resource type="Texture2D" uid="uid://cwnhmvfqm0rkm" path="res://art/characters/Fighter/idle/idle down4.png" id="4_u7cnk"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5p8rp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_48ewa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ma4nb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_4dsbr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_u7cnk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
+
+[node name="PlayerAnimation" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_5p8rp")
+frame_progress = 0.59619

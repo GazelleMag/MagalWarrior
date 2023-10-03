@@ -96,3 +96,6 @@ layer_0/tile_data = PackedInt32Array(589839, 1, 3, 655375, 1, 4, 720911, 1, 5, 5
 
 [node name="Player" parent="." instance=ExtResource("3_w2dia")]
 position = Vector2(526, 294)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position_smoothing_enabled = true
