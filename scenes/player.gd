@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var speed: int = 250
+const speed: int = 250
 var player_animation: AnimatedSprite2D
 var last_direction = "down"
 

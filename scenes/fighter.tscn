@@ -1,6 +1,6 @@
-[gd_scene load_steps=36 format=3 uid="uid://bq2pty2md6nxg"]
+[gd_scene load_steps=36 format=3 uid="uid://bhlxerek50fq"]
 
-[ext_resource type="Script" path="res://scenes/player.gd" id="1_ifjxo"]
+[ext_resource type="Script" path="res://scenes/fighter.gd" id="1_k0fqk"]
 [ext_resource type="Texture2D" uid="uid://b2m6ee63o1yr5" path="res://art/characters/Fighter/idle/idle down1.png" id="1_kht00"]
 [ext_resource type="Texture2D" uid="uid://88oeggaxnx0f" path="res://art/characters/Fighter/idle/idle down2.png" id="3_0c3lk"]
 [ext_resource type="Texture2D" uid="uid://fanjreyfkfpg" path="res://art/characters/Fighter/idle/idle down3.png" id="4_fg7ou"]
@@ -176,16 +176,29 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_tkobb"]
 radius = 16.0
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Fighter" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 3
-script = ExtResource("1_ifjxo")
+motion_mode = 1
+wall_min_slide_angle = 0.0
+script = ExtResource("1_k0fqk")
 
-[node name="PlayerAnimation" type="AnimatedSprite2D" parent="."]
+[node name="FighterAnimation" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.913725, 0.262745, 0.309804, 1)
 texture_filter = 3
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_pcd1b")
 animation = &"idle_down"
+frame_progress = 0.150573
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_tkobb")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+debug_enabled = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
