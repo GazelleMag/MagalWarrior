@@ -195,7 +195,6 @@ frame_progress = 0.850648
 shape = SubResource("CircleShape2D_tkobb")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-debug_enabled = true
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.1
