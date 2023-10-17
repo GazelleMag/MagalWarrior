@@ -1,9 +1,10 @@
 extends CharacterBody2D
 
 const speed: int = 175
+var last_direction: String = "down"
 var nav_agent: NavigationAgent2D
 var fighter_animation: AnimatedSprite2D
-var last_direction: String = "down"
+
 @export var player: Node2D
 
 
