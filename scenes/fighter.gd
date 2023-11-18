@@ -1,36 +1,30 @@
 extends CharacterBody2D
 
 const speed: int = 175
+var health: int = 100
 var last_direction: String = "down"
 var nav_agent: NavigationAgent2D
 var fighter_animation: AnimatedSprite2D
-
 @export var player: Node2D
-
 
 func _ready() -> void:
 	fighter_animation = $FighterAnimation
 	nav_agent = $NavigationAgent2D
-
 
 func _process(_delta: float) -> void:
 	var direction = to_local(nav_agent.get_next_path_position()).normalized()
 	handle_movement(direction)
 	handle_animation(direction)
 
-
 func handle_movement(direction: Vector2) -> void:
 	velocity = direction * speed
 	move_and_slide()
 
-
 func _on_timer_timeout() -> void:
 	makepath()
 
-
 func makepath() -> void:
 	nav_agent.target_position = player.global_position
-
 
 func handle_animation(direction: Vector2) -> void:
 	if direction != Vector2.ZERO:
@@ -52,3 +46,7 @@ func handle_animation(direction: Vector2) -> void:
 		# Character is idle, choose the idle animation based on the last direction.
 		if last_direction != "":
 			fighter_animation.play("idle_" + last_direction)
+
+func take_damage():
+	health = health - 10
+	print("current health is: ", health)

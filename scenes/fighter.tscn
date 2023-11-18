@@ -177,7 +177,7 @@ animations = [{
 radius = 16.0
 
 [node name="Fighter" type="CharacterBody2D"]
-collision_layer = 2
+collision_layer = 4
 collision_mask = 3
 motion_mode = 1
 wall_min_slide_angle = 0.0

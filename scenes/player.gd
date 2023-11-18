@@ -1,13 +1,20 @@
 extends CharacterBody2D
 
 const speed: int = 250
-var last_direction: String = "down"
+var last_direction: Vector2 = Vector2.DOWN
+var last_direction_name: String = "down"
 var player_animation: AnimatedSprite2D
 var attack_animations: Array = ["attack_up", "attack_down", "attack_left", "attack_right"]
 var is_attacking: bool = false
 
+var attack_point: Area2D
+var attack_point_collider: CollisionShape2D
+var attack_point_offset: float = 30.0
+
 func _ready() -> void:
 	player_animation = $PlayerAnimation
+	attack_point = $AttackPoint
+	attack_point_collider = $AttackPoint/AttackPointCollider
 
 func _process(_delta) -> void:
 	# movement
@@ -17,9 +24,13 @@ func _process(_delta) -> void:
 	if !is_attacking:
 		handle_walk_animation(direction)
 	if Input.is_action_just_pressed("mouse1") and !is_attacking:
-		handle_attack_animation(direction)
+		attack_point_collider.disabled = false
 		is_attacking = true
+		handle_attack_animation(direction)
 		await wait_for_attack_animation()
+		attack_point_collider.disabled = true
+	# attack point
+	update_attack_point_position(direction)
 
 func handle_movement(direction: Vector2) -> void:
 	velocity = direction * speed
@@ -30,21 +41,20 @@ func handle_walk_animation(direction: Vector2) -> void:
 		if abs(direction.x) > abs(direction.y):
 			if direction.x > 0:
 				player_animation.play("walk_right")
-				last_direction = "right"
+				last_direction_name = "right"
 			else:
 				player_animation.play("walk_left")
-				last_direction = "left"
+				last_direction_name = "left"
 		else:
 			if direction.y > 0:
 				player_animation.play("walk_down")
-				last_direction = "down"
+				last_direction_name = "down"
 			else:
 				player_animation.play("walk_up")
-				last_direction = "up"
+				last_direction_name = "up"
 	else:
-		# Character is idle, choose the idle animation based on the last direction.
-		if last_direction != "":
-			player_animation.play("idle_" + last_direction)
+		if last_direction_name != "":
+			player_animation.play("idle_" + last_direction_name)
 
 func handle_attack_animation(direction: Vector2) -> void:
 	if direction != Vector2.ZERO:
@@ -59,11 +69,26 @@ func handle_attack_animation(direction: Vector2) -> void:
 			else:
 				player_animation.play("attack_up")
 	else:
-		if last_direction != "":
-			player_animation.play("attack_" + last_direction)
+		if last_direction_name != "":
+			player_animation.play("attack_" + last_direction_name)
 
-func _on_player_animation_animation_finished():
-	is_attacking = false
+func update_attack_point_position(direction: Vector2) -> void:
+	if direction != Vector2.ZERO:
+		if abs(direction.x) > abs(direction.y):
+			last_direction = Vector2(direction.x, 0).normalized()
+		else:
+			last_direction = Vector2(0, direction.y).normalized()
+		attack_point_collider.global_position = attack_point.global_position + last_direction * attack_point_offset
+	else:
+		attack_point_collider.global_position = attack_point.global_position + last_direction * attack_point_offset
 
 func wait_for_attack_animation():
 	await player_animation.animation_finished
+
+# signals
+func _on_player_animation_animation_finished():
+	is_attacking = false
+
+func _on_area_2d_body_entered(body):
+	print("Collision detected with: ", body.name)
+	body.take_damage()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://bq2pty2md6nxg"]
+[gd_scene load_steps=53 format=3 uid="uid://bq2pty2md6nxg"]
 
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_ifjxo"]
 [ext_resource type="Texture2D" uid="uid://b2m6ee63o1yr5" path="res://art/characters/Fighter/idle/idle down1.png" id="1_kht00"]
@@ -260,9 +260,11 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_tkobb"]
 radius = 16.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_yo51x"]
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
-collision_mask = 3
+collision_mask = 5
 script = ExtResource("1_ifjxo")
 
 [node name="PlayerAnimation" type="AnimatedSprite2D" parent="."]
@@ -274,4 +276,14 @@ animation = &"idle_down"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_tkobb")
 
+[node name="AttackPoint" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 4
+
+[node name="AttackPointCollider" type="CollisionShape2D" parent="AttackPoint"]
+position = Vector2(0, 30)
+shape = SubResource("CircleShape2D_yo51x")
+disabled = true
+
 [connection signal="animation_finished" from="PlayerAnimation" to="." method="_on_player_animation_animation_finished"]
+[connection signal="body_entered" from="AttackPoint" to="." method="_on_area_2d_body_entered"]
