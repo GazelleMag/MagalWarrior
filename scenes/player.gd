@@ -11,6 +11,11 @@ var attack_point: Area2D
 var attack_point_collider: CollisionShape2D
 var attack_point_offset: float = 30.0
 
+var maxHealth: int = 100
+@onready var currentHealth: int = maxHealth
+
+signal health_changed
+
 func _ready() -> void:
 	player_animation = $PlayerAnimation
 	attack_point = $AttackPoint
@@ -84,6 +89,10 @@ func update_attack_point_position(direction: Vector2) -> void:
 
 func wait_for_attack_animation():
 	await player_animation.animation_finished
+
+func take_damage() -> void:
+	currentHealth = currentHealth - 10
+	health_changed.emit()
 
 # signals
 func _on_player_animation_animation_finished():

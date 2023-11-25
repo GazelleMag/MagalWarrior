@@ -9,12 +9,12 @@ var fighter_animation: AnimatedSprite2D
 var maxHealth: int = 100
 @onready var currentHealth: int = maxHealth
 
-signal healthChanged
+signal health_changed
 
 func _ready() -> void:
 	fighter_animation = $FighterAnimation
 	nav_agent = $NavigationAgent2D
-	healthChanged.emit()
+	health_changed.emit()
 
 func _process(_delta: float) -> void:
 	var direction = to_local(nav_agent.get_next_path_position()).normalized()
@@ -54,7 +54,7 @@ func handle_animation(direction: Vector2) -> void:
 
 func take_damage() -> void:
 	currentHealth = currentHealth - 10
-	healthChanged.emit()
+	health_changed.emit()
 	if currentHealth <= 0:
 		die()
 	
