@@ -14,7 +14,7 @@ var attack_point_offset: float = 30.0
 func _ready() -> void:
 	player_animation = $PlayerAnimation
 	attack_point = $AttackPoint
-	attack_point_collider = $AttackPoint/AttackPointCollider
+	attack_point_collider = $AttackPoint/CollisionShape2D
 
 func _process(_delta) -> void:
 	# movement
@@ -90,5 +90,5 @@ func _on_player_animation_animation_finished():
 	is_attacking = false
 
 func _on_area_2d_body_entered(body):
-	print("Collision detected with: ", body.name)
-	body.take_damage()
+	if(body.name == "Fighter"):
+		body.take_damage()

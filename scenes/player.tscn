@@ -280,7 +280,7 @@ shape = SubResource("CircleShape2D_tkobb")
 collision_layer = 2
 collision_mask = 4
 
-[node name="AttackPointCollider" type="CollisionShape2D" parent="AttackPoint"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackPoint"]
 position = Vector2(0, 30)
 shape = SubResource("CircleShape2D_yo51x")
 disabled = true

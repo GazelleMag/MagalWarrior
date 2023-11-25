@@ -1,15 +1,20 @@
 extends CharacterBody2D
 
 const speed: int = 175
-var health: int = 100
 var last_direction: String = "down"
 var nav_agent: NavigationAgent2D
 var fighter_animation: AnimatedSprite2D
 @export var player: Node2D
 
+var maxHealth: int = 100
+@onready var currentHealth: int = maxHealth
+
+signal healthChanged
+
 func _ready() -> void:
 	fighter_animation = $FighterAnimation
 	nav_agent = $NavigationAgent2D
+	healthChanged.emit()
 
 func _process(_delta: float) -> void:
 	var direction = to_local(nav_agent.get_next_path_position()).normalized()
@@ -47,6 +52,11 @@ func handle_animation(direction: Vector2) -> void:
 		if last_direction != "":
 			fighter_animation.play("idle_" + last_direction)
 
-func take_damage():
-	health = health - 10
-	print("current health is: ", health)
+func take_damage() -> void:
+	currentHealth = currentHealth - 10
+	healthChanged.emit()
+	if currentHealth <= 0:
+		die()
+	
+func die() -> void:
+	queue_free()

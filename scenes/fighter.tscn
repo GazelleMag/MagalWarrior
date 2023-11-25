@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://bhlxerek50fq"]
+[gd_scene load_steps=37 format=3 uid="uid://bhlxerek50fq"]
 
 [ext_resource type="Script" path="res://scenes/fighter.gd" id="1_k0fqk"]
 [ext_resource type="Texture2D" uid="uid://b2m6ee63o1yr5" path="res://art/characters/Fighter/idle/idle down1.png" id="1_kht00"]
@@ -33,6 +33,7 @@
 [ext_resource type="Texture2D" uid="uid://dog4ea0u6aj70" path="res://art/characters/Fighter/walk/walk up2.png" id="31_26fkg"]
 [ext_resource type="Texture2D" uid="uid://bk2n1kwuycpro" path="res://art/characters/Fighter/walk/walk up3.png" id="32_i82vv"]
 [ext_resource type="Texture2D" uid="uid://dsg6crktfurwx" path="res://art/characters/Fighter/walk/walk up4.png" id="33_nsvbi"]
+[ext_resource type="PackedScene" uid="uid://djao6rkxa8l72" path="res://scenes/health_bar.tscn" id="34_b57eu"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pcd1b"]
 animations = [{
@@ -199,5 +200,11 @@ shape = SubResource("CircleShape2D_tkobb")
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.1
 autostart = true
+
+[node name="HealthBar" parent="." instance=ExtResource("34_b57eu")]
+offset_left = -37.5
+offset_top = -45.0
+offset_right = 37.5
+offset_bottom = -30.0
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
