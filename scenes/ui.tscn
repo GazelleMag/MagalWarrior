@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bw07sh3bxv65d"]
 
 [ext_resource type="Script" path="res://scenes/ui.gd" id="1_d7pka"]
-[ext_resource type="Script" path="res://scenes/PlayerHealthBar.gd" id="1_mlsom"]
+[ext_resource type="Script" path="res://scenes/playerHealthBar.gd" id="2_o6vg2"]
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_d7pka")
@@ -25,4 +25,4 @@ custom_minimum_size = Vector2(200, 27)
 layout_mode = 2
 value = 100.0
 show_percentage = false
-script = ExtResource("1_mlsom")
+script = ExtResource("2_o6vg2")

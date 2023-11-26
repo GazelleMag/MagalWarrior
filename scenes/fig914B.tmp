@@ -66,7 +66,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("5_4jidq")
 }],
-"loop": false,
+"loop": true,
 "name": &"attack_down",
 "speed": 10.0
 }, {
@@ -83,7 +83,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("9_3wqi0")
 }],
-"loop": false,
+"loop": true,
 "name": &"attack_left",
 "speed": 10.0
 }, {
@@ -100,7 +100,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("13_1ktuj")
 }],
-"loop": false,
+"loop": true,
 "name": &"attack_right",
 "speed": 10.0
 }, {
@@ -117,7 +117,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("17_ljfws")
 }],
-"loop": false,
+"loop": true,
 "name": &"attack_up",
 "speed": 10.0
 }, {
@@ -277,7 +277,7 @@ modulate = Color(0.913725, 0.262745, 0.309804, 1)
 texture_filter = 3
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_pcd1b")
-animation = &"idle_down"
+animation = &"attack_up"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_tkobb")
@@ -315,4 +315,3 @@ shape = SubResource("RectangleShape2D_75urs")
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="AttackPoint" to="." method="_on_attack_point_body_entered"]
 [connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_body_entered"]
-[connection signal="body_exited" from="PlayerDetector" to="." method="_on_player_detector_body_exited"]
