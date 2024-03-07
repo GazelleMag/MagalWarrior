@@ -3,22 +3,20 @@ extends CharacterBody2D
 const speed: int = 250
 var last_direction: Vector2 = Vector2.DOWN
 var last_direction_name: String = "down"
-var player_animation: AnimatedSprite2D
+@onready var player_animation: AnimatedSprite2D = $PlayerAnimation
 
 var is_attacking: bool = false
-var attack_point: Area2D
-var attack_point_collision_shape: CollisionShape2D
+var mouse1_cooldown: bool = false
+var mouse2_cooldown: bool = false
+@onready var attack_point: Area2D = $AttackPoint
+@onready var attack_point_collision_shape: CollisionShape2D = $AttackPoint/CollisionShape2D
 var attack_point_offset: float = 30.0
 
 var maxHealth: int = 100
 @onready var currentHealth: int = maxHealth
 
 signal health_changed
-
-func _ready() -> void:
-	player_animation = $PlayerAnimation
-	attack_point = $AttackPoint
-	attack_point_collision_shape = $AttackPoint/CollisionShape2D
+signal mouse_click
 
 func _process(_delta) -> void:
 	# movement
@@ -29,8 +27,13 @@ func _process(_delta) -> void:
 	# animations
 	if !is_attacking:
 		handle_walk_animation(direction)
-	if Input.is_action_just_pressed("mouse1") and !is_attacking:
+	if Input.is_action_just_pressed("mouse1") and !is_attacking and !mouse1_cooldown:
+		mouse1_cooldown = true
+		emit_signal("mouse_click", "mouse1")
 		attack(direction)
+	if Input.is_action_just_pressed("mouse2") and !mouse2_cooldown:
+		mouse2_cooldown = true
+		emit_signal("mouse_click", "mouse2")
 	
 
 # movement

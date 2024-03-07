@@ -3,18 +3,18 @@ extends CharacterBody2D
 const speed: int = 175
 var last_direction: Vector2 = Vector2.DOWN
 var last_direction_name: String = "down"
-var nav_agent: NavigationAgent2D
-var fighter_animation: AnimatedSprite2D
-var player: Node2D
+@onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
+@onready var fighter_animation: AnimatedSprite2D = $FighterAnimation
+@onready var player: Node2D = $"../Player"
 
 var is_attacking: bool = false
 var detecting_player: bool = false
-var attack_point: Area2D
-var attack_point_collision_shape: CollisionShape2D
+@onready var attack_point: Area2D = $AttackPoint
+@onready var attack_point_collision_shape: CollisionShape2D = $AttackPoint/CollisionShape2D
 var attack_point_offset: float = 30.0
 var player_detected: bool = false
-var player_detector: Area2D
-var player_detector_collision_shape: CollisionShape2D
+@onready var player_detector: Area2D = $PlayerDetector
+@onready var player_detector_collision_shape: CollisionShape2D = $PlayerDetector/CollisionShape2D
 
 var maxHealth: int = 100
 @onready var currentHealth: int = maxHealth
@@ -22,13 +22,6 @@ var maxHealth: int = 100
 signal health_changed
 
 func _ready() -> void:
-	fighter_animation = $FighterAnimation
-	nav_agent = $NavigationAgent2D
-	attack_point = $AttackPoint
-	attack_point_collision_shape = $AttackPoint/CollisionShape2D
-	player_detector = $PlayerDetector
-	player_detector_collision_shape = $PlayerDetector/CollisionShape2D
-	player = $"../Player"
 	health_changed.emit()
 
 func _process(_delta: float) -> void:
@@ -112,13 +105,13 @@ func update_player_detector(direction: Vector2) -> void:
 			last_direction = Vector2(direction.x, 0).normalized()
 		else:
 			last_direction = Vector2(0, direction.y).normalized()
-	update_player_detector_position(last_direction)
-	update_player_detector_rotation(last_direction)
+	update_player_detector_position()
+	update_player_detector_rotation()
 
-func update_player_detector_position(last_direction: Vector2) -> void:
+func update_player_detector_position() -> void:
 	player_detector_collision_shape.global_position = player_detector.global_position + last_direction * attack_point_offset # same offset can be used
 
-func update_player_detector_rotation(direction: Vector2) -> void:
+func update_player_detector_rotation() -> void:
 	var angle = atan2(last_direction.y, last_direction.x)
 	player_detector.rotation_degrees = rad_to_deg(angle) + 90.0
 
@@ -142,7 +135,6 @@ func die() -> void:
 # signals
 func _on_player_detector_body_entered(body):
 	if body.name == "Player":
-		var direction = to_local(nav_agent.get_next_path_position()).normalized()
 		detecting_player = true
 
 func _on_player_detector_body_exited(body):
