@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://d1bf6gwr5tdfj"]
 
-[ext_resource type="Texture2D" uid="uid://byp7ietdg7p3t" path="res://icon.svg" id="1_w8h10"]
 [ext_resource type="Script" path="res://scenes/skillButton.gd" id="2_l3syx"]
+[ext_resource type="Texture2D" uid="uid://d1oxjbdlda0t2" path="res://art/borders/border.png" id="3_ojrdl"]
 [ext_resource type="Texture2D" uid="uid://co47utcs7le4d" path="res://art/blank.png" id="3_wyquu"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_sjrct"]
@@ -11,19 +11,35 @@ events = [SubResource("InputEventKey_sjrct")]
 
 [node name="SkillButton" type="TextureButton"]
 custom_minimum_size = Vector2(40, 40)
-offset_right = 40.0
-offset_bottom = 40.0
-size_flags_horizontal = 4
+offset_right = 42.0
+offset_bottom = 42.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
 shortcut = SubResource("Shortcut_hahtu")
-texture_normal = ExtResource("1_w8h10")
-ignore_texture_size = true
+texture_normal = ExtResource("3_ojrdl")
 stretch_mode = 0
 script = ExtResource("2_l3syx")
 
+[node name="Border" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 42.0
+offset_bottom = 42.0
+
+[node name="Icon" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 45.0
+offset_bottom = 45.0
+scale = Vector2(0.8, 0.8)
+
 [node name="TextureProgressBar" type="TextureProgressBar" parent="."]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 45.0
+offset_bottom = 45.0
+scale = Vector2(0.8, 0.8)
 step = 0.05
 fill_mode = 5
 texture_progress = ExtResource("3_wyquu")

@@ -17,6 +17,11 @@ func _ready() -> void:
 			skills[i].change_key = action_bar_keys[i]
 	skills[0].mouse_cooldown.connect(on_mouse_cooldown)
 	skills[1].mouse_cooldown.connect(on_mouse_cooldown)
+	# basic logic for now. this should be modular
+	skills[0].set_skill_icon()
+	skills[1].set_skill_icon()
+	skills[0].set_skill_cooldown()
+	skills[1].set_skill_cooldown()
 	
 func handle_mouse_click(click_type: String) -> void:
 	skills = get_children()
