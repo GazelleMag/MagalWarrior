@@ -123,8 +123,8 @@ func attack(direction: Vector2) -> void:
 	attack_point_collision_shape.disabled = true
 	is_attacking = false
 
-func take_damage() -> void:
-	currentHealth = currentHealth - 10
+func take_damage(damage: int) -> void:
+	currentHealth = currentHealth - damage
 	health_changed.emit()
 	if currentHealth <= 0:
 		die()

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://djao6rkxa8l72"]
 
-[ext_resource type="Script" path="res://scenes/healthBar.gd" id="1_rndbl"]
+[ext_resource type="Script" path="res://scenes/ui/healthBar.gd" id="1_rndbl"]
 
 [node name="HealthBar" type="ProgressBar"]
 modulate = Color(1, 0, 0, 1)

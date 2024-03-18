@@ -1,10 +1,10 @@
 [gd_scene load_steps=18 format=3 uid="uid://deds5ji0df5sc"]
 
-[ext_resource type="Script" path="res://scenes/level.gd" id="1_5y6n4"]
+[ext_resource type="Script" path="res://scenes/world/level.gd" id="1_5y6n4"]
 [ext_resource type="Texture2D" uid="uid://sv4brx747id1" path="res://art/tilesets/TilesetExample.png" id="2_y57rx"]
-[ext_resource type="PackedScene" uid="uid://bq2pty2md6nxg" path="res://scenes/player.tscn" id="3_w2dia"]
-[ext_resource type="PackedScene" uid="uid://bhlxerek50fq" path="res://scenes/fighter.tscn" id="4_ml7uo"]
-[ext_resource type="PackedScene" uid="uid://bw07sh3bxv65d" path="res://scenes/ui.tscn" id="5_cofyv"]
+[ext_resource type="PackedScene" uid="uid://bq2pty2md6nxg" path="res://scenes/characters/player.tscn" id="3_w2dia"]
+[ext_resource type="PackedScene" uid="uid://bhlxerek50fq" path="res://scenes/characters/fighter.tscn" id="4_ml7uo"]
+[ext_resource type="PackedScene" uid="uid://bw07sh3bxv65d" path="res://scenes/ui/ui.tscn" id="5_cofyv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7anir"]
 resource_name = "normal ground"

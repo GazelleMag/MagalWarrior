@@ -1,12 +1,12 @@
 [gd_scene load_steps=5 format=3 uid="uid://bw07sh3bxv65d"]
 
-[ext_resource type="Script" path="res://scenes/ui.gd" id="1_d7pka"]
-[ext_resource type="Script" path="res://scenes/playerHealthBar.gd" id="2_pmc4c"]
-[ext_resource type="Script" path="res://scenes/actionBar.gd" id="3_qi82c"]
-[ext_resource type="PackedScene" uid="uid://d1bf6gwr5tdfj" path="res://scenes/skill_button.tscn" id="4_qe236"]
+[ext_resource type="Script" path="res://scenes/ui/ui.gd" id="1_ml4ta"]
+[ext_resource type="Script" path="res://scenes/ui/actionBar.gd" id="2_mdsr0"]
+[ext_resource type="PackedScene" uid="uid://d1bf6gwr5tdfj" path="res://scenes/ui/skill_button.tscn" id="3_3w2wn"]
+[ext_resource type="Script" path="res://scenes/ui/playerHealthBar.gd" id="4_h6n7y"]
 
 [node name="UI" type="CanvasLayer"]
-script = ExtResource("1_d7pka")
+script = ExtResource("1_ml4ta")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 7
@@ -29,12 +29,12 @@ size_flags_horizontal = 4
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 size_flags_horizontal = 4
-script = ExtResource("3_qi82c")
+script = ExtResource("2_mdsr0")
 
-[node name="BasicAttack" parent="MarginContainer/VBoxContainer/ActionBar" instance=ExtResource("4_qe236")]
+[node name="BasicAttack" parent="MarginContainer/VBoxContainer/ActionBar" instance=ExtResource("3_3w2wn")]
 layout_mode = 2
 
-[node name="Fireball" parent="MarginContainer/VBoxContainer/ActionBar" instance=ExtResource("4_qe236")]
+[node name="Fireball" parent="MarginContainer/VBoxContainer/ActionBar" instance=ExtResource("3_3w2wn")]
 layout_mode = 2
 
 [node name="PlayerHealthBar" type="ProgressBar" parent="MarginContainer/VBoxContainer"]
@@ -43,4 +43,4 @@ custom_minimum_size = Vector2(200, 27)
 layout_mode = 2
 value = 100.0
 show_percentage = false
-script = ExtResource("2_pmc4c")
+script = ExtResource("4_h6n7y")

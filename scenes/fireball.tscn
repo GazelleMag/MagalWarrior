@@ -1,0 +1,78 @@
+[gd_scene load_steps=12 format=3 uid="uid://i7nldh7l2lnl"]
+
+[ext_resource type="Script" path="res://scenes/fireball.gd" id="1_7ck8q"]
+[ext_resource type="Texture2D" uid="uid://bkcfqngt2yj8l" path="res://art/projectiles/fireball/fireball1.png" id="1_cfyun"]
+[ext_resource type="Texture2D" uid="uid://br7isjwdpd0aq" path="res://art/projectiles/fireball/explosion1.PNG" id="2_qlnlt"]
+[ext_resource type="Texture2D" uid="uid://2s7qj0hmqobl" path="res://art/projectiles/fireball/explosion2.PNG" id="3_hh474"]
+[ext_resource type="Texture2D" uid="uid://d1n7b2ol0iadx" path="res://art/projectiles/fireball/fireball2.png" id="3_ky6ge"]
+[ext_resource type="Texture2D" uid="uid://dwwf2vpftgdip" path="res://art/projectiles/fireball/fireball3.png" id="4_mxq48"]
+[ext_resource type="Texture2D" uid="uid://d3qt7wnr4mlu3" path="res://art/projectiles/fireball/explosion3.PNG" id="4_wscdy"]
+[ext_resource type="Texture2D" uid="uid://bh8pt02j25ugo" path="res://art/projectiles/fireball/fireball4.png" id="5_w58l1"]
+[ext_resource type="Texture2D" uid="uid://jb02pb3xc45u" path="res://art/projectiles/fireball/fireball5.png" id="6_5m3ay"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s5va2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_qlnlt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_hh474")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_wscdy")
+}],
+"loop": false,
+"name": &"explosion",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_cfyun")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ky6ge")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_mxq48")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_w58l1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_5m3ay")
+}],
+"loop": true,
+"name": &"fireball",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ga81a"]
+radius = 9.05539
+
+[node name="Fireball" type="RigidBody2D"]
+collision_layer = 8
+collision_mask = 5
+gravity_scale = 0.0
+script = ExtResource("1_7ck8q")
+
+[node name="FireballAnimation" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.05, 0.05)
+sprite_frames = SubResource("SpriteFrames_s5va2")
+animation = &"explosion"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ga81a")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_ga81a")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.5
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

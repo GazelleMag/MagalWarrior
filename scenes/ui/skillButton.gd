@@ -1,12 +1,11 @@
 extends TextureButton
 
-@onready var progress_bar = $TextureProgressBar
-@onready var timer = $Timer
-@onready var time = $Time
-@onready var key = $Key
-@onready var icon = $Icon
+@onready var progress_bar: TextureProgressBar = $TextureProgressBar
+@onready var timer: Timer = $Timer
+@onready var time: Label = $Time
+@onready var key: Label = $Key
+@onready var icon: TextureRect = $Icon
 var click_type: String = ""
-#var cooldown_time: float = 0.0
 
 signal mouse_cooldown
 
@@ -22,7 +21,6 @@ var change_key: String = "":
 			shortcut.events = [input_key]
 
 func _ready() -> void:
-#	progress_bar.max_value = timer.wait_time
 	set_process(false)
 
 func _process(_delta) -> void:	
