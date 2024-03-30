@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://scenes/world/level.gd" id="1_5y6n4"]
 [ext_resource type="Texture2D" uid="uid://sv4brx747id1" path="res://art/tilesets/TilesetExample.png" id="2_y57rx"]
+[ext_resource type="PackedScene" uid="uid://dw2mq5jshlsox" path="res://scenes/world/spawn_point.tscn" id="3_pwjf5"]
 [ext_resource type="PackedScene" uid="uid://bq2pty2md6nxg" path="res://scenes/characters/player.tscn" id="3_w2dia"]
-[ext_resource type="PackedScene" uid="uid://bhlxerek50fq" path="res://scenes/characters/fighter.tscn" id="4_ml7uo"]
 [ext_resource type="PackedScene" uid="uid://bw07sh3bxv65d" path="res://scenes/ui/ui.tscn" id="5_cofyv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7anir"]
@@ -467,13 +467,16 @@ layer_2/y_sort_origin = 0
 layer_2/z_index = 0
 layer_2/tile_data = PackedInt32Array()
 
+[node name="SpawnPoint1" parent="." instance=ExtResource("3_pwjf5")]
+position = Vector2(1049, 560)
+
+[node name="SpawnPoint2" parent="." instance=ExtResource("3_pwjf5")]
+position = Vector2(1066, 102)
+
 [node name="Player" parent="." instance=ExtResource("3_w2dia")]
-position = Vector2(526, 294)
+position = Vector2(153, 282)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position_smoothing_enabled = true
-
-[node name="Fighter" parent="." instance=ExtResource("4_ml7uo")]
-position = Vector2(375, 286)
 
 [node name="UI" parent="." instance=ExtResource("5_cofyv")]

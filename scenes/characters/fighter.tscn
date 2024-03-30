@@ -261,9 +261,9 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_tkobb"]
 radius = 16.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_wqrhq"]
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_75urs"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wqrhq"]
 
 [node name="Fighter" type="CharacterBody2D"]
 collision_layer = 4
@@ -280,6 +280,7 @@ sprite_frames = SubResource("SpriteFrames_pcd1b")
 animation = &"idle_down"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CircleShape2D_tkobb")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
@@ -294,7 +295,18 @@ offset_top = -45.0
 offset_right = 37.5
 offset_bottom = -30.0
 
+[node name="PlayerRangeDetector" type="Area2D" parent="."]
+visible = false
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerRangeDetector"]
+position = Vector2(0, 30)
+scale = Vector2(2, 1)
+shape = SubResource("RectangleShape2D_75urs")
+
 [node name="AttackPoint" type="Area2D" parent="."]
+visible = false
 collision_layer = 4
 collision_mask = 2
 
@@ -303,16 +315,7 @@ position = Vector2(0, 30)
 shape = SubResource("CircleShape2D_wqrhq")
 disabled = true
 
-[node name="PlayerDetector" type="Area2D" parent="."]
-collision_layer = 4
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
-position = Vector2(0, 30)
-scale = Vector2(2, 1)
-shape = SubResource("RectangleShape2D_75urs")
-
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="PlayerRangeDetector" to="." method="_on_player_range_detector_body_entered"]
+[connection signal="body_exited" from="PlayerRangeDetector" to="." method="_on_player_range_detector_body_exited"]
 [connection signal="body_entered" from="AttackPoint" to="." method="_on_attack_point_body_entered"]
-[connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_body_entered"]
-[connection signal="body_exited" from="PlayerDetector" to="." method="_on_player_detector_body_exited"]
