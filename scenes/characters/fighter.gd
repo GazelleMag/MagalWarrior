@@ -8,8 +8,8 @@ var spawn_point_distance_threshold: float = 5
 # movement
 const speed: int = 175
 var character_direction: Vector2
-var last_direction: Vector2 = Vector2.DOWN
-var last_direction_name: String = "down"
+var last_character_direction: Vector2 = Vector2.DOWN
+var last_character_direction_name: String = "down"
 @onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
 @onready var fighter_animation: AnimatedSprite2D = $FighterAnimation
 var chasing_player: bool = false
@@ -88,20 +88,20 @@ func handle_walk_animation(direction: Vector2) -> void:
 		if abs(direction.x) > abs(direction.y):
 			if direction.x > 0:
 				fighter_animation.play("walk_right")
-				last_direction_name = "right"
+				last_character_direction_name = "right"
 			else:
 				fighter_animation.play("walk_left")
-				last_direction_name = "left"
+				last_character_direction_name = "left"
 		else:
 			if direction.y > 0:
 				fighter_animation.play("walk_down")
-				last_direction_name = "down"
+				last_character_direction_name = "down"
 			else:
 				fighter_animation.play("walk_up")
-				last_direction_name = "up"
+				last_character_direction_name = "up"
 	else:
 		# Character is idle, choose the idle animation based on the last direction.
-		if last_direction_name != "":
+		if last_character_direction_name != "":
 			fighter_animation.play("idle_down")
 			
 func handle_attack_animation(direction: Vector2) -> void:
@@ -117,8 +117,8 @@ func handle_attack_animation(direction: Vector2) -> void:
 			else:
 				fighter_animation.play("attack_up")
 	else:
-		if last_direction_name != "":
-			fighter_animation.play("attack_" + last_direction_name)
+		if last_character_direction_name != "":
+			fighter_animation.play("attack_" + last_character_direction_name)
 
 func wait_for_attack_animation() -> void:
 	await fighter_animation.animation_finished
@@ -127,26 +127,26 @@ func wait_for_attack_animation() -> void:
 func update_attack_point_position(direction: Vector2) -> void:
 	if direction != Vector2.ZERO:
 		if abs(direction.x) > abs(direction.y):
-			last_direction = Vector2(direction.x, 0).normalized()
+			last_character_direction = Vector2(direction.x, 0).normalized()
 		else:
-			last_direction = Vector2(0, direction.y).normalized()
-	attack_point_collision_shape.global_position = attack_point.global_position + last_direction * attack_point_offset
+			last_character_direction = Vector2(0, direction.y).normalized()
+	attack_point_collision_shape.global_position = attack_point.global_position + last_character_direction * attack_point_offset
 
 # player range detector
 func update_player_range_detector(direction: Vector2) -> void:
 	if direction != Vector2.ZERO:
 		if abs(direction.x) > abs(direction.y):
-			last_direction = Vector2(direction.x, 0).normalized()
+			last_character_direction = Vector2(direction.x, 0).normalized()
 		else:
-			last_direction = Vector2(0, direction.y).normalized()
+			last_character_direction = Vector2(0, direction.y).normalized()
 	update_player_range_detector_position()
 	update_player_range_detector_rotation()
 
 func update_player_range_detector_position() -> void:
-	player_range_detector_collision_shape.global_position = player_range_detector.global_position + last_direction * attack_point_offset # same offset can be used
+	player_range_detector_collision_shape.global_position = player_range_detector.global_position + last_character_direction * attack_point_offset # same offset can be used
 
 func update_player_range_detector_rotation() -> void:
-	var angle = atan2(last_direction.y, last_direction.x)
+	var angle = atan2(last_character_direction.y, last_character_direction.x)
 	player_range_detector.rotation_degrees = rad_to_deg(angle) + 90.0
 
 # combat

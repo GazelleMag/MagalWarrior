@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://bw07sh3bxv65d"]
 
 [ext_resource type="Script" path="res://scenes/ui/ui.gd" id="1_ml4ta"]
-[ext_resource type="Script" path="res://scenes/ui/actionBar.gd" id="2_mdsr0"]
+[ext_resource type="Script" path="res://scenes/ui/action_bar.gd" id="2_mdsr0"]
 [ext_resource type="PackedScene" uid="uid://d1bf6gwr5tdfj" path="res://scenes/ui/skill_button.tscn" id="3_3w2wn"]
-[ext_resource type="Script" path="res://scenes/ui/playerHealthBar.gd" id="4_h6n7y"]
+[ext_resource type="Script" path="res://scenes/ui/player_health_bar.gd" id="4_h6n7y"]
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_ml4ta")
