@@ -22,6 +22,6 @@ func spawn_enemies() -> void:
 	var fighter = fighter_scene.instantiate()
 	fighter.character_name = "fighter"
 	fighter.global_position = spawn_point.global_position
-	fighter.set_spawn_point(spawn_point)
+	fighter.spawn_point_position = spawn_point.global_position
 	add_child(fighter)
 	spawn_point.set_character(fighter)

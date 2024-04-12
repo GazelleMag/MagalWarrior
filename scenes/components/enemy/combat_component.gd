@@ -1,8 +1,13 @@
 extends Node2D
 
+@export var velocity_component: Node2D
 @export var attack_point_component: Area2D
 @export var animation_component: Node2D
 var is_attacking: bool = false
+
+func _process(_delta: float) -> void:
+	if !is_attacking:
+		animation_component.handle_walk_animation(velocity_component.character_direction)
 
 func attack(direction: Vector2) -> void:
 	is_attacking = true

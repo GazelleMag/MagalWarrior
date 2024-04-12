@@ -120,5 +120,5 @@ func _on_player_animation_animation_finished():
 	is_attacking = false
 
 func _on_area_2d_body_entered(body: Node2D):
-	if(body.name == "Fighter"):
-		body.take_damage(10) # basic attack damage
+	if body.is_in_group("Enemies"):
+		body.take_damage(10)
