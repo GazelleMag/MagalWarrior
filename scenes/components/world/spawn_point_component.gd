@@ -1,6 +1,6 @@
-extends Area2D
+extends Marker2D
 
-var character: CharacterBody2D
+var character: Node2D
 var player_inside: bool = false
 
 func _ready() -> void:
@@ -10,14 +10,13 @@ func _process(_delta: float) -> void:
 	if player_inside:
 		character.start_chasing_player()
 
-# sets the correspondent character reference for this spawn point
-func set_character(character_ref: CharacterBody2D):
+func set_character(character_ref: Node2D):
 	character = character_ref
 
-func _on_body_entered(_body):
-	# when player enters this area, start chasing
+func _on_area_2d_body_entered(_body):
 	player_inside = true
 	character.start_chasing_player()
 
-func _on_body_exited(_body):
+func _on_area_2d_body_exited(_body):
+	print("its out!")
 	player_inside = false

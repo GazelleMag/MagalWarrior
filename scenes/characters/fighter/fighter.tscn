@@ -1,0 +1,53 @@
+[gd_scene load_steps=8 format=3 uid="uid://bhlxerek50fq"]
+
+[ext_resource type="Script" path="res://scenes/characters/fighter/fighter.gd" id="1_h0rgk"]
+[ext_resource type="PackedScene" uid="uid://dbxut02s44cty" path="res://scenes/components/enemy/animation_component.tscn" id="2_wdsds"]
+[ext_resource type="PackedScene" uid="uid://djao6rkxa8l72" path="res://scenes/components/ui/health_bar_component.tscn" id="3_l808p"]
+[ext_resource type="PackedScene" uid="uid://bmee1fjmekjar" path="res://scenes/components/enemy/range_detector_component.tscn" id="5_3imtg"]
+[ext_resource type="PackedScene" uid="uid://flcx5yxp81sv" path="res://scenes/components/enemy/attack_point_component.tscn" id="6_e5oj4"]
+[ext_resource type="PackedScene" uid="uid://0vvndflikyht" path="res://scenes/components/enemy/combat_component.tscn" id="7_odref"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tkobb"]
+radius = 16.0
+
+[node name="Fighter" type="CharacterBody2D" node_paths=PackedStringArray("animation_component", "range_detector_component", "attack_point_component", "combat_component")]
+collision_layer = 4
+collision_mask = 3
+motion_mode = 1
+wall_min_slide_angle = 0.0
+script = ExtResource("1_h0rgk")
+animation_component = NodePath("AnimationComponent")
+range_detector_component = NodePath("RangeDetectorComponent")
+attack_point_component = NodePath("AttackPointComponent")
+combat_component = NodePath("CombatComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_tkobb")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+debug_enabled = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[node name="AnimationComponent" parent="." instance=ExtResource("2_wdsds")]
+
+[node name="HealthBarComponent" parent="." instance=ExtResource("3_l808p")]
+offset_left = -37.5
+offset_top = -45.0
+offset_right = 37.5
+offset_bottom = -30.0
+
+[node name="RangeDetectorComponent" parent="." instance=ExtResource("5_3imtg")]
+
+[node name="CombatComponent" parent="." node_paths=PackedStringArray("attack_point_component", "animation_component") instance=ExtResource("7_odref")]
+attack_point_component = NodePath("../AttackPointComponent")
+animation_component = NodePath("../AnimationComponent")
+
+[node name="AttackPointComponent" parent="." instance=ExtResource("6_e5oj4")]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="RangeDetectorComponent" to="." method="_on_range_detector_component_body_entered"]
+[connection signal="body_exited" from="RangeDetectorComponent" to="." method="_on_range_detector_component_body_exited"]
+[connection signal="body_entered" from="AttackPointComponent" to="." method="_on_attack_point_component_body_entered"]

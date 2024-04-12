@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://4usmj5e7ql2l"]
+
+[ext_resource type="Script" path="res://scenes/components/enemy/enemy_component.gd" id="1_ausyx"]
+
+[node name="EnemyComponent" type="CharacterBody2D"]
+motion_mode = 1
+wall_min_slide_angle = 0.00174533
+script = ExtResource("1_ausyx")

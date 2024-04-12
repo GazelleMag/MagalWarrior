@@ -1,11 +1,11 @@
 [gd_scene load_steps=2 format=3 uid="uid://djao6rkxa8l72"]
 
-[ext_resource type="Script" path="res://scenes/ui/health_bar.gd" id="1_rndbl"]
+[ext_resource type="Script" path="res://scenes/components/ui/health_bar_component.gd" id="1_u81mh"]
 
-[node name="HealthBar" type="ProgressBar"]
+[node name="HealthBarComponent" type="ProgressBar"]
 modulate = Color(1, 0, 0, 1)
 offset_right = 75.0
 offset_bottom = 15.0
 show_percentage = false
-script = ExtResource("1_rndbl")
+script = ExtResource("1_u81mh")
 metadata/_edit_use_anchors_ = true

@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://buvbj63hqr6xf"]
+
+[ext_resource type="Script" path="res://scenes/components/enemy/velocity_component.gd" id="1_tiwwr"]
+
+[node name="VelocityComponent" type="Node2D"]
+script = ExtResource("1_tiwwr")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

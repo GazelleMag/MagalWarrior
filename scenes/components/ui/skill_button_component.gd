@@ -23,7 +23,7 @@ var change_key: String = "":
 func _ready() -> void:
 	set_process(false)
 
-func _process(_delta) -> void:	
+func _process(_delta) -> void:
 	time.text = "%3.1f" % timer.time_left
 	progress_bar.value = timer.time_left
 

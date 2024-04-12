@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://flcx5yxp81sv"]
+
+[ext_resource type="Script" path="res://scenes/components/enemy/attack_point_component.gd" id="1_v0nd7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4t08d"]
+
+[node name="AttackPointComponent" type="Area2D"]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_v0nd7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 30)
+shape = SubResource("CircleShape2D_4t08d")
+disabled = true

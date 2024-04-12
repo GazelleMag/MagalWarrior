@@ -16,7 +16,7 @@ var attack_point_offset: float = 30.0
 var maxHealth: int = 100
 @onready var currentHealth: int = maxHealth
 
-var fireball_scene = preload("res://scenes/fireball.tscn")
+var fireball_scene = preload("res://scenes/abilities/fireball.tscn")
 var fireball_speed: int = 300
 
 signal health_changed

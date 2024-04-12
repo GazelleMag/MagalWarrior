@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://i7nldh7l2lnl"]
 
-[ext_resource type="Script" path="res://scenes/fireball.gd" id="1_7ck8q"]
+[ext_resource type="Script" path="res://scenes/abilities/fireball.gd" id="1_7ck8q"]
 [ext_resource type="Texture2D" uid="uid://bkcfqngt2yj8l" path="res://art/projectiles/fireball/fireball1.png" id="1_cfyun"]
 [ext_resource type="Texture2D" uid="uid://br7isjwdpd0aq" path="res://art/projectiles/fireball/explosion1.PNG" id="2_qlnlt"]
 [ext_resource type="Texture2D" uid="uid://2s7qj0hmqobl" path="res://art/projectiles/fireball/explosion2.PNG" id="3_hh474"]
