@@ -1,10 +1,11 @@
 extends Area2D
 
 @onready var range_detector_collision_shape: CollisionShape2D = $CollisionShape2D
-@export var velocity_component: Node2D
-@export var combat_component: Node2D
 var player_in_range: bool = false
 var range_detector_offset: float = 30.0
+# components
+@export var velocity_component: Node2D
+@export var combat_component: Node2D
 
 func _process(_delta: float) -> void:
 	update_range_detector(velocity_component.character_direction)

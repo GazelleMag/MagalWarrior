@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/ui/ui.gd" id="1_ml4ta"]
 [ext_resource type="Script" path="res://scenes/ui/action_bar.gd" id="2_mdsr0"]
-[ext_resource type="PackedScene" uid="uid://d1bf6gwr5tdfj" path="res://scenes/components/ui/skill_button_component.tscn" id="3_3w2wn"]
+[ext_resource type="PackedScene" uid="uid://d1bf6gwr5tdfj" path="res://scenes/ui/ability_button.tscn" id="3_3w2wn"]
 [ext_resource type="Script" path="res://scenes/ui/player_health_bar.gd" id="4_h6n7y"]
 
 [node name="UI" type="CanvasLayer"]

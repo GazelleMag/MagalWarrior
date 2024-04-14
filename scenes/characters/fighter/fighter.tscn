@@ -1,9 +1,9 @@
 [gd_scene load_steps=10 format=3 uid="uid://bhlxerek50fq"]
 
-[ext_resource type="Script" path="res://scenes/characters/fighter/fighter.gd" id="1_h0rgk"]
+[ext_resource type="Script" path="res://scripts/enemy_controller.gd" id="1_h46vx"]
 [ext_resource type="PackedScene" uid="uid://2m8u658can22" path="res://scenes/characters/fighter/fighter_animation.tscn" id="2_tenlc"]
 [ext_resource type="PackedScene" uid="uid://dbxut02s44cty" path="res://scenes/components/enemy/animation_component.tscn" id="2_wdsds"]
-[ext_resource type="PackedScene" uid="uid://djao6rkxa8l72" path="res://scenes/components/ui/health_bar_component.tscn" id="3_l808p"]
+[ext_resource type="PackedScene" uid="uid://djao6rkxa8l72" path="res://scenes/ui/enemy_health_bar.tscn" id="3_l808p"]
 [ext_resource type="PackedScene" uid="uid://bmee1fjmekjar" path="res://scenes/components/enemy/range_detector_component.tscn" id="5_3imtg"]
 [ext_resource type="PackedScene" uid="uid://flcx5yxp81sv" path="res://scenes/components/enemy/attack_point_component.tscn" id="6_e5oj4"]
 [ext_resource type="PackedScene" uid="uid://buvbj63hqr6xf" path="res://scenes/components/enemy/velocity_component.tscn" id="7_axhd0"]
@@ -12,37 +12,39 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_tkobb"]
 radius = 16.0
 
-[node name="Fighter" type="CharacterBody2D" node_paths=PackedStringArray("velocity_component", "range_detector_component", "animation_component") groups=["Enemies"]]
+[node name="Fighter" type="CharacterBody2D" node_paths=PackedStringArray("velocity_component", "range_detector_component", "animation_component", "combat_component") groups=["Enemies"]]
 collision_layer = 4
 collision_mask = 3
 motion_mode = 1
 wall_min_slide_angle = 0.0
-script = ExtResource("1_h0rgk")
+script = ExtResource("1_h46vx")
 velocity_component = NodePath("VelocityComponent")
 range_detector_component = NodePath("RangeDetectorComponent")
 animation_component = NodePath("AnimationComponent")
+combat_component = NodePath("CombatComponent")
 
 [node name="FighterAnimation" parent="." instance=ExtResource("2_tenlc")]
-
-[node name="AnimationComponent" parent="." node_paths=PackedStringArray("velocity_component") instance=ExtResource("2_wdsds")]
-velocity_component = NodePath("../VelocityComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_tkobb")
 
-[node name="VelocityComponent" parent="." instance=ExtResource("7_axhd0")]
-
-[node name="HealthBarComponent" parent="." instance=ExtResource("3_l808p")]
+[node name="HealthBar" parent="." instance=ExtResource("3_l808p")]
 offset_left = -37.5
 offset_top = -45.0
 offset_right = 37.5
 offset_bottom = -30.0
 
+[node name="AnimationComponent" parent="." node_paths=PackedStringArray("velocity_component") instance=ExtResource("2_wdsds")]
+velocity_component = NodePath("../VelocityComponent")
+
+[node name="VelocityComponent" parent="." instance=ExtResource("7_axhd0")]
+
 [node name="RangeDetectorComponent" parent="." node_paths=PackedStringArray("velocity_component", "combat_component") instance=ExtResource("5_3imtg")]
 velocity_component = NodePath("../VelocityComponent")
 combat_component = NodePath("../CombatComponent")
 
-[node name="CombatComponent" parent="." node_paths=PackedStringArray("velocity_component", "attack_point_component", "animation_component") instance=ExtResource("7_odref")]
+[node name="CombatComponent" parent="." node_paths=PackedStringArray("health_bar", "velocity_component", "attack_point_component", "animation_component") instance=ExtResource("7_odref")]
+health_bar = NodePath("../HealthBar")
 velocity_component = NodePath("../VelocityComponent")
 attack_point_component = NodePath("../AttackPointComponent")
 animation_component = NodePath("../AnimationComponent")

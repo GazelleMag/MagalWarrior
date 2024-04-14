@@ -1,10 +1,10 @@
 extends CharacterBody2D
 
+@onready var level: Node2D = get_parent()
 const speed: int = 250
 var last_direction: Vector2 = Vector2.DOWN
 var last_direction_name: String = "down"
 @onready var player_animation: AnimatedSprite2D = $PlayerAnimation
-
 var is_attacking: bool = false
 var is_casting_fireball: bool = false
 var mouse1_cooldown: bool = false
@@ -109,7 +109,7 @@ func cast_fireball() -> void:
 	fireball.position = attack_point.global_position
 	fireball.linear_velocity = last_direction * fireball_speed
 	fireball.handle_fireball_orientation(last_direction)
-	get_parent().add_child(fireball)
+	level.add_child(fireball)
 
 func take_damage() -> void:
 	currentHealth = currentHealth - 10

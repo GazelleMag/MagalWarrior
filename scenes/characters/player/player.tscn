@@ -1,7 +1,7 @@
 [gd_scene load_steps=53 format=3 uid="uid://bq2pty2md6nxg"]
 
+[ext_resource type="Script" path="res://scenes/characters/player/player.gd" id="1_11ota"]
 [ext_resource type="Texture2D" uid="uid://b2m6ee63o1yr5" path="res://art/characters/Fighter/idle/idle down1.png" id="1_kht00"]
-[ext_resource type="Script" path="res://scenes/characters/player.gd" id="1_ouv38"]
 [ext_resource type="Texture2D" uid="uid://bkb2avqvenvfd" path="res://art/characters/Fighter/attack/attack down1.png" id="2_pqq30"]
 [ext_resource type="Texture2D" uid="uid://88oeggaxnx0f" path="res://art/characters/Fighter/idle/idle down2.png" id="3_0c3lk"]
 [ext_resource type="Texture2D" uid="uid://c87ihvee6o55r" path="res://art/characters/Fighter/attack/attack down2.png" id="3_btcid"]
@@ -265,7 +265,7 @@ radius = 16.0
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 5
-script = ExtResource("1_ouv38")
+script = ExtResource("1_11ota")
 
 [node name="PlayerAnimation" type="AnimatedSprite2D" parent="."]
 texture_filter = 3

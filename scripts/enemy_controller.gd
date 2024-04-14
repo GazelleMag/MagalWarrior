@@ -1,21 +1,15 @@
 extends CharacterBody2D
 
-var character_name: String
 @onready var player: Node2D = $"../Player"
-# spawn point
+var character_name: String
 var spawn_point_position: Vector2
-# status
-var maxHealth: int = 100
-@onready var currentHealth: int = maxHealth
 # components
 @export var velocity_component: Node2D
 @export var range_detector_component: Area2D
 @export var animation_component: Node2D
-
-signal health_changed
+@export var combat_component: Node2D
 
 func _ready() -> void:
-	health_changed.emit()
 	set_character_animation()
 
 func _process(_delta: float) -> void:
@@ -33,12 +27,8 @@ func handle_movement() -> void:
 func chase_player() -> void:
 	velocity_component.chase_player()
 
-# this could go into combat component
 func take_damage(damage: int) -> void:
-	currentHealth = currentHealth - damage
-	health_changed.emit()
-	if currentHealth <= 0:
-		die()
+	combat_component.take_damage(damage)
 	
 func die() -> void:
 	queue_free()
