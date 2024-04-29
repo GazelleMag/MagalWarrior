@@ -38,10 +38,9 @@ func explode_fireball() -> void:
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.name == "TileMap":
 		explode_fireball()
-	if body.name == "Fighter":
+	if body.is_in_group("Enemies"):	
 		body.take_damage(20) # fireball damage
 		explode_fireball()
 	
-
 func _on_timer_timeout() -> void:
 	explode_fireball()

@@ -261,4 +261,4 @@ modulate = Color(0.913725, 0.262745, 0.309804, 1)
 texture_filter = 3
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_pcd1b")
-animation = &"attack_up"
+animation = &"walk_left"

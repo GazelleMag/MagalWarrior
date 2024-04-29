@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dw2mq5jshlsox" path="res://scenes/world/spawn_point.tscn" id="3_pwjf5"]
 [ext_resource type="PackedScene" uid="uid://bq2pty2md6nxg" path="res://scenes/characters/player/player.tscn" id="3_w2dia"]
 [ext_resource type="PackedScene" uid="uid://bw07sh3bxv65d" path="res://scenes/ui/ui.tscn" id="5_cofyv"]
-[ext_resource type="PackedScene" uid="uid://bhlxerek50fq" path="res://scenes/characters/fighter/fighter.tscn" id="6_vsxjm"]
+[ext_resource type="PackedScene" uid="uid://cmj1py80ekooq" path="res://scenes/characters/thief/thief.tscn" id="6_i55se"]
 [ext_resource type="PackedScene" uid="uid://c3jbdiahncx6j" path="res://scenes/characters/brute/brute.tscn" id="7_rh6vv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7anir"]
@@ -479,8 +479,8 @@ position_smoothing_enabled = true
 
 [node name="SpawnPoint" parent="." instance=ExtResource("3_pwjf5")]
 position = Vector2(1050, 91)
-character_scene = ExtResource("6_vsxjm")
-character_name = "fighter"
+character_scene = ExtResource("6_i55se")
+character_name = "thief"
 
 [node name="SpawnPoint2" parent="." instance=ExtResource("3_pwjf5")]
 position = Vector2(1061, 517)

@@ -1,0 +1,265 @@
+[gd_scene load_steps=50 format=3 uid="uid://b8rvbopuou0tk"]
+
+[ext_resource type="Texture2D" uid="uid://dqn41hlql4rjm" path="res://art/characters/thief/attack/attack up1.png" id="1_1y6h7"]
+[ext_resource type="Texture2D" uid="uid://b3yiskoin3ayp" path="res://art/characters/thief/idle/idle down1.png" id="1_jbykb"]
+[ext_resource type="Texture2D" uid="uid://bfjuo5gb3hhif" path="res://art/characters/thief/attack/attack down1.png" id="1_kgdqu"]
+[ext_resource type="Texture2D" uid="uid://cvthlrjnvya53" path="res://art/characters/thief/attack/attack left1.png" id="1_ldk15"]
+[ext_resource type="Texture2D" uid="uid://ccjja1mcqwkew" path="res://art/characters/thief/attack/attack right1.png" id="1_rbsil"]
+[ext_resource type="Texture2D" uid="uid://oxo3uqkswtlt" path="res://art/characters/thief/idle/idle down2.png" id="2_eop1m"]
+[ext_resource type="Texture2D" uid="uid://cait1idj8g7f7" path="res://art/characters/thief/attack/attack left2.png" id="2_fksse"]
+[ext_resource type="Texture2D" uid="uid://bdqg4vxobdl8f" path="res://art/characters/thief/attack/attack right2.png" id="2_n2kp1"]
+[ext_resource type="Texture2D" uid="uid://2qgx000scoyc" path="res://art/characters/thief/attack/attack up2.png" id="2_qn10r"]
+[ext_resource type="Texture2D" uid="uid://pmr3wti1ekki" path="res://art/characters/thief/attack/attack down2.png" id="2_xdsva"]
+[ext_resource type="Texture2D" uid="uid://y2dbhruhuflm" path="res://art/characters/thief/attack/attack down3.png" id="3_0fv7i"]
+[ext_resource type="Texture2D" uid="uid://cm2ygk0m6ng5o" path="res://art/characters/thief/attack/attack up3.png" id="3_5v4kr"]
+[ext_resource type="Texture2D" uid="uid://dgxtvo41bhtle" path="res://art/characters/thief/attack/attack right3.png" id="3_fe3xf"]
+[ext_resource type="Texture2D" uid="uid://bxrl5ps7a1vnb" path="res://art/characters/thief/idle/idle down3.png" id="3_j14pp"]
+[ext_resource type="Texture2D" uid="uid://doty4ivmq0533" path="res://art/characters/thief/attack/attack left3.png" id="3_nd8lb"]
+[ext_resource type="Texture2D" uid="uid://dmkf41idq36my" path="res://art/characters/thief/idle/idle down4.png" id="4_3t84p"]
+[ext_resource type="Texture2D" uid="uid://bdu6vphyrhwu2" path="res://art/characters/thief/attack/attack right4.png" id="4_73e2p"]
+[ext_resource type="Texture2D" uid="uid://d112571uvlfjs" path="res://art/characters/thief/attack/attack down4.png" id="4_aslg6"]
+[ext_resource type="Texture2D" uid="uid://b4yv1ixk0vb3r" path="res://art/characters/thief/attack/attack left4.png" id="4_en0l1"]
+[ext_resource type="Texture2D" uid="uid://bhuactu567slq" path="res://art/characters/thief/attack/attack up4.png" id="4_rqxbf"]
+[ext_resource type="Texture2D" uid="uid://de1tterhlgi0g" path="res://art/characters/thief/idle/idle left1.png" id="5_h6ejl"]
+[ext_resource type="Texture2D" uid="uid://y3qv0qwdgb1l" path="res://art/characters/thief/idle/idle left2.png" id="6_forhn"]
+[ext_resource type="Texture2D" uid="uid://bkods0fn3ixim" path="res://art/characters/thief/idle/idle left3.png" id="7_6ogr3"]
+[ext_resource type="Texture2D" uid="uid://bjj5xkwg1bnte" path="res://art/characters/thief/idle/idle left4.png" id="8_g5gg3"]
+[ext_resource type="Texture2D" uid="uid://bfpb5osgdi4te" path="res://art/characters/thief/idle/idle right1.png" id="9_mc0gr"]
+[ext_resource type="Texture2D" uid="uid://bkyfnrpvjxd5i" path="res://art/characters/thief/idle/idle right2.png" id="10_ue721"]
+[ext_resource type="Texture2D" uid="uid://bqsai5vhlly6l" path="res://art/characters/thief/idle/idle right3.png" id="11_k5cn2"]
+[ext_resource type="Texture2D" uid="uid://csgpcjsppgil5" path="res://art/characters/thief/idle/idle right4.png" id="12_xxvad"]
+[ext_resource type="Texture2D" uid="uid://b1vyi1j3q0px3" path="res://art/characters/thief/idle/idle up1.png" id="13_dm7x6"]
+[ext_resource type="Texture2D" uid="uid://bguavu7voetg7" path="res://art/characters/thief/idle/idle up2.png" id="14_eumf0"]
+[ext_resource type="Texture2D" uid="uid://bowefdni2s6nu" path="res://art/characters/thief/idle/idle up3.png" id="15_lg0ra"]
+[ext_resource type="Texture2D" uid="uid://bxjykqnwri3u8" path="res://art/characters/thief/idle/idle up4.png" id="16_f42da"]
+[ext_resource type="Texture2D" uid="uid://ce1h34oi3k5ux" path="res://art/characters/thief/walk/walk down1.png" id="17_v8abc"]
+[ext_resource type="Texture2D" uid="uid://nsce4ds4anm4" path="res://art/characters/thief/walk/walk down2.png" id="18_y5qme"]
+[ext_resource type="Texture2D" uid="uid://cqjo625k35ppk" path="res://art/characters/thief/walk/walk down3.png" id="19_deu0o"]
+[ext_resource type="Texture2D" uid="uid://b3mx8c3pmv7mk" path="res://art/characters/thief/walk/walk down4.png" id="20_8wabn"]
+[ext_resource type="Texture2D" uid="uid://cmwfbhmofkkc3" path="res://art/characters/thief/walk/walk left1.png" id="21_mvvc4"]
+[ext_resource type="Texture2D" uid="uid://cj2oru2cppvtc" path="res://art/characters/thief/walk/walk left2.png" id="22_bqf18"]
+[ext_resource type="Texture2D" uid="uid://ctlrtfgw0l8rt" path="res://art/characters/thief/walk/walk left3.png" id="23_s4vvg"]
+[ext_resource type="Texture2D" uid="uid://df8t1wlqq2lq6" path="res://art/characters/thief/walk/walk left4.png" id="24_at3of"]
+[ext_resource type="Texture2D" uid="uid://baopr36lulxvw" path="res://art/characters/thief/walk/walk right1.png" id="25_8462e"]
+[ext_resource type="Texture2D" uid="uid://clmvkqmm1s2yj" path="res://art/characters/thief/walk/walk right2.png" id="26_g7xd6"]
+[ext_resource type="Texture2D" uid="uid://diyxi17fcyvq1" path="res://art/characters/thief/walk/walk right3.png" id="27_b2rst"]
+[ext_resource type="Texture2D" uid="uid://i8ol20v2rc74" path="res://art/characters/thief/walk/walk right4.png" id="28_nsigl"]
+[ext_resource type="Texture2D" uid="uid://cdpoxol8tya0w" path="res://art/characters/thief/walk/walk up1.png" id="29_cva4o"]
+[ext_resource type="Texture2D" uid="uid://bx6mj4l3n7klc" path="res://art/characters/thief/walk/walk up2.png" id="30_aihyv"]
+[ext_resource type="Texture2D" uid="uid://c55nbepyxa8wr" path="res://art/characters/thief/walk/walk up3.png" id="31_sf8ij"]
+[ext_resource type="Texture2D" uid="uid://sgnuhg8ses8a" path="res://art/characters/thief/walk/walk up4.png" id="32_hytx0"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_utc4o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_kgdqu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_xdsva")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_0fv7i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_aslg6")
+}],
+"loop": false,
+"name": &"attack_down",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ldk15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_fksse")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_nd8lb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_en0l1")
+}],
+"loop": false,
+"name": &"attack_left",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_rbsil")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_n2kp1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_fe3xf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_73e2p")
+}],
+"loop": false,
+"name": &"attack_right",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_1y6h7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_qn10r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_5v4kr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_rqxbf")
+}],
+"loop": false,
+"name": &"attack_up",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_jbykb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_eop1m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_j14pp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_3t84p")
+}],
+"loop": true,
+"name": &"idle_down",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_h6ejl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_forhn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_6ogr3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_g5gg3")
+}],
+"loop": true,
+"name": &"idle_left",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_mc0gr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_ue721")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_k5cn2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_xxvad")
+}],
+"loop": true,
+"name": &"idle_right",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_dm7x6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_eumf0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_lg0ra")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_f42da")
+}],
+"loop": true,
+"name": &"idle_up",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("17_v8abc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_y5qme")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_deu0o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_8wabn")
+}],
+"loop": true,
+"name": &"walk_down",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("21_mvvc4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_bqf18")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_s4vvg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_at3of")
+}],
+"loop": true,
+"name": &"walk_left",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("25_8462e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_g7xd6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_b2rst")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_nsigl")
+}],
+"loop": true,
+"name": &"walk_right",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("29_cva4o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_aihyv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_sf8ij")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_hytx0")
+}],
+"loop": true,
+"name": &"walk_up",
+"speed": 10.0
+}]
+
+[node name="ThiefAnimation" type="AnimatedSprite2D"]
+texture_filter = 3
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_utc4o")
+animation = &"attack_down"
+frame = 3
+frame_progress = 1.0

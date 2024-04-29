@@ -21,7 +21,7 @@ range_detector_component = NodePath("RangeDetectorComponent")
 animation_component = NodePath("AnimationComponent")
 combat_component = NodePath("CombatComponent")
 
-[node name="brute_animation" parent="." instance=ExtResource("1_biih2")]
+[node name="BruteAnimation" parent="." instance=ExtResource("1_biih2")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_tjegs")
