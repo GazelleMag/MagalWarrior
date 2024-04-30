@@ -2,7 +2,7 @@ extends Node2D
 
 @onready var character: Node2D = get_parent()
 @onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
-var speed: int = 175
+var speed: int
 var character_direction: Vector2
 var last_character_direction: Vector2 = Vector2.DOWN
 var last_character_direction_name: String = "down"

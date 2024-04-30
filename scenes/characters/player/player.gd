@@ -111,8 +111,8 @@ func cast_fireball() -> void:
 	fireball.handle_fireball_orientation(last_direction)
 	level.add_child(fireball)
 
-func take_damage() -> void:
-	currentHealth = currentHealth - 10
+func take_damage(damage: int) -> void:
+	currentHealth = currentHealth - damage
 	health_changed.emit()
 	
 # signals

@@ -13,7 +13,7 @@ config_version=5
 config/name="MagalWarrior"
 run/main_scene="res://scenes/world/level.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
-config/icon="res://art/other/icon.svg"
+config/icon="res://assets/sprites/other/icon.svg"
 
 [display]
 

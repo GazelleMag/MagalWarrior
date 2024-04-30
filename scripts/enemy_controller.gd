@@ -3,6 +3,7 @@ extends CharacterBody2D
 @onready var player: Node2D = $"../Player"
 var character_name: String
 var spawn_point_position: Vector2
+var enemy: Enemy
 # components
 @export var velocity_component: Node2D
 @export var range_detector_component: Area2D
@@ -10,6 +11,8 @@ var spawn_point_position: Vector2
 @export var combat_component: Node2D
 
 func _ready() -> void:
+	enemy = Enemy.new(character_name)
+	set_character_properties()
 	set_character_animation()
 
 func _process(_delta: float) -> void:
@@ -19,6 +22,9 @@ func set_character_animation() -> void:
 	for child in get_children():
 		if child is AnimatedSprite2D:
 			animation_component.character_animation = child
+			
+func set_character_properties() -> void:
+	velocity_component.speed = enemy.movement_speed
 
 func handle_movement() -> void:
 	velocity = velocity_component.get_velocity()
@@ -36,7 +42,7 @@ func die() -> void:
 # signals
 func _on_attack_point_component_body_entered(body: Node2D):
 	if body.name == "Player":
-		body.take_damage()
+		body.take_damage(enemy.attack_damage)
 
 func _on_range_detector_component_body_entered(body: Node2D):
 	if body.name == "Player":

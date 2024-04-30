@@ -8,7 +8,6 @@ var is_attacking: bool = false
 @export var attack_point_component: Area2D
 @export var animation_component: Node2D
 
-
 signal health_changed
 
 func _process(_delta: float) -> void:

@@ -30,9 +30,9 @@ func _process(_delta) -> void:
 func set_skill_icon() -> void:
 	var texture
 	if change_key == "M1":
-		texture = load("res://art/icons/sword.png")
+		texture = load("res://assets/sprites/icons/sword.png")
 	elif change_key == "M2":
-		texture = load("res://art/icons/fireball.png")
+		texture = load("res://assets/sprites/icons/fireball.png")
 	icon.texture = texture
 
 func set_skill_cooldown() -> void:
