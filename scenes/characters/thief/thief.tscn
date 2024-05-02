@@ -12,7 +12,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_d2fo2"]
 radius = 16.0
 
-[node name="Thief" type="CharacterBody2D" node_paths=PackedStringArray("velocity_component", "range_detector_component", "animation_component", "combat_component") groups=["Enemies"]]
+[node name="Thief" type="CharacterBody2D" node_paths=PackedStringArray("velocity_component", "range_detector_component", "animation_component", "combat_component", "health_bar") groups=["Enemies"]]
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_drvaa")
@@ -20,6 +20,7 @@ velocity_component = NodePath("VelocityComponent")
 range_detector_component = NodePath("RangeDetectorComponent")
 animation_component = NodePath("AnimationComponent")
 combat_component = NodePath("CombatComponent")
+health_bar = NodePath("HealthBar")
 
 [node name="ThiefAnimation" parent="." instance=ExtResource("1_v4el2")]
 

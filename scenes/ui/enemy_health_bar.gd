@@ -1,11 +1,11 @@
 extends ProgressBar
 
-@onready var currentHealth: int = maxHealth
-var maxHealth: int = 100
+var current_health: int
+var max_health: int
 
 func _ready() -> void:
 	value = 100
 	
 func update_health_bar(damage: int) -> void:
-	currentHealth = currentHealth - damage
-	value = float(currentHealth) * 100 / maxHealth
+	current_health = current_health - damage
+	value = float(current_health) * 100 / max_health

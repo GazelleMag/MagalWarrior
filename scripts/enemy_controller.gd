@@ -9,6 +9,7 @@ var enemy: Enemy
 @export var range_detector_component: Area2D
 @export var animation_component: Node2D
 @export var combat_component: Node2D
+@export var health_bar: ProgressBar
 
 func _ready() -> void:
 	enemy = Enemy.new(character_name)
@@ -25,6 +26,8 @@ func set_character_animation() -> void:
 			
 func set_character_properties() -> void:
 	velocity_component.speed = enemy.movement_speed
+	health_bar.max_health = enemy.max_health
+	health_bar.current_health = health_bar.max_health
 
 func handle_movement() -> void:
 	velocity = velocity_component.get_velocity()

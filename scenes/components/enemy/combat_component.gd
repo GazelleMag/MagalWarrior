@@ -24,6 +24,6 @@ func attack(direction: Vector2) -> void:
 	
 func take_damage(damage: int) -> void:
 	health_bar.update_health_bar(damage)
-	if health_bar.currentHealth <= 0:
+	if health_bar.current_health <= 0:
 		character.die()
 	
