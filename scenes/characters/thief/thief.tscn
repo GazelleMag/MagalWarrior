@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://cmj1py80ekooq"]
+[gd_scene load_steps=11 format=3 uid="uid://cmj1py80ekooq"]
 
 [ext_resource type="Script" path="res://scripts/enemy_controller.gd" id="1_drvaa"]
 [ext_resource type="PackedScene" uid="uid://b8rvbopuou0tk" path="res://scenes/characters/thief/thief_animation.tscn" id="1_v4el2"]
 [ext_resource type="PackedScene" uid="uid://djao6rkxa8l72" path="res://scenes/ui/enemy_health_bar.tscn" id="2_nfbir"]
 [ext_resource type="PackedScene" uid="uid://dbxut02s44cty" path="res://scenes/components/enemy/animation_component.tscn" id="3_ieepd"]
+[ext_resource type="PackedScene" uid="uid://canqewjsmlivc" path="res://scenes/misc/death_animation.tscn" id="3_kh5o4"]
 [ext_resource type="PackedScene" uid="uid://buvbj63hqr6xf" path="res://scenes/components/enemy/velocity_component.tscn" id="4_ed70w"]
 [ext_resource type="PackedScene" uid="uid://bmee1fjmekjar" path="res://scenes/components/enemy/range_detector_component.tscn" id="5_taljy"]
 [ext_resource type="PackedScene" uid="uid://0vvndflikyht" path="res://scenes/components/enemy/combat_component.tscn" id="6_4d85o"]
@@ -13,6 +14,7 @@
 radius = 16.0
 
 [node name="Thief" type="CharacterBody2D" node_paths=PackedStringArray("velocity_component", "range_detector_component", "animation_component", "combat_component", "health_bar") groups=["Enemies"]]
+z_index = 1
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_drvaa")
@@ -24,6 +26,8 @@ health_bar = NodePath("HealthBar")
 
 [node name="ThiefAnimation" parent="." instance=ExtResource("1_v4el2")]
 
+[node name="DeathAnimation" parent="." instance=ExtResource("3_kh5o4")]
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_d2fo2")
 
@@ -33,8 +37,10 @@ offset_top = -45.0
 offset_right = 37.5
 offset_bottom = -30.0
 
-[node name="AnimationComponent" parent="." node_paths=PackedStringArray("velocity_component") instance=ExtResource("3_ieepd")]
+[node name="AnimationComponent" parent="." node_paths=PackedStringArray("velocity_component", "character_animation", "death_animation") instance=ExtResource("3_ieepd")]
 velocity_component = NodePath("../VelocityComponent")
+character_animation = NodePath("../ThiefAnimation")
+death_animation = NodePath("../DeathAnimation")
 
 [node name="VelocityComponent" parent="." instance=ExtResource("4_ed70w")]
 

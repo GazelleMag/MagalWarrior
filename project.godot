@@ -13,7 +13,7 @@ config_version=5
 config/name="MagalWarrior"
 run/main_scene="res://scenes/world/level.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
-config/icon="res://assets/sprites/other/icon.svg"
+config/icon="res://assets/sprites/misc/icon.svg"
 
 [display]
 
@@ -72,3 +72,7 @@ mouse2={
 2d_physics/layer_1="Environment"
 2d_physics/layer_2="Player"
 2d_physics/layer_3="Enemy"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=3

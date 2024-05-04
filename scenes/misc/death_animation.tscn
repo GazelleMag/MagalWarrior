@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://canqewjsmlivc"]
+
+[ext_resource type="Texture2D" uid="uid://bx5hiwgsrq8jf" path="res://assets/sprites/misc/death/death1.png" id="1_8pvda"]
+[ext_resource type="Texture2D" uid="uid://efv1n56bnq5y" path="res://assets/sprites/misc/death/death2.png" id="2_ul4lo"]
+[ext_resource type="Texture2D" uid="uid://donsftulv0ht8" path="res://assets/sprites/misc/death/death3.png" id="3_5qkym"]
+[ext_resource type="Texture2D" uid="uid://b4vsxpa3em6hp" path="res://assets/sprites/misc/death/death4.png" id="4_ro5gy"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kyjgu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_8pvda")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ul4lo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_5qkym")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ro5gy")
+}],
+"loop": false,
+"name": &"die",
+"speed": 10.0
+}]
+
+[node name="DeathAnimation" type="AnimatedSprite2D"]
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_kyjgu")
+animation = &"die"
+frame = 3
+frame_progress = 1.0

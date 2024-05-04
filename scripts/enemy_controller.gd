@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 @onready var player: Node2D = $"../Player"
+@onready var collision_shape: CollisionShape2D = $CollisionShape2D
 var character_name: String
 var spawn_point_position: Vector2
 var enemy: Enemy
@@ -14,15 +15,9 @@ var enemy: Enemy
 func _ready() -> void:
 	enemy = Enemy.new(character_name)
 	set_character_properties()
-	set_character_animation()
 
 func _process(_delta: float) -> void:
 	handle_movement()
-
-func set_character_animation() -> void:
-	for child in get_children():
-		if child is AnimatedSprite2D:
-			animation_component.character_animation = child
 			
 func set_character_properties() -> void:
 	velocity_component.speed = enemy.movement_speed
@@ -40,7 +35,15 @@ func take_damage(damage: int) -> void:
 	combat_component.take_damage(damage)
 	
 func die() -> void:
+	set_process(false)
+	health_bar.visible = false
+	call_deferred("disable_collision_shape")
+	animation_component.handle_death_animation()
+	await animation_component.wait_for_death_animation()
 	queue_free()
+
+func disable_collision_shape() -> void:
+	collision_shape.disabled = true
 
 # signals
 func _on_attack_point_component_body_entered(body: Node2D):
