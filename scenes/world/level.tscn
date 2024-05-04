@@ -1,9 +1,10 @@
-[gd_scene load_steps=20 format=3 uid="uid://deds5ji0df5sc"]
+[gd_scene load_steps=21 format=3 uid="uid://deds5ji0df5sc"]
 
 [ext_resource type="Script" path="res://scenes/world/level.gd" id="1_5y6n4"]
 [ext_resource type="Texture2D" uid="uid://sv4brx747id1" path="res://assets/sprites/tilesets/TilesetExample.png" id="2_y57rx"]
 [ext_resource type="PackedScene" uid="uid://dw2mq5jshlsox" path="res://scenes/world/spawn_point.tscn" id="3_pwjf5"]
 [ext_resource type="PackedScene" uid="uid://bq2pty2md6nxg" path="res://scenes/characters/player/player.tscn" id="3_w2dia"]
+[ext_resource type="Script" path="res://scripts/camera.gd" id="4_gydb8"]
 [ext_resource type="PackedScene" uid="uid://bw07sh3bxv65d" path="res://scenes/ui/ui.tscn" id="5_cofyv"]
 [ext_resource type="PackedScene" uid="uid://cmj1py80ekooq" path="res://scenes/characters/thief/thief.tscn" id="6_i55se"]
 [ext_resource type="PackedScene" uid="uid://c3jbdiahncx6j" path="res://scenes/characters/brute/brute.tscn" id="7_rh6vv"]
@@ -445,6 +446,10 @@ sources/0 = SubResource("TileSetAtlasSource_7anir")
 [node name="Level" type="Node2D"]
 script = ExtResource("1_5y6n4")
 
+[node name="RestartTimer" type="Timer" parent="."]
+wait_time = 0.6
+one_shot = true
+
 [node name="Ground" type="Node2D" parent="."]
 
 [node name="TileMap" type="TileMap" parent="Ground"]
@@ -473,8 +478,11 @@ layer_2/tile_data = PackedInt32Array()
 z_index = 2
 position = Vector2(272, 282)
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
+[node name="Camera" type="Camera2D" parent="." node_paths=PackedStringArray("player")]
+position = Vector2(272, 282)
 position_smoothing_enabled = true
+script = ExtResource("4_gydb8")
+player = NodePath("../Player")
 
 [node name="UI" parent="." instance=ExtResource("5_cofyv")]
 
@@ -487,3 +495,5 @@ character_name = "thief"
 position = Vector2(1061, 517)
 character_scene = ExtResource("7_rh6vv")
 character_name = "brute"
+
+[connection signal="timeout" from="RestartTimer" to="." method="_on_restart_timer_timeout"]

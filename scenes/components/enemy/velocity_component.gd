@@ -43,7 +43,11 @@ func _on_timer_timeout() -> void:
 	makepath()
 
 func makepath() -> void:
-	navigation_agent.target_position = character.player.global_position
+	if is_instance_valid(character.player):
+		navigation_agent.target_position = character.player.global_position
+	else:
+		chasing_player = false
+		back_to_spawn_point = true
 
 func chase_player() -> void:
 	if !back_to_spawn_point:

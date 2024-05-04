@@ -27,6 +27,7 @@ health_bar = NodePath("HealthBar")
 [node name="ThiefAnimation" parent="." instance=ExtResource("1_v4el2")]
 
 [node name="DeathAnimation" parent="." instance=ExtResource("3_kh5o4")]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_d2fo2")

@@ -1,4 +1,4 @@
 extends ProgressBar
 
 func update_health_bar(player: Node2D) -> void:
-	value = player.currentHealth * 100 / player.maxHealth
+	value = player.current_health * 100 / player.max_health

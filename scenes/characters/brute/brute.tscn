@@ -27,6 +27,7 @@ health_bar = NodePath("HealthBar")
 [node name="BruteAnimation" parent="." instance=ExtResource("1_biih2")]
 
 [node name="DeathAnimation" parent="." instance=ExtResource("9_00ra2")]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_tjegs")

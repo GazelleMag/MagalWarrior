@@ -5,6 +5,7 @@ const speed: int = 250
 var last_direction: Vector2 = Vector2.DOWN
 var last_direction_name: String = "down"
 @onready var player_animation: AnimatedSprite2D = $PlayerAnimation
+@onready var death_animation: AnimatedSprite2D = $DeathAnimation
 var is_attacking: bool = false
 var is_casting_fireball: bool = false
 var mouse1_cooldown: bool = false
@@ -13,14 +14,18 @@ var mouse2_cooldown: bool = false
 @onready var attack_point_collision_shape: CollisionShape2D = $AttackPoint/CollisionShape2D
 var attack_point_offset: float = 30.0
 
-var maxHealth: int = 100
-@onready var currentHealth: int = maxHealth
+var max_health: int = 100
+@onready var current_health: int = max_health
 
 var fireball_scene = preload("res://scenes/abilities/fireball.tscn")
 var fireball_speed: int = 300
 
 signal health_changed
 signal mouse_click
+signal player_died
+
+func _ready() -> void:
+	death_animation.visible = false
 
 func _process(_delta) -> void:
 	# movement
@@ -83,8 +88,16 @@ func handle_attack_animation(direction: Vector2) -> void:
 		if last_direction_name != "":
 			player_animation.play("attack_" + last_direction_name)
 
+func handle_death_animation() -> void:
+	player_animation.visible = false
+	death_animation.visible = true
+	death_animation.play("die")
+
 func wait_for_animation() -> void:
 	await player_animation.animation_finished
+
+func wait_for_death_animation() -> void:
+	await death_animation.animation_finished
 
 # combat
 func update_attack_point_position(direction: Vector2) -> void:
@@ -112,8 +125,17 @@ func cast_fireball() -> void:
 	level.add_child(fireball)
 
 func take_damage(damage: int) -> void:
-	currentHealth = currentHealth - damage
+	current_health = current_health - damage
 	health_changed.emit()
+	if current_health <= 0:
+		die()
+	
+func die() -> void:
+	set_process(false)
+	handle_death_animation()
+	await wait_for_death_animation()
+	player_died.emit()
+	queue_free()
 	
 # signals
 func _on_player_animation_animation_finished():

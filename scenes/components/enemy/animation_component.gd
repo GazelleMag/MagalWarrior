@@ -5,7 +5,6 @@ extends Node2D
 @export var death_animation: AnimatedSprite2D
 
 func _ready() -> void:
-	character_animation.visible = true
 	death_animation.visible = false
 
 func handle_walk_animation(direction: Vector2) -> void:

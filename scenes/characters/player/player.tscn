@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://bq2pty2md6nxg"]
+[gd_scene load_steps=54 format=3 uid="uid://bq2pty2md6nxg"]
 
 [ext_resource type="Script" path="res://scenes/characters/player/player.gd" id="1_11ota"]
 [ext_resource type="Texture2D" uid="uid://b2m6ee63o1yr5" path="res://assets/sprites/characters/fighter/idle/idle down1.png" id="1_kht00"]
@@ -49,6 +49,7 @@
 [ext_resource type="Texture2D" uid="uid://dog4ea0u6aj70" path="res://assets/sprites/characters/fighter/walk/walk up2.png" id="31_26fkg"]
 [ext_resource type="Texture2D" uid="uid://bk2n1kwuycpro" path="res://assets/sprites/characters/fighter/walk/walk up3.png" id="32_i82vv"]
 [ext_resource type="Texture2D" uid="uid://dsg6crktfurwx" path="res://assets/sprites/characters/fighter/walk/walk up4.png" id="33_nsvbi"]
+[ext_resource type="PackedScene" uid="uid://canqewjsmlivc" path="res://scenes/misc/death_animation.tscn" id="50_gv0ay"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pcd1b"]
 animations = [{
@@ -272,6 +273,9 @@ texture_filter = 3
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_pcd1b")
 animation = &"idle_down"
+
+[node name="DeathAnimation" parent="." instance=ExtResource("50_gv0ay")]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_tkobb")
