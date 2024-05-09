@@ -1,278 +1,28 @@
-[gd_scene load_steps=54 format=3 uid="uid://bq2pty2md6nxg"]
+[gd_scene load_steps=10 format=3 uid="uid://bq2pty2md6nxg"]
 
-[ext_resource type="Script" path="res://scenes/characters/player/player.gd" id="1_11ota"]
-[ext_resource type="Texture2D" uid="uid://b2m6ee63o1yr5" path="res://assets/sprites/characters/fighter/idle/idle down1.png" id="1_kht00"]
-[ext_resource type="Texture2D" uid="uid://bkb2avqvenvfd" path="res://assets/sprites/characters/fighter/attack/attack down1.png" id="2_pqq30"]
-[ext_resource type="Texture2D" uid="uid://88oeggaxnx0f" path="res://assets/sprites/characters/fighter/idle/idle down2.png" id="3_0c3lk"]
-[ext_resource type="Texture2D" uid="uid://c87ihvee6o55r" path="res://assets/sprites/characters/fighter/attack/attack down2.png" id="3_btcid"]
-[ext_resource type="Texture2D" uid="uid://fanjreyfkfpg" path="res://assets/sprites/characters/fighter/idle/idle down3.png" id="4_fg7ou"]
-[ext_resource type="Texture2D" uid="uid://cm5rnnrqih760" path="res://assets/sprites/characters/fighter/attack/attack down3.png" id="4_wanhk"]
-[ext_resource type="Texture2D" uid="uid://6xvtj1g0np3w" path="res://assets/sprites/characters/fighter/attack/attack down4.png" id="5_oi7jp"]
-[ext_resource type="Texture2D" uid="uid://cwnhmvfqm0rkm" path="res://assets/sprites/characters/fighter/idle/idle down4.png" id="5_w6av6"]
-[ext_resource type="Texture2D" uid="uid://d3l34gs84kxmf" path="res://assets/sprites/characters/fighter/idle/idle left1.png" id="6_30fbm"]
-[ext_resource type="Texture2D" uid="uid://c6rob5pgno2ft" path="res://assets/sprites/characters/fighter/attack/attack left1.png" id="6_nb0qr"]
-[ext_resource type="Texture2D" uid="uid://bo20d2ae8b34k" path="res://assets/sprites/characters/fighter/idle/idle up1.png" id="6_p0ru0"]
-[ext_resource type="Texture2D" uid="uid://cflard5e4ui31" path="res://assets/sprites/characters/fighter/idle/idle up2.png" id="7_35isw"]
-[ext_resource type="Texture2D" uid="uid://dn7w01fc3elyo" path="res://assets/sprites/characters/fighter/idle/idle left2.png" id="7_him57"]
-[ext_resource type="Texture2D" uid="uid://jaroktpy1po5" path="res://assets/sprites/characters/fighter/attack/attack left2.png" id="7_v0wlx"]
-[ext_resource type="Texture2D" uid="uid://8mdi086o2kpq" path="res://assets/sprites/characters/fighter/attack/attack left3.png" id="8_di86x"]
-[ext_resource type="Texture2D" uid="uid://us55rsm81gdk" path="res://assets/sprites/characters/fighter/idle/idle up3.png" id="8_mhwef"]
-[ext_resource type="Texture2D" uid="uid://crhjcpqveys2s" path="res://assets/sprites/characters/fighter/idle/idle left3.png" id="8_ysdn3"]
-[ext_resource type="Texture2D" uid="uid://gp0vrxmjlrxh" path="res://assets/sprites/characters/fighter/idle/idle left4.png" id="9_n0xim"]
-[ext_resource type="Texture2D" uid="uid://l81jbbsi3a1u" path="res://assets/sprites/characters/fighter/attack/attack left4.png" id="9_rv45u"]
-[ext_resource type="Texture2D" uid="uid://bbgvww8p4h0b0" path="res://assets/sprites/characters/fighter/idle/idle up4.png" id="9_uxl58"]
-[ext_resource type="Texture2D" uid="uid://btuxb7axeemp4" path="res://assets/sprites/characters/fighter/attack/attack right1.png" id="10_3hfqw"]
-[ext_resource type="Texture2D" uid="uid://b21wyjkkqtpv7" path="res://assets/sprites/characters/fighter/idle/idle right1.png" id="10_ju0ki"]
-[ext_resource type="Texture2D" uid="uid://d2k1a0gkpn01f" path="res://assets/sprites/characters/fighter/attack/attack right2.png" id="11_k8vb0"]
-[ext_resource type="Texture2D" uid="uid://eijuqmep2ppd" path="res://assets/sprites/characters/fighter/idle/idle right2.png" id="11_x1lgs"]
-[ext_resource type="Texture2D" uid="uid://ejjhkqygk6e3" path="res://assets/sprites/characters/fighter/idle/idle right3.png" id="12_3xba8"]
-[ext_resource type="Texture2D" uid="uid://bdpnutoo6d122" path="res://assets/sprites/characters/fighter/attack/attack right3.png" id="12_7q502"]
-[ext_resource type="Texture2D" uid="uid://djd75ytb1bybd" path="res://assets/sprites/characters/fighter/idle/idle right4.png" id="13_iyiib"]
-[ext_resource type="Texture2D" uid="uid://diwbsxi6un4p0" path="res://assets/sprites/characters/fighter/attack/attack right4.png" id="13_lvba0"]
-[ext_resource type="Texture2D" uid="uid://blaiink6upslo" path="res://assets/sprites/characters/fighter/attack/attack up1.png" id="14_pb6bk"]
-[ext_resource type="Texture2D" uid="uid://dkfdmednfjyca" path="res://assets/sprites/characters/fighter/attack/attack up2.png" id="15_5fhu7"]
-[ext_resource type="Texture2D" uid="uid://cyvyjcrcwdsnd" path="res://assets/sprites/characters/fighter/attack/attack up3.png" id="16_m3sw8"]
-[ext_resource type="Texture2D" uid="uid://bc6d3ywliji7x" path="res://assets/sprites/characters/fighter/attack/attack up4.png" id="17_f7gej"]
-[ext_resource type="Texture2D" uid="uid://cq5dan4spjldw" path="res://assets/sprites/characters/fighter/walk/walk down1.png" id="18_bcijs"]
-[ext_resource type="Texture2D" uid="uid://c0kjfo1287d4c" path="res://assets/sprites/characters/fighter/walk/walk down2.png" id="19_7gggr"]
-[ext_resource type="Texture2D" uid="uid://dwgr52hytpyg3" path="res://assets/sprites/characters/fighter/walk/walk down3.png" id="20_mjip1"]
-[ext_resource type="Texture2D" uid="uid://dn78woi4uyrbw" path="res://assets/sprites/characters/fighter/walk/walk down4.png" id="21_7jle3"]
-[ext_resource type="Texture2D" uid="uid://b2bmhhy8omyyd" path="res://assets/sprites/characters/fighter/walk/walk left1.png" id="22_g8o3h"]
-[ext_resource type="Texture2D" uid="uid://bojsp1to7s1pv" path="res://assets/sprites/characters/fighter/walk/walk left2.png" id="23_sm8rp"]
-[ext_resource type="Texture2D" uid="uid://knbmtbt73gyh" path="res://assets/sprites/characters/fighter/walk/walk left3.png" id="24_ic37s"]
-[ext_resource type="Texture2D" uid="uid://5gqe5agungeh" path="res://assets/sprites/characters/fighter/walk/walk left4.png" id="25_b788x"]
-[ext_resource type="Texture2D" uid="uid://q4k4c3b48rxb" path="res://assets/sprites/characters/fighter/walk/walk right1.png" id="26_fau1j"]
-[ext_resource type="Texture2D" uid="uid://bbemfakk4psed" path="res://assets/sprites/characters/fighter/walk/walk right2.png" id="27_xm06d"]
-[ext_resource type="Texture2D" uid="uid://x1r5a8bgckmw" path="res://assets/sprites/characters/fighter/walk/walk right3.png" id="28_mymqs"]
-[ext_resource type="Texture2D" uid="uid://k3nlq3w3cqtd" path="res://assets/sprites/characters/fighter/walk/walk right4.png" id="29_qtbeq"]
-[ext_resource type="Texture2D" uid="uid://bufmd0vhmt8mo" path="res://assets/sprites/characters/fighter/walk/walk up1.png" id="30_w35p5"]
-[ext_resource type="Texture2D" uid="uid://dog4ea0u6aj70" path="res://assets/sprites/characters/fighter/walk/walk up2.png" id="31_26fkg"]
-[ext_resource type="Texture2D" uid="uid://bk2n1kwuycpro" path="res://assets/sprites/characters/fighter/walk/walk up3.png" id="32_i82vv"]
-[ext_resource type="Texture2D" uid="uid://dsg6crktfurwx" path="res://assets/sprites/characters/fighter/walk/walk up4.png" id="33_nsvbi"]
+[ext_resource type="Script" path="res://scenes/characters/player/player_controller.gd" id="1_j6tth"]
+[ext_resource type="PackedScene" uid="uid://2g40ejm5tvy1" path="res://scenes/characters/player/player_animation.tscn" id="2_ukbkk"]
+[ext_resource type="PackedScene" uid="uid://d4h32id0fxdai" path="res://scenes/components/player/combat_component.tscn" id="7_c3mlq"]
+[ext_resource type="PackedScene" uid="uid://dqev70tyi4jgf" path="res://scenes/components/character/health_component.tscn" id="8_knxp1"]
 [ext_resource type="PackedScene" uid="uid://canqewjsmlivc" path="res://scenes/misc/death_animation.tscn" id="50_gv0ay"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_pcd1b"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_pqq30")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_btcid")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_wanhk")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_oi7jp")
-}],
-"loop": false,
-"name": &"attack_down",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("6_nb0qr")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_v0wlx")
-}, {
-"duration": 1.0,
-"texture": ExtResource("8_di86x")
-}, {
-"duration": 1.0,
-"texture": ExtResource("9_rv45u")
-}],
-"loop": false,
-"name": &"attack_left",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("10_3hfqw")
-}, {
-"duration": 1.0,
-"texture": ExtResource("11_k8vb0")
-}, {
-"duration": 1.0,
-"texture": ExtResource("12_7q502")
-}, {
-"duration": 1.0,
-"texture": ExtResource("13_lvba0")
-}],
-"loop": false,
-"name": &"attack_right",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("14_pb6bk")
-}, {
-"duration": 1.0,
-"texture": ExtResource("15_5fhu7")
-}, {
-"duration": 1.0,
-"texture": ExtResource("16_m3sw8")
-}, {
-"duration": 1.0,
-"texture": ExtResource("17_f7gej")
-}],
-"loop": false,
-"name": &"attack_up",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("1_kht00")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_0c3lk")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_fg7ou")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_w6av6")
-}],
-"loop": true,
-"name": &"idle_down",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("6_30fbm")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_him57")
-}, {
-"duration": 1.0,
-"texture": ExtResource("8_ysdn3")
-}, {
-"duration": 1.0,
-"texture": ExtResource("9_n0xim")
-}],
-"loop": true,
-"name": &"idle_left",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("10_ju0ki")
-}, {
-"duration": 1.0,
-"texture": ExtResource("11_x1lgs")
-}, {
-"duration": 1.0,
-"texture": ExtResource("12_3xba8")
-}, {
-"duration": 1.0,
-"texture": ExtResource("13_iyiib")
-}],
-"loop": true,
-"name": &"idle_right",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("6_p0ru0")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_35isw")
-}, {
-"duration": 1.0,
-"texture": ExtResource("8_mhwef")
-}, {
-"duration": 1.0,
-"texture": ExtResource("9_uxl58")
-}],
-"loop": true,
-"name": &"idle_up",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("18_bcijs")
-}, {
-"duration": 1.0,
-"texture": ExtResource("19_7gggr")
-}, {
-"duration": 1.0,
-"texture": ExtResource("20_mjip1")
-}, {
-"duration": 1.0,
-"texture": ExtResource("21_7jle3")
-}],
-"loop": true,
-"name": &"walk_down",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("22_g8o3h")
-}, {
-"duration": 1.0,
-"texture": ExtResource("23_sm8rp")
-}, {
-"duration": 1.0,
-"texture": ExtResource("24_ic37s")
-}, {
-"duration": 1.0,
-"texture": ExtResource("25_b788x")
-}],
-"loop": true,
-"name": &"walk_left",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("26_fau1j")
-}, {
-"duration": 1.0,
-"texture": ExtResource("27_xm06d")
-}, {
-"duration": 1.0,
-"texture": ExtResource("28_mymqs")
-}, {
-"duration": 1.0,
-"texture": ExtResource("29_qtbeq")
-}],
-"loop": true,
-"name": &"walk_right",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("30_w35p5")
-}, {
-"duration": 1.0,
-"texture": ExtResource("31_26fkg")
-}, {
-"duration": 1.0,
-"texture": ExtResource("32_i82vv")
-}, {
-"duration": 1.0,
-"texture": ExtResource("33_nsvbi")
-}],
-"loop": true,
-"name": &"walk_up",
-"speed": 10.0
-}]
+[ext_resource type="PackedScene" uid="uid://dbxut02s44cty" path="res://scenes/components/character/animation_component.tscn" id="51_l3063"]
+[ext_resource type="PackedScene" uid="uid://day2k3vuvfjkj" path="res://scenes/components/player/velocity_component.tscn" id="52_8wheh"]
+[ext_resource type="PackedScene" uid="uid://flcx5yxp81sv" path="res://scenes/components/character/attack_point_component.tscn" id="53_t37or"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tkobb"]
 radius = 16.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_yo51x"]
-
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("velocity_component", "animation_component", "attack_point_component", "combat_component", "health_component")]
 collision_layer = 2
 collision_mask = 5
-script = ExtResource("1_11ota")
+script = ExtResource("1_j6tth")
+velocity_component = NodePath("VelocityComponent")
+animation_component = NodePath("AnimationComponent")
+attack_point_component = NodePath("AttackPointComponent")
+combat_component = NodePath("CombatComponent")
+health_component = NodePath("HealthComponent")
 
-[node name="PlayerAnimation" type="AnimatedSprite2D" parent="."]
-texture_filter = 3
-scale = Vector2(3, 3)
-sprite_frames = SubResource("SpriteFrames_pcd1b")
-animation = &"idle_down"
+[node name="PlayerAnimation" parent="." instance=ExtResource("2_ukbkk")]
 
 [node name="DeathAnimation" parent="." instance=ExtResource("50_gv0ay")]
 visible = false
@@ -280,14 +30,24 @@ visible = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_tkobb")
 
-[node name="AttackPoint" type="Area2D" parent="."]
-position = Vector2(0, 30)
+[node name="HealthComponent" parent="." instance=ExtResource("8_knxp1")]
+
+[node name="AnimationComponent" parent="." node_paths=PackedStringArray("velocity_component", "character_animation", "death_animation") instance=ExtResource("51_l3063")]
+velocity_component = NodePath("../VelocityComponent")
+character_animation = NodePath("../PlayerAnimation")
+death_animation = NodePath("../DeathAnimation")
+
+[node name="VelocityComponent" parent="." instance=ExtResource("52_8wheh")]
+
+[node name="AttackPointComponent" parent="." node_paths=PackedStringArray("velocity_component") instance=ExtResource("53_t37or")]
 collision_layer = 2
 collision_mask = 4
+velocity_component = NodePath("../VelocityComponent")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackPoint"]
-shape = SubResource("CircleShape2D_yo51x")
-disabled = true
+[node name="CombatComponent" parent="." node_paths=PackedStringArray("velocity_component", "attack_point_component", "animation_component", "health_component") instance=ExtResource("7_c3mlq")]
+velocity_component = NodePath("../VelocityComponent")
+attack_point_component = NodePath("../AttackPointComponent")
+animation_component = NodePath("../AnimationComponent")
+health_component = NodePath("../HealthComponent")
 
-[connection signal="animation_finished" from="PlayerAnimation" to="." method="_on_player_animation_animation_finished"]
-[connection signal="body_entered" from="AttackPoint" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="AttackPointComponent" to="." method="_on_attack_point_component_body_entered"]

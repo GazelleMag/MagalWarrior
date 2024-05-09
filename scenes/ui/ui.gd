@@ -16,7 +16,4 @@ func handle_mouse_click(click_type: String) -> void:
 	
 func handle_mouse_cooldown(cooldown_status: bool, click_type: String) -> void:
 	if player != null:
-		if click_type == "mouse1":
-			player.mouse1_cooldown = cooldown_status
-		elif click_type == "mouse2":
-			player.mouse2_cooldown = cooldown_status
+		player.handle_mouse_cooldown(cooldown_status, click_type)

@@ -260,4 +260,4 @@ animations = [{
 texture_filter = 3
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_jviro")
-animation = &"attack_right"
+animation = &"attack_up"

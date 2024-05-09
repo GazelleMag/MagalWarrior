@@ -1,5 +1,6 @@
 extends Node2D
 
+@onready var character: CharacterBody2D = get_parent()
 @export var velocity_component: Node2D
 @export var character_animation: AnimatedSprite2D
 @export var death_animation: AnimatedSprite2D
@@ -26,7 +27,10 @@ func handle_walk_animation(direction: Vector2) -> void:
 	else:
 		# Character is idle, choose the idle animation based on the last direction.
 		if velocity_component.last_character_direction_name != "":
-			character_animation.play("idle_down")
+			if character.name != "Player":
+				character_animation.play("idle_down")
+			else:
+				character_animation.play("idle_" + velocity_component.last_character_direction_name)
 
 func handle_attack_animation(direction: Vector2) -> void:
 	if direction != Vector2.ZERO:
@@ -49,7 +53,7 @@ func handle_death_animation() -> void:
 	death_animation.visible = true
 	death_animation.play("die")
 
-func wait_for_attack_animation() -> void:
+func wait_for_animation() -> void:
 	await character_animation.animation_finished
 	
 func wait_for_death_animation() -> void:

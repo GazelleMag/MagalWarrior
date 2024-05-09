@@ -5,12 +5,13 @@ extends CharacterBody2D
 var character_name: String
 var spawn_point_position: Vector2
 var enemy: Enemy
+@export var health_bar: ProgressBar
 # components
 @export var velocity_component: Node2D
 @export var range_detector_component: Area2D
 @export var animation_component: Node2D
 @export var combat_component: Node2D
-@export var health_bar: ProgressBar
+@export var health_component: Node2D
 
 func _ready() -> void:
 	enemy = Enemy.new(character_name)
@@ -21,8 +22,8 @@ func _process(_delta: float) -> void:
 			
 func set_character_properties() -> void:
 	velocity_component.speed = enemy.movement_speed
-	health_bar.max_health = enemy.max_health
-	health_bar.current_health = health_bar.max_health
+	health_component.max_health = enemy.max_health
+	health_component.current_health = health_component.max_health
 
 func handle_movement() -> void:
 	velocity = velocity_component.get_velocity()

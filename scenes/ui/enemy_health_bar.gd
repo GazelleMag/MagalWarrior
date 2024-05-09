@@ -1,11 +1,10 @@
 extends ProgressBar
 
-var current_health: int
-var max_health: int
+# components
+@export var health_component: Node2D
 
 func _ready() -> void:
 	value = 100
 	
-func update_health_bar(damage: int) -> void:
-	current_health = current_health - damage
-	value = float(current_health) * 100 / max_health
+func update_health_bar() -> void:
+	value = float(health_component.current_health) * 100 / health_component.max_health
