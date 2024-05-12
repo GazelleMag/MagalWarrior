@@ -1,35 +1,34 @@
 extends HBoxContainer
 
-@onready var UI: CanvasLayer = $"../../.."
+@export var UI: CanvasLayer
 
-var skills: Array
+var abilities: Array
 # treating mouse1 and mouse2 as keys but handling them with signals
 var action_bar_keys: Dictionary = {
 	0: "M1",
 	1: "M2"
-#	1: "q"
+#	2: "q"
 }
 
-func _ready() -> void:
-	skills = get_children()
-	for i in range(skills.size()):
-		if i in action_bar_keys.keys():
-			skills[i].change_key = action_bar_keys[i]
-	skills[0].mouse_cooldown.connect(on_mouse_cooldown)
-	skills[1].mouse_cooldown.connect(on_mouse_cooldown)
-	# basic logic for now. this should be modular
-	skills[0].set_skill_icon()
-	skills[1].set_skill_icon()
-	skills[0].set_skill_cooldown()
-	skills[1].set_skill_cooldown()
+var ability_button_scene = preload("res://scenes/ui/ability_button.tscn")
 	
 func handle_mouse_click(click_type: String) -> void:
-	skills = get_children()
 	if click_type == "mouse1":
-		skills[0].handle_mouse_click(click_type)
+		abilities[0].handle_mouse_click(click_type)
 	elif click_type == "mouse2":
-		skills[1].handle_mouse_click(click_type)
+		abilities[1].handle_mouse_click(click_type)
 	
 func on_mouse_cooldown(cooldown_status: bool, click_type: String) -> void:
 	UI.handle_mouse_cooldown(cooldown_status, click_type)
 	
+func set_ability_action_bar(ability_names: Array[String]) -> void:
+	for i in range(ability_names.size()):
+		if i in action_bar_keys.keys():
+			var ability_button = ability_button_scene.instantiate()
+			ability_button.change_key = action_bar_keys[i]
+			ability_button.set_ability(ability_names[i])
+			if action_bar_keys[i] == 'M1' or action_bar_keys[i] == 'M2':
+				ability_button.mouse_cooldown.connect(on_mouse_cooldown)
+			add_child(ability_button)
+	abilities = get_children()
+			

@@ -5,6 +5,10 @@ var is_attacking: bool = false
 var is_casting_fireball: bool = false
 var mouse1_cooldown: bool = false
 var mouse2_cooldown: bool = false
+var abilities: Array[String] = [
+	"basic_attack",
+	"fireball"
+]
 # components
 @export var velocity_component: Node2D
 @export var attack_point_component: Area2D

@@ -39,15 +39,15 @@ death_animation = NodePath("../DeathAnimation")
 
 [node name="VelocityComponent" parent="." instance=ExtResource("52_8wheh")]
 
-[node name="AttackPointComponent" parent="." node_paths=PackedStringArray("velocity_component") instance=ExtResource("53_t37or")]
-collision_layer = 2
-collision_mask = 4
-velocity_component = NodePath("../VelocityComponent")
-
 [node name="CombatComponent" parent="." node_paths=PackedStringArray("velocity_component", "attack_point_component", "animation_component", "health_component") instance=ExtResource("7_c3mlq")]
 velocity_component = NodePath("../VelocityComponent")
 attack_point_component = NodePath("../AttackPointComponent")
 animation_component = NodePath("../AnimationComponent")
 health_component = NodePath("../HealthComponent")
+
+[node name="AttackPointComponent" parent="." node_paths=PackedStringArray("velocity_component") instance=ExtResource("53_t37or")]
+collision_layer = 2
+collision_mask = 4
+velocity_component = NodePath("../VelocityComponent")
 
 [connection signal="body_entered" from="AttackPointComponent" to="." method="_on_attack_point_component_body_entered"]

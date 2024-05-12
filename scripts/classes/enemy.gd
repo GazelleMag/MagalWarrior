@@ -12,7 +12,7 @@ func _init(character_name: String) -> void:
 		movement_speed = enemy_characters[character_name]["movement_speed"]
 		max_health = enemy_characters[character_name]["max_health"]
 	else:
-		print("Unknown enemy type: ", character_name)
+		print("Unknown enemy: ", character_name)
 	
 const enemy_characters: Dictionary = {
 	"thief": {

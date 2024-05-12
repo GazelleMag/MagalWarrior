@@ -1,16 +1,9 @@
 extends CharacterBody2D
 
 @onready var level: Node2D = get_parent()
+@onready var UI: CanvasLayer = $"../UI"
 @onready var player_animation: AnimatedSprite2D = $PlayerAnimation
 @onready var death_animation: AnimatedSprite2D = $DeathAnimation
-var is_attacking: bool = false
-var is_casting_fireball: bool = false
-var mouse1_cooldown: bool = false
-var mouse2_cooldown: bool = false
-
-var fireball_scene = preload("res://scenes/abilities/fireball.tscn")
-var fireball_speed: int = 300
-
 # components
 @export var velocity_component: Node2D
 @export var animation_component: Node2D
@@ -24,12 +17,13 @@ signal player_died
 
 func _ready() -> void:
 	set_player_properties()
+	UI.set_ability_action_bar(combat_component.abilities)
 
 func _process(_delta) -> void:
 	handle_movement(velocity_component.character_direction)
 
 func set_player_properties() -> void:
-	# properties below should probably go into a 'player' class
+	# property values below should probably go into a 'player' class
 	velocity_component.speed = 250
 	health_component.max_health = 100
 	health_component.current_health = health_component.max_health

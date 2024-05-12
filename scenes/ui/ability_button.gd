@@ -1,11 +1,12 @@
 extends TextureButton
 
-@onready var progress_bar: TextureProgressBar = $TextureProgressBar
-@onready var timer: Timer = $Timer
-@onready var time: Label = $Time
-@onready var key: Label = $Key
-@onready var icon: TextureRect = $Icon
+@export var texture_progress_bar: TextureProgressBar
+@export var timer: Timer
+@export var time: Label
+@export var key: Label
+@export var icon: TextureRect
 var click_type: String = ""
+var ability: Ability
 
 signal mouse_cooldown
 
@@ -25,23 +26,27 @@ func _ready() -> void:
 
 func _process(_delta) -> void:
 	time.text = "%3.1f" % timer.time_left
-	progress_bar.value = timer.time_left
+	texture_progress_bar.value = timer.time_left
 
-func set_skill_icon() -> void:
+func set_ability(ability_name: String) -> void:
+	ability = Ability.new(ability_name)
+	set_ability_icon()
+	set_ability_cooldown()
+
+func set_ability_icon() -> void:
+	var ability_path = "res://assets/sprites/ability_icons/" + ability.name + ".png"
 	var texture
-	if change_key == "M1":
-		texture = load("res://assets/sprites/icons/sword.png")
-	elif change_key == "M2":
-		texture = load("res://assets/sprites/icons/fireball.png")
+	texture = load(ability_path)
 	icon.texture = texture
 
-func set_skill_cooldown() -> void:
-	if change_key == "M1":
-		timer.wait_time = 0.5 # cooldown of basic attack
-		progress_bar.max_value = timer.wait_time
-	elif change_key == "M2":
-		timer.wait_time = 3.0 # cooldown of fireball
-		progress_bar.max_value = timer.wait_time
+func set_ability_cooldown() -> void:
+	timer.wait_time = ability.cooldown_time
+	texture_progress_bar.max_value = timer.wait_time
+
+func handle_mouse_click(click_type_arg: String) -> void:
+	click_type = click_type_arg
+	if timer.time_left <= 0:
+		_on_pressed()
 
 # signals
 func _on_pressed() -> void:
@@ -54,8 +59,3 @@ func _on_timer_timeout() -> void:
 	time.text = ""
 	set_process(false)
 	emit_signal("mouse_cooldown", false, click_type)
-
-func handle_mouse_click(click_type_arg: String) -> void:
-	click_type = click_type_arg
-	if timer.time_left <= 0:
-		_on_pressed()
