@@ -56,6 +56,7 @@ combat_component = NodePath("../CombatComponent")
 
 [node name="CombatComponent" parent="." node_paths=PackedStringArray("health_bar", "velocity_component", "attack_point_component", "animation_component", "health_component") instance=ExtResource("6_4d85o")]
 health_bar = NodePath("../HealthBar")
+ability_names = Array[String](["basic_attack"])
 velocity_component = NodePath("../VelocityComponent")
 attack_point_component = NodePath("../AttackPointComponent")
 animation_component = NodePath("../AnimationComponent")

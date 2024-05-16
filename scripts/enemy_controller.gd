@@ -21,8 +21,8 @@ func _process(_delta: float) -> void:
 	handle_movement()
 			
 func set_character_properties() -> void:
-	velocity_component.speed = enemy.movement_speed
-	health_component.max_health = enemy.max_health
+	velocity_component.speed = enemy.speed
+	health_component.max_health = enemy.health
 	health_component.current_health = health_component.max_health
 
 func handle_movement() -> void:
@@ -49,7 +49,7 @@ func disable_collision_shape() -> void:
 # signals
 func _on_attack_point_component_body_entered(body: Node2D):
 	if body.name == "Player":
-		body.take_damage(enemy.attack_damage)
+		body.take_damage(enemy.damage)
 
 func _on_range_detector_component_body_entered(body: Node2D):
 	if body.name == "Player":

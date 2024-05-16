@@ -10,7 +10,7 @@ var range_detector_offset: float = 30.0
 func _process(_delta: float) -> void:
 	update_range_detector(velocity_component.character_direction)
 	if player_in_range:
-		combat_component.attack(velocity_component.character_direction)
+		combat_component.execute_ability(velocity_component.character_direction)
 
 func update_range_detector(direction: Vector2) -> void:
 	if direction != Vector2.ZERO:
