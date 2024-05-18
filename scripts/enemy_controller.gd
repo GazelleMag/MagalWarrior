@@ -33,9 +33,10 @@ func chase_player() -> void:
 	velocity_component.chase_player()
 	
 func take_damage(damage: int) -> void:
-	health_component.update_health(damage)
-	if health_component.current_health <= 0:
-		die()
+	if !velocity_component.back_to_spawn_point:
+		health_component.update_health(damage)
+		if health_component.current_health <= 0:
+			die()
 	
 func reset_health() -> void:
 	health_component.reset_health()
