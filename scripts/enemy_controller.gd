@@ -5,7 +5,6 @@ extends CharacterBody2D
 var character_name: String
 var spawn_point_position: Vector2
 var enemy: Enemy
-@export var health_bar: ProgressBar
 # components
 @export var velocity_component: Node2D
 @export var range_detector_component: Area2D

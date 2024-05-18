@@ -10,8 +10,11 @@ var chasing_player: bool = false
 # spawn point
 var spawn_point_position: Vector2
 var back_to_spawn_point: bool = false
-var spawn_point_max_distance: float = 400
+var spawn_point_max_distance: float = 600
 var spawn_point_distance_threshold: float = 5
+# separation force
+var separation_radius: float = 60.0
+var smoothing_factor: float = 0.5
 
 func _ready() -> void:
 	spawn_point_position = character.spawn_point_position
@@ -31,24 +34,42 @@ func check_spawn_point_distance() -> void:
 	
 func update_direction() -> void:
 	if chasing_player and !back_to_spawn_point:
-		character_direction = to_local(navigation_agent.get_next_path_position()).normalized()
+		character_direction = calculate_chasing_direction()
 	elif !chasing_player and back_to_spawn_point:
 		character_direction = (spawn_point_position - global_position).normalized()
 	elif !chasing_player and !back_to_spawn_point:
 		character_direction = Vector2.ZERO
 
-func get_velocity() -> Vector2:
-	return character_direction * speed
+func calculate_chasing_direction() -> Vector2:
+	var next_position = navigation_agent.get_next_path_position()
+	var direction_to_target = (next_position - global_position).normalized()
+	var separation_force = calculate_separation_force()
+	return (direction_to_target + separation_force).normalized()
+	
+# this is to avoid enemies overlapping each other
+func calculate_separation_force() -> Vector2:
+	var separation_force = Vector2.ZERO
+	var nearby_enemies = get_tree().get_nodes_in_group("Enemies")
+	for enemy in nearby_enemies:
+		if enemy != character:
+			var distance = global_position.distance_to(enemy.global_position)
+			if distance < separation_radius and distance > 0:
+				var push_force = (global_position - enemy.global_position).normalized()
+				separation_force += push_force
+	return separation_force * smoothing_factor
 
 func _on_timer_timeout() -> void:
-	makepath()
+	make_path()
 
-func makepath() -> void:
+func make_path() -> void:
 	if is_instance_valid(character.player):
 		navigation_agent.target_position = character.player.global_position
 	else:
 		chasing_player = false
 		back_to_spawn_point = true
+
+func get_velocity() -> Vector2:
+	return character_direction * speed
 
 func chase_player() -> void:
 	if !back_to_spawn_point:
