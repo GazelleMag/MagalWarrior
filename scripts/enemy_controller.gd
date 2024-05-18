@@ -31,13 +31,18 @@ func handle_movement() -> void:
 
 func chase_player() -> void:
 	velocity_component.chase_player()
-
+	
 func take_damage(damage: int) -> void:
-	combat_component.take_damage(damage)
+	health_component.update_health(damage)
+	if health_component.current_health <= 0:
+		die()
+	
+func reset_health() -> void:
+	health_component.reset_health()
 	
 func die() -> void:
 	set_process(false)
-	health_bar.visible = false
+	health_component.health_bar.visible = false
 	call_deferred("disable_collision_shape")
 	animation_component.handle_death_animation()
 	await animation_component.wait_for_death_animation()

@@ -1,25 +1,23 @@
-[gd_scene load_steps=12 format=3 uid="uid://c3jbdiahncx6j"]
+[gd_scene load_steps=11 format=3 uid="uid://c3jbdiahncx6j"]
 
 [ext_resource type="PackedScene" uid="uid://rmnsq5fs85m8" path="res://scenes/characters/brute/brute_animation.tscn" id="1_biih2"]
 [ext_resource type="Script" path="res://scripts/enemy_controller.gd" id="1_xfie1"]
-[ext_resource type="PackedScene" uid="uid://djao6rkxa8l72" path="res://scenes/ui/enemy_health_bar.tscn" id="2_debki"]
 [ext_resource type="PackedScene" uid="uid://dbxut02s44cty" path="res://scenes/components/character/animation_component.tscn" id="3_ivhkg"]
 [ext_resource type="PackedScene" uid="uid://buvbj63hqr6xf" path="res://scenes/components/enemy/velocity_component.tscn" id="4_8fusp"]
 [ext_resource type="PackedScene" uid="uid://bmee1fjmekjar" path="res://scenes/components/enemy/range_detector_component.tscn" id="5_2qqor"]
 [ext_resource type="PackedScene" uid="uid://0vvndflikyht" path="res://scenes/components/enemy/combat_component.tscn" id="6_ck5p3"]
 [ext_resource type="PackedScene" uid="uid://flcx5yxp81sv" path="res://scenes/components/character/attack_point_component.tscn" id="7_iecpo"]
 [ext_resource type="PackedScene" uid="uid://canqewjsmlivc" path="res://scenes/misc/death_animation.tscn" id="9_00ra2"]
-[ext_resource type="PackedScene" uid="uid://dqev70tyi4jgf" path="res://scenes/components/character/health_component.tscn" id="10_n2tsq"]
+[ext_resource type="PackedScene" uid="uid://dqev70tyi4jgf" path="res://scenes/components/enemy/health_component.tscn" id="10_n2tsq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tjegs"]
 radius = 16.0
 
-[node name="Brute" type="CharacterBody2D" node_paths=PackedStringArray("health_bar", "velocity_component", "range_detector_component", "animation_component", "combat_component", "health_component") groups=["Enemies"]]
+[node name="Brute" type="CharacterBody2D" node_paths=PackedStringArray("velocity_component", "range_detector_component", "animation_component", "combat_component", "health_component") groups=["Enemies"]]
 z_index = 1
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_xfie1")
-health_bar = NodePath("HealthBar")
 velocity_component = NodePath("VelocityComponent")
 range_detector_component = NodePath("RangeDetectorComponent")
 animation_component = NodePath("AnimationComponent")
@@ -27,20 +25,16 @@ combat_component = NodePath("CombatComponent")
 health_component = NodePath("HealthComponent")
 
 [node name="BruteAnimation" parent="." instance=ExtResource("1_biih2")]
+animation = &"idle_down"
 
 [node name="DeathAnimation" parent="." instance=ExtResource("9_00ra2")]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_tjegs")
 
-[node name="HealthBar" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("2_debki")]
-offset_left = -37.5
-offset_top = -45.0
-offset_right = 37.5
-offset_bottom = -30.0
-health_component = NodePath("../HealthComponent")
-
 [node name="HealthComponent" parent="." instance=ExtResource("10_n2tsq")]
+position = Vector2(-37, -40)
 
 [node name="AnimationComponent" parent="." node_paths=PackedStringArray("character_animation", "death_animation", "velocity_component", "attack_point_component") instance=ExtResource("3_ivhkg")]
 character_animation = NodePath("../BruteAnimation")
@@ -54,13 +48,11 @@ attack_point_component = NodePath("../AttackPointComponent")
 velocity_component = NodePath("../VelocityComponent")
 combat_component = NodePath("../CombatComponent")
 
-[node name="CombatComponent" parent="." node_paths=PackedStringArray("health_bar", "velocity_component", "attack_point_component", "animation_component", "health_component") instance=ExtResource("6_ck5p3")]
-health_bar = NodePath("../HealthBar")
+[node name="CombatComponent" parent="." node_paths=PackedStringArray("velocity_component", "attack_point_component", "animation_component") instance=ExtResource("6_ck5p3")]
 ability_names = Array[String](["basic_attack"])
 velocity_component = NodePath("../VelocityComponent")
 attack_point_component = NodePath("../AttackPointComponent")
 animation_component = NodePath("../AnimationComponent")
-health_component = NodePath("../HealthComponent")
 
 [node name="AttackPointComponent" parent="." node_paths=PackedStringArray("velocity_component") instance=ExtResource("7_iecpo")]
 velocity_component = NodePath("../VelocityComponent")

@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scenes/characters/player/player_controller.gd" id="1_j6tth"]
 [ext_resource type="PackedScene" uid="uid://2g40ejm5tvy1" path="res://scenes/characters/player/player_animation.tscn" id="2_ukbkk"]
 [ext_resource type="PackedScene" uid="uid://d4h32id0fxdai" path="res://scenes/components/player/combat_component.tscn" id="7_c3mlq"]
-[ext_resource type="PackedScene" uid="uid://dqev70tyi4jgf" path="res://scenes/components/character/health_component.tscn" id="8_knxp1"]
+[ext_resource type="PackedScene" uid="uid://c4o5mmmcwmsxw" path="res://scenes/components/player/health_component.tscn" id="8_h8x5h"]
 [ext_resource type="PackedScene" uid="uid://canqewjsmlivc" path="res://scenes/misc/death_animation.tscn" id="50_gv0ay"]
 [ext_resource type="PackedScene" uid="uid://dbxut02s44cty" path="res://scenes/components/character/animation_component.tscn" id="51_l3063"]
 [ext_resource type="PackedScene" uid="uid://day2k3vuvfjkj" path="res://scenes/components/player/velocity_component.tscn" id="52_8wheh"]
@@ -29,8 +29,6 @@ health_component = NodePath("HealthComponent")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_tkobb")
 
-[node name="HealthComponent" parent="." instance=ExtResource("8_knxp1")]
-
 [node name="AnimationComponent" parent="." node_paths=PackedStringArray("character_animation", "death_animation", "velocity_component", "attack_point_component") instance=ExtResource("51_l3063")]
 character_animation = NodePath("../PlayerAnimation")
 death_animation = NodePath("../DeathAnimation")
@@ -49,5 +47,7 @@ health_component = NodePath("../HealthComponent")
 collision_layer = 2
 collision_mask = 4
 velocity_component = NodePath("../VelocityComponent")
+
+[node name="HealthComponent" parent="." instance=ExtResource("8_h8x5h")]
 
 [connection signal="body_entered" from="AttackPointComponent" to="." method="_on_attack_point_component_body_entered"]

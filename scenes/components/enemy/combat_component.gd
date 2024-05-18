@@ -11,7 +11,6 @@ var ability_cooldown_timers: Dictionary = {}
 @export var velocity_component: Node2D
 @export var attack_point_component: Area2D
 @export var animation_component: Node2D
-@export var health_component: Node2D
 
 func _ready() -> void:
 	set_character_abilities()
@@ -70,15 +69,8 @@ func melee_attack(direction: Vector2) -> void:
 	attack_point_component.attack_point_collision_shape.disabled = false
 	animation_component.handle_attack_animation(direction)
 	await animation_component.wait_for_animation()
-	
 	executing_ability = false
 	
 func ranged_attack(_direction: Vector2) -> void:
 	# TODO
 	pass
-
-func take_damage(damage: int) -> void:
-	health_component.update_health(damage)
-	health_bar.update_health_bar()
-	if health_component.current_health <= 0:
-		character.die()

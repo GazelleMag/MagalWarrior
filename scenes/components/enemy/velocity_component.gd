@@ -25,6 +25,7 @@ func check_spawn_point_distance() -> void:
 	if distance_to_spawn_point > spawn_point_max_distance:
 		chasing_player = false
 		back_to_spawn_point = true
+		character.reset_health()
 	if distance_to_spawn_point <= spawn_point_distance_threshold:
 		back_to_spawn_point = false
 	

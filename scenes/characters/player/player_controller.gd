@@ -19,7 +19,6 @@ func _ready() -> void:
 	set_player_properties()
 	UI.set_ability_action_bar(combat_component.abilities)
 	
-
 func _process(_delta) -> void:
 	handle_movement(velocity_component.character_direction)
 
