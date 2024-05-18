@@ -29,7 +29,6 @@ health_component = NodePath("HealthComponent")
 [node name="BruteAnimation" parent="." instance=ExtResource("1_biih2")]
 
 [node name="DeathAnimation" parent="." instance=ExtResource("9_00ra2")]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_tjegs")
@@ -43,10 +42,11 @@ health_component = NodePath("../HealthComponent")
 
 [node name="HealthComponent" parent="." instance=ExtResource("10_n2tsq")]
 
-[node name="AnimationComponent" parent="." node_paths=PackedStringArray("velocity_component", "character_animation", "death_animation") instance=ExtResource("3_ivhkg")]
-velocity_component = NodePath("../VelocityComponent")
+[node name="AnimationComponent" parent="." node_paths=PackedStringArray("character_animation", "death_animation", "velocity_component", "attack_point_component") instance=ExtResource("3_ivhkg")]
 character_animation = NodePath("../BruteAnimation")
 death_animation = NodePath("../DeathAnimation")
+velocity_component = NodePath("../VelocityComponent")
+attack_point_component = NodePath("../AttackPointComponent")
 
 [node name="VelocityComponent" parent="." instance=ExtResource("4_8fusp")]
 

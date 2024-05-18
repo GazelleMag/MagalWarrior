@@ -1,11 +1,14 @@
 extends Node2D
 
 @onready var character: CharacterBody2D = get_parent()
-@export var velocity_component: Node2D
 @export var character_animation: AnimatedSprite2D
 @export var death_animation: AnimatedSprite2D
+# Components
+@export var velocity_component: Node2D
+@export var attack_point_component: Area2D
 
 func _ready() -> void:
+	character_animation.connect("animation_finished", _on_animation_finished)
 	death_animation.visible = false
 
 func handle_walk_animation(direction: Vector2) -> void:
@@ -58,3 +61,7 @@ func wait_for_animation() -> void:
 	
 func wait_for_death_animation() -> void:
 	await death_animation.animation_finished
+	
+# signals
+func _on_animation_finished() -> void:
+	attack_point_component.attack_point_collision_shape.disabled = true

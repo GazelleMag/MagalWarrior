@@ -18,6 +18,7 @@ signal player_died
 func _ready() -> void:
 	set_player_properties()
 	UI.set_ability_action_bar(combat_component.abilities)
+	
 
 func _process(_delta) -> void:
 	handle_movement(velocity_component.character_direction)
@@ -51,5 +52,6 @@ func emit_mouse_click_signal(click_type: String) -> void:
 	emit_signal("mouse_click", click_type)
 
 func _on_attack_point_component_body_entered(body: Node2D):
-	if body.is_in_group("Enemies"):
+	if body.is_in_group("Enemies") and combat_component.melee_damage_inflicted == false:
 		body.take_damage(10)
+		combat_component.melee_damage_inflicted = true

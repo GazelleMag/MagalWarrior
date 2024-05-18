@@ -2,6 +2,7 @@ extends Node2D
 
 @onready var character: CharacterBody2D = get_parent()
 var is_attacking: bool = false
+var melee_damage_inflicted: bool = false
 var is_casting_fireball: bool = false
 var mouse1_cooldown: bool = false
 var mouse2_cooldown: bool = false
@@ -32,10 +33,10 @@ func _process(_delta: float) -> void:
 
 func attack(direction: Vector2) -> void:
 	is_attacking = true
+	melee_damage_inflicted = false
 	attack_point_component.attack_point_collision_shape.disabled = false
 	animation_component.handle_attack_animation(direction)
 	await animation_component.wait_for_animation()
-	attack_point_component.attack_point_collision_shape.disabled = true
 	is_attacking = false
 	
 func cast_fireball() -> void:

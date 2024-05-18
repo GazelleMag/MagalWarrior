@@ -5,6 +5,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rhuq4"]
 
 [node name="RangeDetectorComponent" type="Area2D"]
+visible = false
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("1_cshhp")

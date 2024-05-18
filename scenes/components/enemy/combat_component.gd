@@ -2,6 +2,7 @@ extends Node2D
 
 @onready var character: CharacterBody2D = get_parent()
 var executing_ability: bool = false
+var melee_damage_inflicted: bool = false
 @export var health_bar: ProgressBar
 @export var ability_names: Array[String]
 var abilities: Array[Ability]
@@ -65,10 +66,11 @@ func execute_defensive_ability(_direction: Vector2) -> void:
 	
 func melee_attack(direction: Vector2) -> void:
 	executing_ability = true
+	melee_damage_inflicted = false
 	attack_point_component.attack_point_collision_shape.disabled = false
 	animation_component.handle_attack_animation(direction)
 	await animation_component.wait_for_animation()
-	attack_point_component.attack_point_collision_shape.disabled = true
+	
 	executing_ability = false
 	
 func ranged_attack(_direction: Vector2) -> void:
