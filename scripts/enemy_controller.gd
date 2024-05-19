@@ -16,7 +16,7 @@ func _ready() -> void:
 	enemy = Enemy.new(character_name)
 	set_character_properties()
 
-func _process(_delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	handle_movement()
 			
 func set_character_properties() -> void:
@@ -41,7 +41,7 @@ func reset_health() -> void:
 	health_component.reset_health()
 	
 func die() -> void:
-	set_process(false)
+	set_physics_process(false)
 	health_component.health_bar.visible = false
 	call_deferred("disable_collision_shape")
 	animation_component.handle_death_animation()

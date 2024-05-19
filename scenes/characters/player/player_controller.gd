@@ -18,8 +18,8 @@ signal player_died
 func _ready() -> void:
 	set_player_properties()
 	UI.set_ability_action_bar(combat_component.abilities)
-	
-func _process(_delta) -> void:
+
+func _physics_process(_delta) -> void:
 	handle_movement(velocity_component.character_direction)
 
 func set_player_properties() -> void:
@@ -41,7 +41,7 @@ func handle_mouse_cooldown(cooldown_status: bool, click_type: String):
 	combat_component.handle_mouse_cooldown(cooldown_status, click_type)	
 
 func die() -> void:
-	set_process(false)
+	set_physics_process(false)
 	animation_component.handle_death_animation()
 	await animation_component.wait_for_death_animation()
 	player_died.emit()
