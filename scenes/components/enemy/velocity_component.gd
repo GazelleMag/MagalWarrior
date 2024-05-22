@@ -22,6 +22,7 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	check_spawn_point_distance()
 	update_direction()
+	update_last_character_direction()
 	
 func check_spawn_point_distance() -> void:
 	var distance_to_spawn_point = global_position.distance_to(spawn_point_position)
@@ -39,6 +40,13 @@ func update_direction() -> void:
 		character_direction = (spawn_point_position - global_position).normalized()
 	elif !chasing_player and !back_to_spawn_point:
 		character_direction = Vector2.ZERO
+		
+func update_last_character_direction() -> void:
+	if character_direction != Vector2.ZERO:
+		if abs(character_direction.x) > abs(character_direction.y):
+			last_character_direction = Vector2(character_direction.x, 0).normalized()
+		else:
+			last_character_direction = Vector2(0, character_direction.y).normalized()
 
 func calculate_chasing_direction() -> Vector2:
 	var next_position = navigation_agent.get_next_path_position()

@@ -1,6 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://cmj1py80ekooq"]
+[gd_scene load_steps=12 format=3 uid="uid://cmj1py80ekooq"]
 
-[ext_resource type="Script" path="res://scripts/enemy_controller.gd" id="1_drvaa"]
+[ext_resource type="Script" path="res://scripts/controllers/enemy_controller.gd" id="1_asrr8"]
 [ext_resource type="PackedScene" uid="uid://b8rvbopuou0tk" path="res://scenes/characters/thief/thief_animation.tscn" id="1_v4el2"]
 [ext_resource type="PackedScene" uid="uid://dbxut02s44cty" path="res://scenes/components/character/animation_component.tscn" id="3_ieepd"]
 [ext_resource type="PackedScene" uid="uid://canqewjsmlivc" path="res://scenes/misc/death_animation.tscn" id="3_kh5o4"]
@@ -8,21 +8,23 @@
 [ext_resource type="PackedScene" uid="uid://bmee1fjmekjar" path="res://scenes/components/enemy/range_detector_component.tscn" id="5_taljy"]
 [ext_resource type="PackedScene" uid="uid://0vvndflikyht" path="res://scenes/components/enemy/combat_component.tscn" id="6_4d85o"]
 [ext_resource type="PackedScene" uid="uid://flcx5yxp81sv" path="res://scenes/components/character/attack_point_component.tscn" id="7_5mi64"]
+[ext_resource type="PackedScene" uid="uid://dp38qtf05mjgo" path="res://scenes/components/enemy/line_of_sight_component.tscn" id="10_d7tc3"]
 [ext_resource type="PackedScene" uid="uid://dqev70tyi4jgf" path="res://scenes/components/enemy/health_component.tscn" id="10_i2pa6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_d2fo2"]
 radius = 16.0
 
-[node name="Thief" type="CharacterBody2D" node_paths=PackedStringArray("velocity_component", "range_detector_component", "animation_component", "combat_component", "health_component") groups=["Enemies"]]
+[node name="Thief" type="CharacterBody2D" node_paths=PackedStringArray("velocity_component", "range_detector_component", "animation_component", "combat_component", "health_component", "line_of_sight_component") groups=["Enemies"]]
 z_index = 1
 collision_layer = 4
 collision_mask = 3
-script = ExtResource("1_drvaa")
+script = ExtResource("1_asrr8")
 velocity_component = NodePath("VelocityComponent")
 range_detector_component = NodePath("RangeDetectorComponent")
 animation_component = NodePath("AnimationComponent")
 combat_component = NodePath("CombatComponent")
 health_component = NodePath("HealthComponent")
+line_of_sight_component = NodePath("LineOfSightComponent")
 
 [node name="ThiefAnimation" parent="." instance=ExtResource("1_v4el2")]
 
@@ -55,6 +57,9 @@ animation_component = NodePath("../AnimationComponent")
 [node name="AttackPointComponent" parent="." node_paths=PackedStringArray("velocity_component") instance=ExtResource("7_5mi64")]
 velocity_component = NodePath("../VelocityComponent")
 
-[connection signal="body_entered" from="RangeDetectorComponent" to="." method="_on_range_detector_component_body_entered"]
-[connection signal="body_exited" from="RangeDetectorComponent" to="." method="_on_range_detector_component_body_exited"]
+[node name="LineOfSightComponent" parent="." node_paths=PackedStringArray("velocity_component") instance=ExtResource("10_d7tc3")]
+velocity_component = NodePath("../VelocityComponent")
+
+[connection signal="body_entered" from="RangeDetectorComponent" to="RangeDetectorComponent" method="_on_body_entered"]
+[connection signal="body_exited" from="RangeDetectorComponent" to="RangeDetectorComponent" method="_on_body_exited"]
 [connection signal="body_entered" from="AttackPointComponent" to="." method="_on_attack_point_component_body_entered"]

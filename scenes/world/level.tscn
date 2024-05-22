@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://sv4brx747id1" path="res://assets/sprites/tilesets/TilesetExample.png" id="2_y57rx"]
 [ext_resource type="PackedScene" uid="uid://dw2mq5jshlsox" path="res://scenes/world/spawn_point.tscn" id="3_pwjf5"]
 [ext_resource type="PackedScene" uid="uid://bq2pty2md6nxg" path="res://scenes/characters/player/player.tscn" id="3_w2dia"]
-[ext_resource type="Script" path="res://scripts/camera.gd" id="4_gydb8"]
+[ext_resource type="Script" path="res://scripts/misc/camera.gd" id="4_kll1i"]
 [ext_resource type="PackedScene" uid="uid://bw07sh3bxv65d" path="res://scenes/ui/ui.tscn" id="5_cofyv"]
 [ext_resource type="PackedScene" uid="uid://cmj1py80ekooq" path="res://scenes/characters/thief/thief.tscn" id="6_i55se"]
 [ext_resource type="PackedScene" uid="uid://c3jbdiahncx6j" path="res://scenes/characters/brute/brute.tscn" id="7_rh6vv"]
@@ -481,7 +481,7 @@ position = Vector2(272, 282)
 [node name="Camera" type="Camera2D" parent="." node_paths=PackedStringArray("player")]
 position = Vector2(272, 282)
 position_smoothing_enabled = true
-script = ExtResource("4_gydb8")
+script = ExtResource("4_kll1i")
 player = NodePath("../Player")
 
 [node name="UI" parent="." instance=ExtResource("5_cofyv")]

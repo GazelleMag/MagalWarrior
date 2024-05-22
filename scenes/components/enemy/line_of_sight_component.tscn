@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dp38qtf05mjgo"]
+
+[ext_resource type="Script" path="res://scenes/components/enemy/line_of_sight_component.gd" id="1_l4rxd"]
+
+[node name="LineOfSightComponent" type="RayCast2D"]
+target_position = Vector2(0, 200)
+collision_mask = 2
+script = ExtResource("1_l4rxd")

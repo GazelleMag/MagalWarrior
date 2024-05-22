@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://i7nldh7l2lnl"]
 
-[ext_resource type="Script" path="res://scenes/abilities/fireball.gd" id="1_7ck8q"]
 [ext_resource type="Texture2D" uid="uid://bkcfqngt2yj8l" path="res://assets/sprites/projectiles/fireball/fireball1.png" id="1_cfyun"]
+[ext_resource type="Script" path="res://scripts/controllers/projectile_controller.gd" id="1_mapo7"]
 [ext_resource type="Texture2D" uid="uid://br7isjwdpd0aq" path="res://assets/sprites/projectiles/fireball/explosion1.PNG" id="2_qlnlt"]
 [ext_resource type="Texture2D" uid="uid://2s7qj0hmqobl" path="res://assets/sprites/projectiles/fireball/explosion2.PNG" id="3_hh474"]
 [ext_resource type="Texture2D" uid="uid://d1n7b2ol0iadx" path="res://assets/sprites/projectiles/fireball/fireball2.png" id="3_ky6ge"]
@@ -50,11 +50,11 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_ga81a"]
 radius = 9.05539
 
-[node name="Fireball" type="RigidBody2D"]
+[node name="Fireball" type="RigidBody2D" node_paths=PackedStringArray("projectile_animation")]
 collision_layer = 8
-collision_mask = 5
 gravity_scale = 0.0
-script = ExtResource("1_7ck8q")
+script = ExtResource("1_mapo7")
+projectile_animation = NodePath("FireballAnimation")
 
 [node name="FireballAnimation" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.05, 0.05)
@@ -64,15 +64,14 @@ animation = &"explosion"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ga81a")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="ProjectileArea" type="Area2D" parent="."]
 collision_layer = 8
-collision_mask = 5
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ProjectileArea"]
 shape = SubResource("CircleShape2D_ga81a")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.5
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="ProjectileArea" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

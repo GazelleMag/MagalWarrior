@@ -42,9 +42,10 @@ func attack(direction: Vector2) -> void:
 func cast_fireball() -> void:
 	is_casting_fireball = true
 	var fireball = fireball_scene.instantiate()
+	fireball.set_projectile_area_mask(character.name)
 	fireball.position = attack_point_component.global_position
 	fireball.linear_velocity = velocity_component.last_character_direction * fireball_speed
-	fireball.handle_fireball_orientation(velocity_component.last_character_direction)
+	fireball.handle_projectile_orientation(velocity_component.last_character_direction)
 	character.level.add_child(fireball)
 
 func take_damage(damage: int) -> void:

@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+@onready var level: Node2D = get_parent()
 @onready var player: Node2D = $"../Player"
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 var character_name: String
@@ -11,6 +12,7 @@ var enemy: Enemy
 @export var animation_component: Node2D
 @export var combat_component: Node2D
 @export var health_component: Node2D
+@export var line_of_sight_component: RayCast2D
 
 func _ready() -> void:
 	enemy = Enemy.new(character_name)
@@ -18,7 +20,15 @@ func _ready() -> void:
 
 func _physics_process(_delta: float) -> void:
 	handle_movement()
-			
+
+func _process(_delta: float) -> void:
+	if range_detector_component.player_in_range == true:
+		# this should be only a melee ability
+		combat_component.use_ability("melee")
+	if line_of_sight_component.player_on_sight == true:
+		# this should be only a ranged ability
+		combat_component.use_ability("ranged")
+		
 func set_character_properties() -> void:
 	velocity_component.speed = enemy.speed
 	health_component.max_health = enemy.health
@@ -56,11 +66,3 @@ func _on_attack_point_component_body_entered(body: Node2D):
 	if body.name == "Player" and combat_component.melee_damage_inflicted == false:
 		body.take_damage(enemy.damage)
 		combat_component.melee_damage_inflicted = true
-
-func _on_range_detector_component_body_entered(body: Node2D):
-	if body.name == "Player":
-		range_detector_component.player_in_range = true
-
-func _on_range_detector_component_body_exited(body: Node2D):
-	if body.name == "Player":
-		range_detector_component.player_in_range = false

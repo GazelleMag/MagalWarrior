@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://bq2pty2md6nxg"]
 
-[ext_resource type="Script" path="res://scenes/characters/player/player_controller.gd" id="1_j6tth"]
+[ext_resource type="Script" path="res://scripts/controllers/player_controller.gd" id="1_jqov3"]
 [ext_resource type="PackedScene" uid="uid://2g40ejm5tvy1" path="res://scenes/characters/player/player_animation.tscn" id="2_ukbkk"]
 [ext_resource type="PackedScene" uid="uid://d4h32id0fxdai" path="res://scenes/components/player/combat_component.tscn" id="7_c3mlq"]
 [ext_resource type="PackedScene" uid="uid://c4o5mmmcwmsxw" path="res://scenes/components/player/health_component.tscn" id="8_h8x5h"]
@@ -12,10 +12,10 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_tkobb"]
 radius = 16.0
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("velocity_component", "animation_component", "attack_point_component", "combat_component", "health_component")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("velocity_component", "animation_component", "attack_point_component", "combat_component", "health_component") groups=["Player"]]
 collision_layer = 2
 collision_mask = 5
-script = ExtResource("1_j6tth")
+script = ExtResource("1_jqov3")
 velocity_component = NodePath("VelocityComponent")
 animation_component = NodePath("AnimationComponent")
 attack_point_component = NodePath("AttackPointComponent")

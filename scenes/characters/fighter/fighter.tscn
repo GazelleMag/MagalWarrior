@@ -1,11 +1,11 @@
 [gd_scene load_steps=10 format=3 uid="uid://bhlxerek50fq"]
 
-[ext_resource type="Script" path="res://scripts/enemy_controller.gd" id="1_h46vx"]
+[ext_resource type="Script" path="res://scripts/controllers/enemy_controller.gd" id="1_h46vx"]
 [ext_resource type="PackedScene" uid="uid://2m8u658can22" path="res://scenes/characters/fighter/fighter_animation.tscn" id="2_tenlc"]
-[ext_resource type="PackedScene" uid="uid://dbxut02s44cty" path="res://scenes/components/enemy/animation_component.tscn" id="2_wdsds"]
+[ext_resource type="PackedScene" uid="uid://dbxut02s44cty" path="res://scenes/components/character/animation_component.tscn" id="2_wdsds"]
 [ext_resource type="PackedScene" uid="uid://djao6rkxa8l72" path="res://scenes/ui/enemy_health_bar.tscn" id="3_l808p"]
 [ext_resource type="PackedScene" uid="uid://bmee1fjmekjar" path="res://scenes/components/enemy/range_detector_component.tscn" id="5_3imtg"]
-[ext_resource type="PackedScene" uid="uid://flcx5yxp81sv" path="res://scenes/components/enemy/attack_point_component.tscn" id="6_e5oj4"]
+[ext_resource type="PackedScene" uid="uid://flcx5yxp81sv" path="res://scenes/components/character/attack_point_component.tscn" id="6_e5oj4"]
 [ext_resource type="PackedScene" uid="uid://buvbj63hqr6xf" path="res://scenes/components/enemy/velocity_component.tscn" id="7_axhd0"]
 [ext_resource type="PackedScene" uid="uid://0vvndflikyht" path="res://scenes/components/enemy/combat_component.tscn" id="7_odref"]
 
