@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://deds5ji0df5sc"]
+[gd_scene load_steps=22 format=3 uid="uid://deds5ji0df5sc"]
 
 [ext_resource type="Script" path="res://scenes/world/level.gd" id="1_5y6n4"]
 [ext_resource type="Texture2D" uid="uid://sv4brx747id1" path="res://assets/sprites/tilesets/TilesetExample.png" id="2_y57rx"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bw07sh3bxv65d" path="res://scenes/ui/ui.tscn" id="5_cofyv"]
 [ext_resource type="PackedScene" uid="uid://cmj1py80ekooq" path="res://scenes/characters/thief/thief.tscn" id="6_i55se"]
 [ext_resource type="PackedScene" uid="uid://c3jbdiahncx6j" path="res://scenes/characters/brute/brute.tscn" id="7_rh6vv"]
+[ext_resource type="PackedScene" uid="uid://bsdppie6viyvy" path="res://scenes/items/health_potion.tscn" id="9_pgvkp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7anir"]
 resource_name = "normal ground"
@@ -495,5 +496,8 @@ character_name = "thief"
 position = Vector2(1061, 517)
 character_scene = ExtResource("7_rh6vv")
 character_name = "brute"
+
+[node name="HealthPotion" parent="." instance=ExtResource("9_pgvkp")]
+position = Vector2(94, 289)
 
 [connection signal="timeout" from="RestartTimer" to="." method="_on_restart_timer_timeout"]

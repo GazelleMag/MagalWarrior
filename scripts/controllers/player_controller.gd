@@ -36,6 +36,10 @@ func handle_movement(direction: Vector2) -> void:
 func take_damage(damage: int) -> void:
 	combat_component.take_damage(damage)
 	health_changed.emit() # this updates UI health bar
+	
+func heal(heal_amount: int) -> void:
+	combat_component.heal(heal_amount)
+	health_changed.emit() # this updates UI health bar
 
 func handle_mouse_cooldown(cooldown_status: bool, click_type: String):
 	combat_component.handle_mouse_cooldown(cooldown_status, click_type)	

@@ -49,9 +49,14 @@ func cast_fireball() -> void:
 	character.level.add_child(fireball)
 
 func take_damage(damage: int) -> void:
-	health_component.update_health(damage)
+	health_component.update_health(-damage)
 	if health_component.current_health <= 0:
 		character.die()
+		
+func heal(heal_amount: int) -> void:
+	health_component.update_health(heal_amount)
+	if health_component.current_health > health_component.max_health:
+		health_component.current_health = health_component.max_health
 
 func handle_mouse_cooldown(cooldown_status: bool, click_type: String):
 	if click_type == "mouse1":
