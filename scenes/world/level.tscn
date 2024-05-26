@@ -488,12 +488,12 @@ player = NodePath("../Player")
 [node name="UI" parent="." instance=ExtResource("5_cofyv")]
 
 [node name="SpawnPoint" parent="." instance=ExtResource("3_pwjf5")]
-position = Vector2(1050, 91)
+position = Vector2(1115, 295)
 character_scene = ExtResource("6_i55se")
 character_name = "thief"
 
 [node name="SpawnPoint2" parent="." instance=ExtResource("3_pwjf5")]
-position = Vector2(1061, 517)
+position = Vector2(826, 295)
 character_scene = ExtResource("7_rh6vv")
 character_name = "brute"
 

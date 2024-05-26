@@ -18,6 +18,8 @@ radius = 16.0
 z_index = 1
 collision_layer = 4
 collision_mask = 3
+motion_mode = 1
+wall_min_slide_angle = 0.0
 script = ExtResource("1_asrr8")
 velocity_component = NodePath("VelocityComponent")
 range_detector_component = NodePath("RangeDetectorComponent")
@@ -27,8 +29,12 @@ health_component = NodePath("HealthComponent")
 line_of_sight_component = NodePath("LineOfSightComponent")
 
 [node name="ThiefAnimation" parent="." instance=ExtResource("1_v4el2")]
+animation = &"idle_down"
+frame = 0
+frame_progress = 0.0
 
 [node name="DeathAnimation" parent="." instance=ExtResource("3_kh5o4")]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_d2fo2")
