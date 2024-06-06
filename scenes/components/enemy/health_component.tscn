@@ -7,3 +7,4 @@
 script = ExtResource("1_55lg7")
 
 [node name="HealthBar" parent="." instance=ExtResource("2_e6yh2")]
+z_index = 2

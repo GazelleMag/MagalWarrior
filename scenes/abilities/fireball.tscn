@@ -51,6 +51,7 @@ animations = [{
 radius = 9.05539
 
 [node name="Fireball" type="RigidBody2D" node_paths=PackedStringArray("projectile_animation")]
+z_index = 2
 collision_layer = 8
 gravity_scale = 0.0
 script = ExtResource("1_mapo7")

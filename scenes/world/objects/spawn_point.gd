@@ -2,6 +2,7 @@ extends Marker2D
 
 @export var character_scene: PackedScene
 @export var character_name: String
+@export var initial_character_direction: Vector2
 @onready var level: Node2D = get_parent()
 var character: Node2D
 var player_inside: bool = false

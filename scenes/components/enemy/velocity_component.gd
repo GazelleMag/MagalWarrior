@@ -79,7 +79,7 @@ func _on_timer_timeout() -> void:
 func make_path() -> void:
 	if is_instance_valid(character.player) and chasing_player:
 		navigation_agent.target_position = character.player.global_position
-	elif back_to_spawn:
+	elif !is_instance_valid(character.player) or back_to_spawn:
 		navigation_agent.target_position = spawn_point_position
 
 func get_velocity() -> Vector2:

@@ -1,11 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://dw2mq5jshlsox"]
 
-[ext_resource type="Script" path="res://scenes/world/spawn_point.gd" id="1_m5b5x"]
+[ext_resource type="Script" path="res://scenes/world/objects/spawn_point.gd" id="1_du6cw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_iv410"]
 
 [node name="SpawnPoint" type="Marker2D" groups=["spawn_points"]]
-script = ExtResource("1_m5b5x")
+script = ExtResource("1_du6cw")
 
 [node name="Area2D" type="Area2D" parent="."]
 visible = false

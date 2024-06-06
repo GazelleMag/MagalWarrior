@@ -1,18 +1,18 @@
 [gd_scene load_steps=22 format=3 uid="uid://deds5ji0df5sc"]
 
-[ext_resource type="Script" path="res://scenes/world/level.gd" id="1_5y6n4"]
-[ext_resource type="Texture2D" uid="uid://sv4brx747id1" path="res://assets/sprites/tilesets/TilesetExample.png" id="2_y57rx"]
-[ext_resource type="PackedScene" uid="uid://dw2mq5jshlsox" path="res://scenes/world/spawn_point.tscn" id="3_pwjf5"]
-[ext_resource type="PackedScene" uid="uid://bq2pty2md6nxg" path="res://scenes/characters/player/player.tscn" id="3_w2dia"]
-[ext_resource type="Script" path="res://scripts/misc/camera.gd" id="4_kll1i"]
-[ext_resource type="PackedScene" uid="uid://bw07sh3bxv65d" path="res://scenes/ui/ui.tscn" id="5_cofyv"]
-[ext_resource type="PackedScene" uid="uid://cmj1py80ekooq" path="res://scenes/characters/thief/thief.tscn" id="6_i55se"]
-[ext_resource type="PackedScene" uid="uid://c3jbdiahncx6j" path="res://scenes/characters/brute/brute.tscn" id="7_rh6vv"]
-[ext_resource type="PackedScene" uid="uid://bsdppie6viyvy" path="res://scenes/items/health_potion.tscn" id="9_pgvkp"]
+[ext_resource type="Script" path="res://scenes/world/levels/level.gd" id="1_5ssi3"]
+[ext_resource type="Texture2D" uid="uid://sv4brx747id1" path="res://assets/sprites/tilesets/ground_tileset.png" id="2_uh2m1"]
+[ext_resource type="PackedScene" uid="uid://bq2pty2md6nxg" path="res://scenes/characters/player/player.tscn" id="3_ejlyq"]
+[ext_resource type="Script" path="res://scripts/misc/camera.gd" id="4_b2pan"]
+[ext_resource type="PackedScene" uid="uid://bw07sh3bxv65d" path="res://scenes/ui/ui.tscn" id="5_l2ld3"]
+[ext_resource type="PackedScene" uid="uid://dw2mq5jshlsox" path="res://scenes/world/objects/spawn_point.tscn" id="6_3mp5i"]
+[ext_resource type="PackedScene" uid="uid://cmj1py80ekooq" path="res://scenes/characters/thief/thief.tscn" id="7_xdkef"]
+[ext_resource type="PackedScene" uid="uid://c3jbdiahncx6j" path="res://scenes/characters/brute/brute.tscn" id="8_0p3ba"]
+[ext_resource type="PackedScene" uid="uid://bsdppie6viyvy" path="res://scenes/items/health_potion.tscn" id="9_lanlb"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7anir"]
 resource_name = "normal ground"
-texture = ExtResource("2_y57rx")
+texture = ExtResource("2_uh2m1")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -139,7 +139,7 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-16, -16, 16, -16, 16, 
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fckdm"]
 resource_name = "walkable ground"
-texture = ExtResource("2_y57rx")
+texture = ExtResource("2_uh2m1")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -288,7 +288,7 @@ texture_region_size = Vector2i(32, 32)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n4btx"]
 resource_name = "elevated ground"
-texture = ExtResource("2_y57rx")
+texture = ExtResource("2_uh2m1")
 texture_region_size = Vector2i(32, 32)
 4:3/0 = 0
 4:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -445,7 +445,7 @@ sources/3 = SubResource("TileSetAtlasSource_n4btx")
 sources/0 = SubResource("TileSetAtlasSource_7anir")
 
 [node name="Level" type="Node2D"]
-script = ExtResource("1_5y6n4")
+script = ExtResource("1_5ssi3")
 
 [node name="RestartTimer" type="Timer" parent="."]
 wait_time = 0.6
@@ -475,29 +475,29 @@ layer_2/y_sort_origin = 0
 layer_2/z_index = 0
 layer_2/tile_data = PackedInt32Array()
 
-[node name="Player" parent="." instance=ExtResource("3_w2dia")]
+[node name="Player" parent="." instance=ExtResource("3_ejlyq")]
 z_index = 2
 position = Vector2(272, 282)
 
 [node name="Camera" type="Camera2D" parent="." node_paths=PackedStringArray("player")]
 position = Vector2(272, 282)
 position_smoothing_enabled = true
-script = ExtResource("4_kll1i")
+script = ExtResource("4_b2pan")
 player = NodePath("../Player")
 
-[node name="UI" parent="." instance=ExtResource("5_cofyv")]
+[node name="UI" parent="." instance=ExtResource("5_l2ld3")]
 
-[node name="SpawnPoint" parent="." instance=ExtResource("3_pwjf5")]
+[node name="SpawnPoint" parent="." instance=ExtResource("6_3mp5i")]
 position = Vector2(1115, 295)
-character_scene = ExtResource("6_i55se")
+character_scene = ExtResource("7_xdkef")
 character_name = "thief"
 
-[node name="SpawnPoint2" parent="." instance=ExtResource("3_pwjf5")]
+[node name="SpawnPoint2" parent="." instance=ExtResource("6_3mp5i")]
 position = Vector2(826, 295)
-character_scene = ExtResource("7_rh6vv")
+character_scene = ExtResource("8_0p3ba")
 character_name = "brute"
 
-[node name="HealthPotion" parent="." instance=ExtResource("9_pgvkp")]
+[node name="HealthPotion" parent="." instance=ExtResource("9_lanlb")]
 position = Vector2(94, 289)
 
 [connection signal="timeout" from="RestartTimer" to="." method="_on_restart_timer_timeout"]
