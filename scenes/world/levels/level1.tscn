@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://ju8u3idu30up"]
+[gd_scene load_steps=53 format=3 uid="uid://ju8u3idu30up"]
 
 [ext_resource type="Script" path="res://scenes/world/levels/level.gd" id="1_uwv8o"]
 [ext_resource type="Texture2D" uid="uid://sv4brx747id1" path="res://assets/sprites/tilesets/ground_tileset.png" id="2_ofqxt"]
@@ -1739,6 +1739,9 @@ pattern_6 = SubResource("TileMapPattern_llw71")
 pattern_7 = SubResource("TileMapPattern_rgrlx")
 pattern_8 = SubResource("TileMapPattern_uoap8")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k86to"]
+size = Vector2(20, 82)
+
 [node name="Level1" type="Node2D"]
 script = ExtResource("1_uwv8o")
 
@@ -1812,27 +1815,30 @@ character_name = "thief"
 position = Vector2(1777, 257)
 character_scene = ExtResource("7_v1pt6")
 character_name = "thief"
-initial_character_direction = Vector2(-1, 0)
 
 [node name="SpawnPoint4" parent="." instance=ExtResource("6_4ufws")]
 position = Vector2(1735, -684)
 character_scene = ExtResource("9_goqr0")
 character_name = "brute"
-initial_character_direction = Vector2(-1, 0)
 
 [node name="SpawnPoint5" parent="." instance=ExtResource("6_4ufws")]
 position = Vector2(3011, 169)
 character_scene = ExtResource("9_goqr0")
 character_name = "brute"
-initial_character_direction = Vector2(-1, 0)
 
 [node name="SpawnPoint6" parent="." instance=ExtResource("6_4ufws")]
 position = Vector2(3011, 100)
 character_scene = ExtResource("9_goqr0")
 character_name = "brute"
-initial_character_direction = Vector2(-1, 0)
 
 [node name="HealthPotion" parent="." instance=ExtResource("9_1x5ts")]
 position = Vector2(1319, 699)
+
+[node name="InvisibleWall" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InvisibleWall"]
+z_index = 3
+position = Vector2(1317, 253)
+shape = SubResource("RectangleShape2D_k86to")
 
 [connection signal="timeout" from="RestartTimer" to="." method="_on_restart_timer_timeout"]

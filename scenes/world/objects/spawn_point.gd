@@ -2,7 +2,6 @@ extends Marker2D
 
 @export var character_scene: PackedScene
 @export var character_name: String
-@export var initial_character_direction: Vector2
 @onready var level: Node2D = get_parent()
 var character: Node2D
 var player_inside: bool = false
@@ -13,11 +12,21 @@ func _process(_delta: float) -> void:
 
 func spawn_character() -> void:
 	character = character_scene.instantiate()
+	character.name = generate_character_node_name(character_name)
 	character.character_name = character_name
 	character.global_position = global_position
 	character.spawn_point_position = global_position
 	level.add_child(character)
 	set_process(true)
+	
+func generate_character_node_name(base_name: String) -> String:
+	base_name = base_name.capitalize()
+	var unique_name = base_name
+	var suffix = 1
+	while level.has_node(unique_name):
+		unique_name = "%s%d" % [base_name, suffix] # this combines both strings
+		suffix += 1
+	return unique_name
 
 func _on_area_2d_body_entered(_body):
 	player_inside = true

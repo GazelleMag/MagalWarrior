@@ -43,7 +43,7 @@ func set_projectile_area_mask(character_name: String) -> void:
 
 # signals
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body.name == "TileMap":
+	if body.name == "TileMap" or "InvisibleWall" in body.name:
 		explode_projectile()
 	else:
 		body.take_damage(20) # fireball damage
