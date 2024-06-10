@@ -1,11 +1,17 @@
-extends Node
+extends StaticBody2D
 
+@export var spawn_points: Array[Marker2D]
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func _ready() -> void:
+	for spawn_point in spawn_points:
+		spawn_point.connect("character_defeated", _on_character_defeated)
+		
+func _on_character_defeated() -> void:
+	check_all_characters_defeated()
+	
+func check_all_characters_defeated() -> void:
+	for spawn_point in spawn_points:
+		if not spawn_point.character_is_defeated:
+			return
+		# all enemies are defeated
+		queue_free()

@@ -14,6 +14,8 @@ var enemy: Enemy
 @export var health_component: Node2D
 @export var line_of_sight_component: RayCast2D
 
+signal defeated
+
 func _ready() -> void:
 	enemy = Enemy.new(character_name)
 	set_character_properties()
@@ -56,6 +58,7 @@ func die() -> void:
 	call_deferred("disable_collision_shape")
 	animation_component.handle_death_animation()
 	await animation_component.wait_for_death_animation()
+	emit_signal("defeated")
 	queue_free()
 
 func disable_collision_shape() -> void:
