@@ -19,7 +19,7 @@ func spawn_character() -> void:
 	character.character_name = character_name
 	character.global_position = global_position
 	character.spawn_point_position = global_position
-	character.connect("defeated", _on_character_defeated)
+	character.defeated.connect(_on_character_defeated)
 	level.add_child(character)
 	set_process(true)
 	

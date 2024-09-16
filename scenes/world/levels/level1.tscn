@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://ju8u3idu30up"]
+[gd_scene load_steps=55 format=3 uid="uid://ju8u3idu30up"]
 
 [ext_resource type="Script" path="res://scenes/world/levels/level.gd" id="1_uwv8o"]
 [ext_resource type="Texture2D" uid="uid://sv4brx747id1" path="res://assets/sprites/tilesets/ground_tileset.png" id="2_ofqxt"]
@@ -1740,6 +1740,12 @@ pattern_6 = SubResource("TileMapPattern_llw71")
 pattern_7 = SubResource("TileMapPattern_rgrlx")
 pattern_8 = SubResource("TileMapPattern_uoap8")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kect5"]
+size = Vector2(20, 73)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v3qgo"]
+size = Vector2(38, 87.5)
+
 [node name="Level1" type="Node2D"]
 script = ExtResource("1_uwv8o")
 
@@ -1833,6 +1839,19 @@ character_name = "brute"
 position = Vector2(1319, 699)
 
 [node name="InvisibleWall" parent="." node_paths=PackedStringArray("spawn_points") instance=ExtResource("11_rarbq")]
-spawn_points = [null]
+z_index = 3
+position = Vector2(1318, 259)
+spawn_points = [NodePath("../SpawnPoint")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InvisibleWall"]
+shape = SubResource("RectangleShape2D_kect5")
+
+[node name="InvisibleWallArea" type="Area2D" parent="InvisibleWall"]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InvisibleWall/InvisibleWallArea"]
+shape = SubResource("RectangleShape2D_v3qgo")
 
 [connection signal="timeout" from="RestartTimer" to="." method="_on_restart_timer_timeout"]
+[connection signal="body_entered" from="InvisibleWall/InvisibleWallArea" to="UI" method="_on_invisible_wall_area_body_entered"]
+[connection signal="body_exited" from="InvisibleWall/InvisibleWallArea" to="UI" method="_on_invisible_wall_area_body_exited"]

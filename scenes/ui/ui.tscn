@@ -4,10 +4,12 @@
 [ext_resource type="Script" path="res://scenes/ui/action_bar.gd" id="2_mdsr0"]
 [ext_resource type="Script" path="res://scenes/ui/player_health_bar.gd" id="4_h6n7y"]
 
-[node name="UI" type="CanvasLayer" node_paths=PackedStringArray("player_health_bar", "action_bar")]
+[node name="UI" type="CanvasLayer" node_paths=PackedStringArray("player_health_bar", "action_bar", "warning_label", "warning_timer")]
 script = ExtResource("1_ml4ta")
-player_health_bar = NodePath("MarginContainer/VBoxContainer/PlayerHealthBar")
-action_bar = NodePath("MarginContainer/VBoxContainer/ActionBar")
+player_health_bar = NodePath("MarginContainer/MainVBoxContainer/BarsVBoxContainer/PlayerHealthBar")
+action_bar = NodePath("MarginContainer/MainVBoxContainer/BarsVBoxContainer/ActionBar")
+warning_label = NodePath("MarginContainer/MainVBoxContainer/WarningVBoxContainer/WarningLabel")
+warning_timer = NodePath("MarginContainer/MainVBoxContainer/WarningVBoxContainer/WarningTimer")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 7
@@ -16,27 +18,45 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -100.0
-offset_top = -105.0
+offset_top = -96.0
 offset_right = 100.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_constants/margin_bottom = 25
+theme_override_constants/margin_bottom = 35
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="MainVBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="ActionBar" type="HBoxContainer" parent="MarginContainer/VBoxContainer" node_paths=PackedStringArray("UI")]
+[node name="WarningVBoxContainer" type="VBoxContainer" parent="MarginContainer/MainVBoxContainer"]
+layout_mode = 2
+
+[node name="WarningLabel" type="Label" parent="MarginContainer/MainVBoxContainer/WarningVBoxContainer"]
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WarningTimer" type="Timer" parent="MarginContainer/MainVBoxContainer/WarningVBoxContainer"]
+wait_time = 2.5
+one_shot = true
+
+[node name="BarsVBoxContainer" type="VBoxContainer" parent="MarginContainer/MainVBoxContainer"]
+layout_mode = 2
+
+[node name="ActionBar" type="HBoxContainer" parent="MarginContainer/MainVBoxContainer/BarsVBoxContainer" node_paths=PackedStringArray("UI")]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 size_flags_horizontal = 4
 script = ExtResource("2_mdsr0")
-UI = NodePath("../../..")
+UI = NodePath("../../../..")
 
-[node name="PlayerHealthBar" type="ProgressBar" parent="MarginContainer/VBoxContainer"]
+[node name="PlayerHealthBar" type="ProgressBar" parent="MarginContainer/MainVBoxContainer/BarsVBoxContainer"]
 modulate = Color(1, 0, 0, 1)
 custom_minimum_size = Vector2(200, 27)
 layout_mode = 2
+size_flags_horizontal = 4
 value = 100.0
 show_percentage = false
 script = ExtResource("4_h6n7y")
+
+[connection signal="timeout" from="MarginContainer/MainVBoxContainer/WarningVBoxContainer/WarningTimer" to="." method="_on_warning_timer_timeout"]
