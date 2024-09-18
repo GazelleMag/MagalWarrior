@@ -1,6 +1,6 @@
 extends Marker2D
 
-@export var character_scene: PackedScene
+@export var enemy_scene: PackedScene
 @export var character_name: String
 @onready var level: Node2D = get_parent()
 var character: Node2D
@@ -12,9 +12,9 @@ signal character_defeated
 func _process(_delta: float) -> void:
 	if character != null and player_inside:
 		character.chase_player()
-
+	
 func spawn_character() -> void:
-	character = character_scene.instantiate()
+	character = enemy_scene.instantiate()
 	character.name = generate_character_node_name(character_name)
 	character.character_name = character_name
 	character.global_position = global_position

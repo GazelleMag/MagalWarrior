@@ -2,14 +2,34 @@ extends Node2D
 
 @onready var character: CharacterBody2D = get_parent()
 @export var character_animation: AnimatedSprite2D
+@onready var character_name: String = get_parent().name.to_lower()
 @export var death_animation: AnimatedSprite2D
 # Components
 @export var velocity_component: Node2D
 @export var attack_point_component: Area2D
 
 func _ready() -> void:
+	if character_name != "player":
+		set_character_animation_node()
 	character_animation.connect("animation_finished", _on_animation_finished)
 	death_animation.visible = false
+
+func set_character_animation_node() -> void:
+	character_name = normalize_character_name(character_name)
+	var animation_scene_path = "res://scenes/animations/" + character_name + "_animation.tscn"
+	var animation_scene = ResourceLoader.load(animation_scene_path)
+	if animation_scene:
+		var animation_instance = animation_scene.instantiate()
+		character.add_child.call_deferred(animation_instance)
+		character_animation = animation_instance
+	else:
+		print("Error: could not load animation scene for ", character_name)
+
+# this is to turn a name "thief1" into "thief"
+func normalize_character_name(input: String) -> String:
+	var regex = RegEx.new()
+	regex.compile("\\d")  # Matches any digit (0-9)
+	return regex.sub(input, "", false)  # Replace all digits with an empty string
 
 func handle_walk_animation(direction: Vector2) -> void:
 	if direction != Vector2.ZERO:

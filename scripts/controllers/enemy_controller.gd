@@ -63,9 +63,3 @@ func die() -> void:
 
 func disable_collision_shape() -> void:
 	collision_shape.disabled = true
-
-# signals
-func _on_attack_point_component_body_entered(body: Node2D):
-	if body.name == "Player" and combat_component.melee_damage_inflicted == false:
-		body.take_damage(enemy.damage)
-		combat_component.melee_damage_inflicted = true

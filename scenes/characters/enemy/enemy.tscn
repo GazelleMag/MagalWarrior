@@ -1,0 +1,63 @@
+[gd_scene load_steps=11 format=3 uid="uid://daimhdt7elpe7"]
+
+[ext_resource type="PackedScene" uid="uid://canqewjsmlivc" path="res://scenes/misc/death_animation.tscn" id="1_7mlm8"]
+[ext_resource type="Script" path="res://scripts/controllers/enemy_controller.gd" id="1_xkkda"]
+[ext_resource type="PackedScene" uid="uid://dqev70tyi4jgf" path="res://scenes/components/enemy/health_component.tscn" id="2_jojal"]
+[ext_resource type="PackedScene" uid="uid://dbxut02s44cty" path="res://scenes/components/character/animation_component.tscn" id="3_lw76u"]
+[ext_resource type="PackedScene" uid="uid://buvbj63hqr6xf" path="res://scenes/components/enemy/velocity_component.tscn" id="4_skhdk"]
+[ext_resource type="PackedScene" uid="uid://bmee1fjmekjar" path="res://scenes/components/enemy/range_detector_component.tscn" id="5_fpb8e"]
+[ext_resource type="PackedScene" uid="uid://0vvndflikyht" path="res://scenes/components/enemy/combat_component.tscn" id="6_pqr73"]
+[ext_resource type="PackedScene" uid="uid://flcx5yxp81sv" path="res://scenes/components/character/attack_point_component.tscn" id="7_h41pv"]
+[ext_resource type="PackedScene" uid="uid://dp38qtf05mjgo" path="res://scenes/components/enemy/line_of_sight_component.tscn" id="8_urjcu"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7iqmh"]
+
+[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("velocity_component", "range_detector_component", "animation_component", "combat_component", "health_component", "line_of_sight_component") groups=["Enemies"]]
+z_index = 2
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_xkkda")
+velocity_component = NodePath("VelocityComponent")
+range_detector_component = NodePath("RangeDetectorComponent")
+animation_component = NodePath("AnimationComponent")
+combat_component = NodePath("CombatComponent")
+health_component = NodePath("HealthComponent")
+line_of_sight_component = NodePath("LineOfSightComponent")
+
+[node name="DeathAnimation" parent="." instance=ExtResource("1_7mlm8")]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_7iqmh")
+
+[node name="HealthComponent" parent="." instance=ExtResource("2_jojal")]
+position = Vector2(-37, -40)
+
+[node name="AnimationComponent" parent="." node_paths=PackedStringArray("death_animation", "velocity_component", "attack_point_component") instance=ExtResource("3_lw76u")]
+death_animation = NodePath("../DeathAnimation")
+velocity_component = NodePath("../VelocityComponent")
+attack_point_component = NodePath("../AttackPointComponent")
+
+[node name="VelocityComponent" parent="." instance=ExtResource("4_skhdk")]
+
+[node name="RangeDetectorComponent" parent="." node_paths=PackedStringArray("velocity_component", "combat_component") instance=ExtResource("5_fpb8e")]
+velocity_component = NodePath("../VelocityComponent")
+combat_component = NodePath("../CombatComponent")
+
+[node name="CombatComponent" parent="." node_paths=PackedStringArray("velocity_component", "attack_point_component", "animation_component", "line_of_sight_component") instance=ExtResource("6_pqr73")]
+ability_names = Array[String](["basic_attack"])
+velocity_component = NodePath("../VelocityComponent")
+attack_point_component = NodePath("../AttackPointComponent")
+animation_component = NodePath("../AnimationComponent")
+line_of_sight_component = NodePath("../LineOfSightComponent")
+
+[node name="AttackPointComponent" parent="." node_paths=PackedStringArray("velocity_component", "combat_component") instance=ExtResource("7_h41pv")]
+velocity_component = NodePath("../VelocityComponent")
+combat_component = NodePath("../CombatComponent")
+
+[node name="LineOfSightComponent" parent="." node_paths=PackedStringArray("velocity_component") instance=ExtResource("8_urjcu")]
+velocity_component = NodePath("../VelocityComponent")
+
+[connection signal="body_entered" from="RangeDetectorComponent" to="RangeDetectorComponent" method="_on_body_entered"]
+[connection signal="body_exited" from="RangeDetectorComponent" to="RangeDetectorComponent" method="_on_body_exited"]
+[connection signal="body_entered" from="AttackPointComponent" to="AttackPointComponent" method="_on_attack_point_component_body_entered"]
