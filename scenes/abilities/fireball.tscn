@@ -50,12 +50,11 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_ga81a"]
 radius = 9.05539
 
-[node name="Fireball" type="RigidBody2D" node_paths=PackedStringArray("projectile_animation")]
+[node name="Fireball" type="RigidBody2D"]
 z_index = 2
 collision_layer = 8
 gravity_scale = 0.0
 script = ExtResource("1_mapo7")
-projectile_animation = NodePath("FireballAnimation")
 
 [node name="FireballAnimation" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.05, 0.05)

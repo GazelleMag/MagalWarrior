@@ -32,7 +32,7 @@ func set_player_properties() -> void:
 func handle_movement(direction: Vector2) -> void:
 	velocity = direction * velocity_component.speed
 	move_and_slide()
-#
+
 func take_damage(damage: int) -> void:
 	combat_component.take_damage(damage)
 	health_changed.emit() # this updates UI health bar
@@ -53,8 +53,3 @@ func die() -> void:
 
 func emit_mouse_click_signal(click_type: String) -> void:
 	emit_signal("mouse_click", click_type)
-
-#func _on_attack_point_component_body_entered(body: Node2D):
-#	if body.is_in_group("Enemies") and combat_component.melee_damage_inflicted == false:
-#		body.take_damage(10)
-#		combat_component.melee_damage_inflicted = true

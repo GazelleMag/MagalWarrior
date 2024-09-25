@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://cmj1py80ekooq"]
 
 [ext_resource type="Script" path="res://scripts/controllers/enemy_controller.gd" id="1_0aalj"]
-[ext_resource type="PackedScene" uid="uid://b8rvbopuou0tk" path="res://scenes/animations/thief_animation.tscn" id="2_snq7i"]
+[ext_resource type="PackedScene" uid="uid://b8rvbopuou0tk" path="res://scenes/character_animations/thief_animation.tscn" id="2_snq7i"]
 [ext_resource type="PackedScene" uid="uid://canqewjsmlivc" path="res://scenes/misc/death_animation.tscn" id="3_ubygj"]
 [ext_resource type="PackedScene" uid="uid://dqev70tyi4jgf" path="res://scenes/components/enemy/health_component.tscn" id="4_1n3jq"]
 [ext_resource type="PackedScene" uid="uid://dbxut02s44cty" path="res://scenes/components/character/animation_component.tscn" id="5_0qowx"]

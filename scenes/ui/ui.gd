@@ -20,7 +20,7 @@ func handle_mouse_cooldown(cooldown_status: bool, click_type: String) -> void:
 	if player != null:
 		player.handle_mouse_cooldown(cooldown_status, click_type)
 
-func set_ability_action_bar(abilities: Array[String]) -> void:
+func set_ability_action_bar(abilities: Array[Ability]) -> void:
 	action_bar.set_ability_action_bar(abilities)
 	
 func show_warning_message(message: String) -> void:

@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://c3jbdiahncx6j"]
 
-[ext_resource type="PackedScene" uid="uid://rmnsq5fs85m8" path="res://scenes/animations/brute_animation.tscn" id="1_biih2"]
+[ext_resource type="PackedScene" uid="uid://rmnsq5fs85m8" path="res://scenes/character_animations/brute_animation.tscn" id="1_biih2"]
 [ext_resource type="Script" path="res://scripts/controllers/enemy_controller.gd" id="1_i22wf"]
 [ext_resource type="PackedScene" uid="uid://dbxut02s44cty" path="res://scenes/components/character/animation_component.tscn" id="3_ivhkg"]
 [ext_resource type="PackedScene" uid="uid://buvbj63hqr6xf" path="res://scenes/components/enemy/velocity_component.tscn" id="4_8fusp"]

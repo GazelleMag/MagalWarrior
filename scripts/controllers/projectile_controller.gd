@@ -1,15 +1,30 @@
 extends RigidBody2D
 
-@export var projectile_animation: AnimatedSprite2D
+var projectile: Ability
+var projectile_name: String
+var projectile_animation: AnimatedSprite2D
+var projectile_damage: int
 @onready var timer: Timer = $Timer
 
 func _ready() -> void:
+	projectile = Ability.new(projectile_name)
+	set_projectile_animation_node()
 	play_projectile_animation()
 	timer.start()
-	
+
+func set_projectile_animation_node() -> void:
+	var animation_scene_path = "res://scenes/abilities/" + projectile_name + "_animation.tscn"
+	var animation_scene = ResourceLoader.load(animation_scene_path)
+	if animation_scene:
+		var animation_instance = animation_scene.instantiate()
+		self.add_child(animation_instance)
+		projectile_animation = animation_instance
+	else:
+		print("Error: could not load animation scene for ", projectile_name)
+
 # animations
 func play_projectile_animation() -> void:
-	projectile_animation.play("fireball")
+	projectile_animation.play(projectile_name)
 
 func play_explosion_animation() -> void:
 	projectile_animation.play("explosion")
@@ -46,7 +61,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.name == "TileMap" or "InvisibleWall" in body.name:
 		explode_projectile()
 	else:
-		body.take_damage(20) # fireball damage
+		body.take_damage(projectile.damage)
 		explode_projectile()
 	
 func _on_timer_timeout() -> void:

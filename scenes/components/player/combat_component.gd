@@ -6,18 +6,18 @@ var melee_damage_inflicted: bool = false
 var is_casting_fireball: bool = false
 var mouse1_cooldown: bool = false
 var mouse2_cooldown: bool = false
-var abilities: Array[String] = [
-	"basic_attack",
-	"fireball"
-]
+@export var ability_names: Array[String]
+var abilities: Array[Ability]
 # components
 @export var velocity_component: Node2D
 @export var attack_point_component: Area2D
 @export var animation_component: Node2D
 @export var health_component: Node2D
 
-var fireball_scene = preload("res://scenes/abilities/fireball.tscn")
-var fireball_speed: int = 300
+var projectile_scene = preload("res://scenes/abilities/projectile.tscn")
+
+func _ready() -> void:
+	set_player_abilities()
 
 func _process(_delta: float) -> void:
 	if !is_attacking:
@@ -25,11 +25,19 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("mouse1") and !is_attacking and !mouse1_cooldown:
 		mouse1_cooldown = true
 		character.emit_mouse_click_signal("mouse1")
-		attack(velocity_component.character_direction)
+		attack(velocity_component.character_direction) # this should be some kind of primary action. this is only a basic attack for now
 	if Input.is_action_just_pressed("mouse2") and !mouse2_cooldown:
 		mouse2_cooldown = true
 		character.emit_mouse_click_signal("mouse2")
-		cast_fireball()
+		cast_projectile(abilities[1]) # this might not be a projectile
+
+func set_player_abilities() -> void:
+	if ability_names.size() == 0:
+		return
+	else:
+		for ability_name in ability_names:
+			var ability: Ability = Ability.new(ability_name)
+			abilities.append(ability)
 
 func attack(direction: Vector2) -> void:
 	is_attacking = true
@@ -38,15 +46,16 @@ func attack(direction: Vector2) -> void:
 	animation_component.handle_attack_animation(direction)
 	await animation_component.wait_for_animation()
 	is_attacking = false
-	
-func cast_fireball() -> void:
+
+func cast_projectile(projectile: Ability) -> void:
 	is_casting_fireball = true
-	var fireball = fireball_scene.instantiate()
-	fireball.set_projectile_area_mask(character.name)
-	fireball.position = attack_point_component.global_position
-	fireball.linear_velocity = velocity_component.last_character_direction * fireball_speed
-	fireball.handle_projectile_orientation(velocity_component.last_character_direction)
-	character.level.add_child(fireball)
+	var new_projectile = projectile_scene.instantiate()
+	new_projectile.projectile_name = projectile.name
+	new_projectile.set_projectile_area_mask(character.name)
+	new_projectile.position = attack_point_component.global_position
+	new_projectile.linear_velocity = velocity_component.last_character_direction * projectile.speed
+	new_projectile.handle_projectile_orientation(velocity_component.last_character_direction)
+	character.level.add_child(new_projectile)
 
 func take_damage(damage: int) -> void:
 	health_component.update_health(-damage)

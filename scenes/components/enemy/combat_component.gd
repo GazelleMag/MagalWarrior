@@ -4,7 +4,7 @@ extends Node2D
 var executing_ability: bool = false
 var melee_damage_inflicted: bool = false
 @export var health_bar: ProgressBar
-@export var ability_names: Array[String]
+@export var ability_names: Array[String]	
 var abilities: Array[Ability]
 var ability_cooldown_timers: Dictionary = {}
 var has_melee_ability: bool = false
@@ -107,8 +107,9 @@ func melee_attack() -> void:
 	executing_ability = false
 	
 func ranged_attack(ability: Ability) -> void:
-	var projectile_scene: PackedScene = load("res://scenes/abilities/" + ability.name + ".tscn")
+	var projectile_scene: PackedScene = load("res://scenes/abilities/projectile.tscn")
 	var projectile: RigidBody2D = projectile_scene.instantiate()
+	projectile.projectile_name = ability.name
 	projectile.set_projectile_area_mask(character.name)
 	projectile.position = attack_point_component.global_position
 	projectile.linear_velocity = velocity_component.last_character_direction * ability.speed

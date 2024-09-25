@@ -21,12 +21,12 @@ func handle_mouse_click(click_type: String) -> void:
 func on_mouse_cooldown(cooldown_status: bool, click_type: String) -> void:
 	UI.handle_mouse_cooldown(cooldown_status, click_type)
 	
-func set_ability_action_bar(ability_names: Array[String]) -> void:
-	for i in range(ability_names.size()):
+func set_ability_action_bar(ability: Array[Ability]) -> void:
+	for i in range(ability.size()):
 		if i in action_bar_keys.keys():
 			var ability_button = ability_button_scene.instantiate()
 			ability_button.change_key = action_bar_keys[i]
-			ability_button.set_ability(ability_names[i])
+			ability_button.set_ability(ability[i].name)
 			if action_bar_keys[i] == 'M1' or action_bar_keys[i] == 'M2':
 				ability_button.mouse_cooldown.connect(on_mouse_cooldown)
 			add_child(ability_button)

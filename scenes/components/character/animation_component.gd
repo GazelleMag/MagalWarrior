@@ -1,8 +1,8 @@
 extends Node2D
 
 @onready var character: CharacterBody2D = get_parent()
-@export var character_animation: AnimatedSprite2D
 @onready var character_name: String = get_parent().name.to_lower()
+@export var character_animation: AnimatedSprite2D
 @export var death_animation: AnimatedSprite2D
 # Components
 @export var velocity_component: Node2D
@@ -16,7 +16,7 @@ func _ready() -> void:
 
 func set_character_animation_node() -> void:
 	character_name = normalize_character_name(character_name)
-	var animation_scene_path = "res://scenes/animations/" + character_name + "_animation.tscn"
+	var animation_scene_path = "res://scenes/character_animations/" + character_name + "_animation.tscn"
 	var animation_scene = ResourceLoader.load(animation_scene_path)
 	if animation_scene:
 		var animation_instance = animation_scene.instantiate()
