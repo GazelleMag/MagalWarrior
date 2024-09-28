@@ -1,8 +1,13 @@
-[gd_scene format=3 uid="uid://djao6rkxa8l72"]
+[gd_scene load_steps=3 format=3 uid="uid://djao6rkxa8l72"]
 
-[node name="EnemyHealthBar" type="ProgressBar"]
-modulate = Color(1, 0, 0, 1)
+[ext_resource type="Texture2D" uid="uid://cn0jv0x8ihlj6" path="res://assets/sprites/health_bars/health_bar_under.png" id="1_jd17y"]
+[ext_resource type="Texture2D" uid="uid://bwepjye33ar2h" path="res://assets/sprites/health_bars/health_bar_progress.png" id="2_e8i7y"]
+
+[node name="TextureProgressBar" type="TextureProgressBar"]
 offset_right = 75.0
 offset_bottom = 15.0
-show_percentage = false
+nine_patch_stretch = true
+texture_under = ExtResource("1_jd17y")
+texture_progress = ExtResource("2_e8i7y")
+tint_over = Color(0.113725, 0.0705882, 0.0235294, 1)
 metadata/_edit_use_anchors_ = true

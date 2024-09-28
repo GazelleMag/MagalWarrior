@@ -2,7 +2,7 @@ extends Node2D
 
 var current_health: int
 var max_health: int
-@onready var health_bar: ProgressBar = $HealthBar
+@onready var health_bar: TextureProgressBar = $HealthBar
 
 func _ready() -> void:
 	health_bar.value = 100

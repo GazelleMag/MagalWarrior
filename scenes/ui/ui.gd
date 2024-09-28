@@ -1,7 +1,7 @@
 extends CanvasLayer
 
 @onready var player: Node2D = $"../Player"
-@export var player_health_bar: ProgressBar
+@export var player_health_bar: TextureProgressBar
 @export var action_bar: HBoxContainer
 @export var warning_label: Label
 @export var warning_timer: Timer
