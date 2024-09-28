@@ -35,6 +35,10 @@ func set_character_properties() -> void:
 	velocity_component.speed = enemy.speed
 	health_component.max_health = enemy.health
 	health_component.current_health = health_component.max_health
+	combat_component.ability_names = enemy.abilities
+	combat_component.call_deferred("set_character_abilities")
+	combat_component.call_deferred("check_abilities", "melee")
+	combat_component.call_deferred("check_abilities", "ranged")
 
 func handle_movement() -> void:
 	velocity = velocity_component.get_velocity()

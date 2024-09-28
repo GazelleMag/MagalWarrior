@@ -4,7 +4,7 @@ extends Node2D
 var executing_ability: bool = false
 var melee_damage_inflicted: bool = false
 @export var health_bar: ProgressBar
-@export var ability_names: Array[String]	
+var ability_names: Array[String]	
 var abilities: Array[Ability]
 var ability_cooldown_timers: Dictionary = {}
 var has_melee_ability: bool = false
@@ -14,11 +14,6 @@ var has_ranged_ability: bool = false
 @export var attack_point_component: Area2D
 @export var animation_component: Node2D
 @export var line_of_sight_component: RayCast2D
-
-func _ready() -> void:
-	set_character_abilities()
-	has_melee_ability = check_abilities("melee")
-	has_ranged_ability = check_abilities("ranged")
 
 func _process(_delta: float) -> void:
 	if !executing_ability:
@@ -31,7 +26,7 @@ func set_character_abilities() -> void:
 		for ability_name in ability_names:
 			var ability: Ability = Ability.new(ability_name)
 			abilities.append(ability)
-			set_ability_cooldown_timer(ability)
+			set_ability_cooldown_timer(ability)		
 			
 func set_ability_cooldown_timer(ability: Ability) -> void:
 	var cooldown_timer: Timer = Timer.new()
@@ -40,11 +35,13 @@ func set_ability_cooldown_timer(ability: Ability) -> void:
 	add_child(cooldown_timer)
 	ability_cooldown_timers[ability] = cooldown_timer
 			
-func check_abilities(ability_type: String) -> bool:
+func check_abilities(ability_type: String) -> void:
 	for ability in abilities:
 		if ability.type == ability_type:
-			return true
-	return false
+			if ability_type == "melee":
+				has_melee_ability = true
+			elif ability_type == "ranged":
+				has_ranged_ability = true
 			
 func use_ability(ability_type: String) -> void:
 	if abilities.size() == 0:
