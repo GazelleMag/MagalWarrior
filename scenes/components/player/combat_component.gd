@@ -13,6 +13,7 @@ var abilities: Array[Ability]
 @export var attack_point_component: Area2D
 @export var animation_component: Node2D
 @export var health_component: Node2D
+@export var audio_component: Node2D
 
 var projectile_scene = preload("res://scenes/abilities/projectile.tscn")
 
@@ -25,7 +26,10 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("mouse1") and !is_attacking and !mouse1_cooldown:
 		mouse1_cooldown = true
 		character.emit_mouse_click_signal("mouse1")
-		attack(velocity_component.character_direction) # this should be some kind of primary action. this is only a basic attack for now
+		attack(velocity_component.character_direction) # this should be some kind of primary action
+		# play sound
+		audio_component.play_weapon_sound()
+		
 	if Input.is_action_just_pressed("mouse2") and !mouse2_cooldown:
 		mouse2_cooldown = true
 		character.emit_mouse_click_signal("mouse2")

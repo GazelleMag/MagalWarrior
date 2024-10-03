@@ -3,7 +3,6 @@ extends Node2D
 @onready var character: CharacterBody2D = get_parent()
 var executing_ability: bool = false
 var melee_damage_inflicted: bool = false
-@export var health_bar: ProgressBar
 var ability_names: Array[String]	
 var abilities: Array[Ability]
 var ability_cooldown_timers: Dictionary = {}
@@ -14,6 +13,7 @@ var has_ranged_ability: bool = false
 @export var attack_point_component: Area2D
 @export var animation_component: Node2D
 @export var line_of_sight_component: RayCast2D
+@export var audio_component: Node2D
 
 func _process(_delta: float) -> void:
 	if !executing_ability:
@@ -91,6 +91,8 @@ func execute_ability(ability_index: int) -> void:
 			return
 		if ability.type == "melee":
 			melee_attack()
+			audio_component.play_weapon_sound()
+			# audio component
 		elif ability.type == "ranged":
 			ranged_attack(ability)
 	cooldown_timer.start()

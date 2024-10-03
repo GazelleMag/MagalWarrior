@@ -13,6 +13,7 @@ var enemy: Enemy
 @export var combat_component: Node2D
 @export var health_component: Node2D
 @export var line_of_sight_component: RayCast2D
+@export var audio_component: Node2D
 
 signal defeated
 
@@ -23,7 +24,8 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	handle_movement()
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
+	audio_component.play_footstep(delta, velocity)
 	if range_detector_component.player_in_range == true:
 		# this should be only a melee ability
 		combat_component.use_ability("melee")

@@ -10,6 +10,7 @@ extends CharacterBody2D
 @export var attack_point_component: Area2D
 @export var combat_component: Node2D
 @export var health_component: Node2D
+@export var audio_component: Node2D
 
 signal health_changed
 signal mouse_click
@@ -19,8 +20,11 @@ func _ready() -> void:
 	set_player_properties()
 	UI.set_ability_action_bar(combat_component.abilities)
 
-func _physics_process(_delta) -> void:
+func _physics_process(_delta: float) -> void:
 	handle_movement(velocity_component.character_direction)
+	
+func _process(delta: float) -> void:
+	audio_component.play_footstep(delta, velocity)
 
 func set_player_properties() -> void:
 	# property values below should probably go into a 'player' class
