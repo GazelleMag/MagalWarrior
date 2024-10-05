@@ -1,13 +1,21 @@
 extends Node2D
 
+# footsteps
 @onready var footstep_audio_player: AudioStreamPlayer2D = $FootstepAudioPlayer
 @export var footstep_sounds: Array[AudioStream]
 var footstep_sound_index: int = 0
 var step_timer: float = 0.0
 var step_interval: float = 0.225
+# weapon
 @onready var weapon_audio_player: AudioStreamPlayer2D = $WeaponAudioPlayer
 @export var weapon_sounds: Array[AudioStream]
 var weapon_sound_index: int = 0
+# hit
+@onready var hit_audio_player: AudioStreamPlayer2D = $HitAudioPlayer
+# death
+@onready var death_audio_player: AudioStreamPlayer2D = $DeathAudioPlayer
+@export var death_sounds: Array[AudioStream]
+var death_sound_index: int = 0
 
 func _ready() -> void:
 	# in case the character is the player, disable spatial sound
@@ -40,3 +48,17 @@ func play_weapon_sound() -> void:
 	weapon_audio_player.stream = weapon_sounds[weapon_sound_index]
 	weapon_audio_player.pitch_scale = 1.0 + randf() * 0.5 - 0.1
 	weapon_audio_player.play()
+	
+func play_hit_sound() -> void:
+	if hit_audio_player.playing:
+		hit_audio_player.stop()
+	hit_audio_player.pitch_scale = 1.0 + randf() * 1.0 - 0.1
+	hit_audio_player.play()
+	
+func play_death_sound() -> void:
+	if death_audio_player.playing:
+		death_audio_player.stop()
+	death_sound_index = randi() % death_sounds.size()
+	death_audio_player.stream = death_sounds[death_sound_index]
+	death_audio_player.pitch_scale = 1.0 + randf() * 0.5 - 0.1
+	death_audio_player.play()

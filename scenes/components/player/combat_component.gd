@@ -62,6 +62,7 @@ func cast_projectile(projectile: Ability) -> void:
 	character.level.add_child(new_projectile)
 
 func take_damage(damage: int) -> void:
+	audio_component.play_hit_sound()
 	health_component.update_health(-damage)
 	if health_component.current_health <= 0:
 		character.die()

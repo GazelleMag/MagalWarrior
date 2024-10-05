@@ -1,15 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://bq2pty2md6nxg"]
+[gd_scene load_steps=11 format=3 uid="uid://bq2pty2md6nxg"]
 
 [ext_resource type="Script" path="res://scripts/controllers/player_controller.gd" id="1_jqov3"]
 [ext_resource type="PackedScene" uid="uid://2g40ejm5tvy1" path="res://scenes/characters/player/player_animation.tscn" id="2_ukbkk"]
 [ext_resource type="PackedScene" uid="uid://d4h32id0fxdai" path="res://scenes/components/player/combat_component.tscn" id="7_c3mlq"]
 [ext_resource type="PackedScene" uid="uid://c4o5mmmcwmsxw" path="res://scenes/components/player/health_component.tscn" id="8_h8x5h"]
-[ext_resource type="AudioStream" uid="uid://ccfvngnvefry3" path="res://assets/sounds/footsteps/step1.wav" id="10_qo6ny"]
-[ext_resource type="AudioStream" uid="uid://6v7glu3kekwe" path="res://assets/sounds/footsteps/step2.wav" id="11_dniws"]
-[ext_resource type="AudioStream" uid="uid://duucpno3pmpmp" path="res://assets/sounds/footsteps/step3.wav" id="12_kxfp5"]
-[ext_resource type="AudioStream" uid="uid://f53061owm7oq" path="res://assets/sounds/weapon/sword_swing1.wav" id="13_lur66"]
-[ext_resource type="AudioStream" uid="uid://dtgs5kwnqv4fv" path="res://assets/sounds/weapon/sword_swing2.wav" id="14_xvccy"]
-[ext_resource type="AudioStream" uid="uid://c1s1le4gq53so" path="res://assets/sounds/weapon/sword_swing3.wav" id="15_ca8sb"]
 [ext_resource type="PackedScene" uid="uid://df1n5cqpbclte" path="res://scenes/components/character/audio_component.tscn" id="16_65pwe"]
 [ext_resource type="PackedScene" uid="uid://canqewjsmlivc" path="res://scenes/misc/death_animation.tscn" id="50_gv0ay"]
 [ext_resource type="PackedScene" uid="uid://dbxut02s44cty" path="res://scenes/components/character/animation_component.tscn" id="51_l3063"]
@@ -64,7 +58,5 @@ combat_component = NodePath("../CombatComponent")
 [node name="HealthComponent" parent="." instance=ExtResource("8_h8x5h")]
 
 [node name="AudioComponent" parent="." instance=ExtResource("16_65pwe")]
-footstep_sounds = Array[AudioStream]([ExtResource("10_qo6ny"), ExtResource("11_dniws"), ExtResource("12_kxfp5")])
-weapon_sounds = Array[AudioStream]([ExtResource("13_lur66"), ExtResource("14_xvccy"), ExtResource("15_ca8sb")])
 
 [connection signal="body_entered" from="AttackPointComponent" to="AttackPointComponent" method="_on_attack_point_component_body_entered"]

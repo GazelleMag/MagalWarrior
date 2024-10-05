@@ -51,6 +51,8 @@ func chase_player() -> void:
 	
 func take_damage(damage: int) -> void:
 	if !velocity_component.back_to_spawn:
+		animation_component.flash_red()
+		audio_component.play_hit_sound()
 		health_component.update_health(damage)
 		if health_component.current_health <= 0:
 			die()
@@ -60,9 +62,11 @@ func reset_health() -> void:
 	
 func die() -> void:
 	set_physics_process(false)
+	set_process(false)
 	health_component.health_bar.visible = false
 	call_deferred("disable_collision_shape")
 	animation_component.handle_death_animation()
+	audio_component.play_death_sound()
 	await animation_component.wait_for_death_animation()
 	emit_signal("defeated")
 	queue_free()

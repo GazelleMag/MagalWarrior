@@ -92,7 +92,6 @@ func execute_ability(ability_index: int) -> void:
 		if ability.type == "melee":
 			melee_attack()
 			audio_component.play_weapon_sound()
-			# audio component
 		elif ability.type == "ranged":
 			ranged_attack(ability)
 	cooldown_timer.start()

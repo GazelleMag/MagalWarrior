@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://daimhdt7elpe7"]
+[gd_scene load_steps=12 format=3 uid="uid://daimhdt7elpe7"]
 
 [ext_resource type="PackedScene" uid="uid://canqewjsmlivc" path="res://scenes/misc/death_animation.tscn" id="1_7mlm8"]
 [ext_resource type="Script" path="res://scripts/controllers/enemy_controller.gd" id="1_xkkda"]
@@ -10,12 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://flcx5yxp81sv" path="res://scenes/components/character/attack_point_component.tscn" id="7_h41pv"]
 [ext_resource type="PackedScene" uid="uid://dp38qtf05mjgo" path="res://scenes/components/enemy/line_of_sight_component.tscn" id="8_urjcu"]
 [ext_resource type="PackedScene" uid="uid://df1n5cqpbclte" path="res://scenes/components/character/audio_component.tscn" id="10_orlqt"]
-[ext_resource type="AudioStream" uid="uid://ccfvngnvefry3" path="res://assets/sounds/footsteps/step1.wav" id="11_epnqu"]
-[ext_resource type="AudioStream" uid="uid://6v7glu3kekwe" path="res://assets/sounds/footsteps/step2.wav" id="12_2u6uq"]
-[ext_resource type="AudioStream" uid="uid://duucpno3pmpmp" path="res://assets/sounds/footsteps/step3.wav" id="13_usg6d"]
-[ext_resource type="AudioStream" uid="uid://f53061owm7oq" path="res://assets/sounds/weapon/sword_swing1.wav" id="14_ftrnw"]
-[ext_resource type="AudioStream" uid="uid://dtgs5kwnqv4fv" path="res://assets/sounds/weapon/sword_swing2.wav" id="15_15sah"]
-[ext_resource type="AudioStream" uid="uid://c1s1le4gq53so" path="res://assets/sounds/weapon/sword_swing3.wav" id="16_wxjyh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7iqmh"]
 
@@ -67,8 +61,6 @@ combat_component = NodePath("../CombatComponent")
 velocity_component = NodePath("../VelocityComponent")
 
 [node name="AudioComponent" parent="." instance=ExtResource("10_orlqt")]
-footstep_sounds = Array[AudioStream]([ExtResource("11_epnqu"), ExtResource("12_2u6uq"), ExtResource("13_usg6d")])
-weapon_sounds = Array[AudioStream]([ExtResource("14_ftrnw"), ExtResource("15_15sah"), ExtResource("16_wxjyh")])
 
 [connection signal="body_entered" from="RangeDetectorComponent" to="RangeDetectorComponent" method="_on_body_entered"]
 [connection signal="body_exited" from="RangeDetectorComponent" to="RangeDetectorComponent" method="_on_body_exited"]
