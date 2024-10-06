@@ -50,7 +50,7 @@ func chase_player() -> void:
 	velocity_component.chase_player()
 	
 func take_damage(damage: int) -> void:
-	if !velocity_component.back_to_spawn:
+	if !velocity_component.returning:
 		animation_component.flash_red()
 		audio_component.play_hit_sound()
 		health_component.update_health(damage)
