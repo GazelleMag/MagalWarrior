@@ -7,7 +7,7 @@ var projectile_damage: int
 var projectile_sounds: Array[AudioStream]
 @onready var projectile_audio_player: AudioStreamPlayer2D = $ProjectileAudioPlayer
 @onready var timer: Timer = $Timer
-
+@onready var projectile_area_collision_shape: CollisionShape2D = $ProjectileArea/CollisionShape2D
 
 func _ready() -> void:
 	projectile = Ability.new(projectile_name)
@@ -89,11 +89,15 @@ func set_projectile_area_mask(character_name: String) -> void:
 	else:
 		projectile_area.set_collision_mask_value(2, true)
 
+func disable_projectile_collision_shape() -> void:
+	projectile_area_collision_shape.disabled = true
+
 # signals
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body.name == "TileMap" or "InvisibleWall" in body.name:
+	if body.name == "TileMap":
 		explode_projectile()
-	else:
+	elif body.is_in_group("Enemies"):
+		call_deferred("disable_projectile_collision_shape")
 		body.take_damage(projectile.damage)
 		explode_projectile()
 	

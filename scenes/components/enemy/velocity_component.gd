@@ -2,10 +2,12 @@ extends Node2D
 
 @onready var character: Node2D = get_parent()
 @onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
+@onready var state_machine: Node = $StateMachine
 var speed: int
 var character_direction: Vector2
 var last_character_direction: Vector2 = Vector2.DOWN
 var last_character_direction_name: String = "down"
+var stopping_distance: float = 50.0 # to stop chasing if it's already close
 # spawn point
 var spawn_point_position: Vector2
 var spawn_point_max_distance: float = 600
@@ -16,7 +18,8 @@ var smoothing_factor: float = 0.5
 # state conditions
 var chasing: bool = false
 var returning: bool = false
-
+# for testing purposes
+var sentry_mode = false
 
 func _ready() -> void:
 	spawn_point_position = character.spawn_point_position
@@ -58,10 +61,24 @@ func _on_timer_timeout() -> void:
 	make_path()
 
 func make_path() -> void:
+	if sentry_mode:
+		navigation_agent.velocity = Vector2.ZERO
+		return
+		
 	if is_instance_valid(character.player) and chasing:
 		navigation_agent.target_position = character.player.global_position
 	elif !is_instance_valid(character.player) or returning:
 		navigation_agent.target_position = spawn_point_position
+
+func handle_movement() -> void:
+	if is_instance_valid(character.player):
+		var distance_to_player: float = global_position.distance_to(character.player.global_position)
+		if distance_to_player < stopping_distance:
+			character.velocity = Vector2.ZERO
+		else:
+			character.velocity = get_velocity()
+	else:
+		character.velocity = get_velocity()
 
 func get_velocity() -> Vector2:
 	return character_direction * speed

@@ -3,6 +3,7 @@ extends Node2D
 @onready var character: CharacterBody2D = get_parent()
 var is_attacking: bool = false
 var melee_damage_inflicted: bool = false
+var melee_attack_direction: Vector2 = Vector2.ZERO
 var is_casting_fireball: bool = false
 var mouse1_cooldown: bool = false
 var mouse2_cooldown: bool = false
@@ -46,6 +47,7 @@ func set_player_abilities() -> void:
 func attack(direction: Vector2) -> void:
 	is_attacking = true
 	melee_damage_inflicted = false
+	melee_attack_direction = velocity_component.last_character_direction
 	attack_point_component.attack_point_collision_shape.disabled = false
 	animation_component.handle_attack_animation(direction)
 	await animation_component.wait_for_animation()

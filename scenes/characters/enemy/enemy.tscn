@@ -17,6 +17,7 @@
 z_index = 2
 collision_layer = 4
 collision_mask = 3
+motion_mode = 1
 script = ExtResource("1_xkkda")
 velocity_component = NodePath("VelocityComponent")
 range_detector_component = NodePath("RangeDetectorComponent")
@@ -43,6 +44,7 @@ attack_point_component = NodePath("../AttackPointComponent")
 [node name="VelocityComponent" parent="." instance=ExtResource("4_skhdk")]
 
 [node name="RangeDetectorComponent" parent="." node_paths=PackedStringArray("velocity_component", "combat_component") instance=ExtResource("5_fpb8e")]
+visible = true
 velocity_component = NodePath("../VelocityComponent")
 combat_component = NodePath("../CombatComponent")
 

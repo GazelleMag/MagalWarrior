@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://scripts/controllers/invisible_wall_controller.gd" id="1_1vfgm"]
 
 [node name="InvisibleWall" type="StaticBody2D" node_paths=PackedStringArray("spawn_points")]
+collision_layer = 32
 collision_mask = 2
 script = ExtResource("1_1vfgm")
 spawn_points = [null]

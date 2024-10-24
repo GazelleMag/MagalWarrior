@@ -4,8 +4,8 @@ class_name Idle
 @export var velocity_component: Node2D
 
 func enter() -> void:
-#	print("entering idle state")
 	velocity_component.character_direction = Vector2.ZERO
+	velocity_component.last_character_direction = Vector2.DOWN
 
 func physics_update(_delta: float) -> void:
 	if velocity_component.chasing:

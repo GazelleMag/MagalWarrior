@@ -4,10 +4,13 @@ var speed
 var character_direction: Vector2
 var last_character_direction: Vector2 = Vector2.DOWN
 var last_character_direction_name: String = "down"
+# components
+@export var combat_component: Node2D
 
 func _process(_delta: float) -> void:
 	update_direction()
-	update_last_character_direction()
+	if not combat_component.is_attacking:
+		update_last_character_direction()
 
 func update_direction() -> void:
 	character_direction = Input.get_vector("left", "right", "up", "down")

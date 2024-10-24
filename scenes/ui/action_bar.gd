@@ -27,7 +27,7 @@ func set_ability_action_bar(ability: Array[Ability]) -> void:
 			var ability_button = ability_button_scene.instantiate()
 			ability_button.change_key = action_bar_keys[i]
 			ability_button.set_ability(ability[i].name)
-			if action_bar_keys[i] == 'M1' or action_bar_keys[i] == 'M2':
+			if action_bar_keys[i] == "M1" or action_bar_keys[i] == "M2":
 				ability_button.mouse_cooldown.connect(on_mouse_cooldown)
 			add_child(ability_button)
 	abilities = get_children()

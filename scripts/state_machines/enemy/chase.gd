@@ -4,7 +4,6 @@ class_name Chase
 @export var velocity_component: Node2D
 
 func enter() -> void:
-#	print("Entering chase state")
 	pass
 
 func physics_update(_delta: float) -> void:

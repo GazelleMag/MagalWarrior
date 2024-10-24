@@ -26,7 +26,7 @@ func set_character_abilities() -> void:
 		for ability_name in ability_names:
 			var ability: Ability = Ability.new(ability_name)
 			abilities.append(ability)
-			set_ability_cooldown_timer(ability)		
+			set_ability_cooldown_timer(ability)
 			
 func set_ability_cooldown_timer(ability: Ability) -> void:
 	var cooldown_timer: Timer = Timer.new()

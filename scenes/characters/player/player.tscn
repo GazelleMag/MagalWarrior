@@ -15,7 +15,8 @@ radius = 16.0
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("velocity_component", "animation_component", "attack_point_component", "combat_component", "health_component", "audio_component") groups=["Player"]]
 collision_layer = 2
-collision_mask = 21
+collision_mask = 53
+motion_mode = 1
 script = ExtResource("1_jqov3")
 velocity_component = NodePath("VelocityComponent")
 animation_component = NodePath("AnimationComponent")
@@ -39,7 +40,8 @@ death_animation = NodePath("../DeathAnimation")
 velocity_component = NodePath("../VelocityComponent")
 attack_point_component = NodePath("../AttackPointComponent")
 
-[node name="VelocityComponent" parent="." instance=ExtResource("52_8wheh")]
+[node name="VelocityComponent" parent="." node_paths=PackedStringArray("combat_component") instance=ExtResource("52_8wheh")]
+combat_component = NodePath("../CombatComponent")
 
 [node name="CombatComponent" parent="." node_paths=PackedStringArray("velocity_component", "attack_point_component", "animation_component", "health_component", "audio_component") instance=ExtResource("7_c3mlq")]
 ability_names = Array[String](["basic_attack", "fireball"])

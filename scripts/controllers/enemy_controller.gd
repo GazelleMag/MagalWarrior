@@ -26,12 +26,13 @@ func _physics_process(_delta: float) -> void:
 
 func _process(delta: float) -> void:
 	audio_component.play_footstep(delta, velocity)
-	if range_detector_component.player_in_range == true:
-		# this should be only a melee ability
-		combat_component.use_ability("melee")
-	if line_of_sight_component.player_on_sight == true:
-		# this should be only a ranged ability
-		combat_component.use_ability("ranged")
+	if velocity_component.chasing:
+		if range_detector_component.player_in_range == true:
+			# this should be only a melee ability
+			combat_component.use_ability("melee")
+		if line_of_sight_component.player_on_sight == true:
+			# this should be only a ranged ability
+			combat_component.use_ability("ranged")
 		
 func set_character_properties() -> void:
 	velocity_component.speed = enemy.speed
@@ -43,14 +44,14 @@ func set_character_properties() -> void:
 	combat_component.call_deferred("check_abilities", "ranged")
 
 func handle_movement() -> void:
-	velocity = velocity_component.get_velocity()
+	velocity_component.handle_movement()
 	move_and_slide()
 
 func chase_player() -> void:
 	velocity_component.chase_player()
 	
 func take_damage(damage: int) -> void:
-	if !velocity_component.returning:
+	if !velocity_component.returning and velocity_component.state_machine.current_state.name != "Idle":
 		animation_component.flash_red()
 		audio_component.play_hit_sound()
 		health_component.update_health(damage)
