@@ -5,10 +5,10 @@ extends TextureButton
 @export var time: Label
 @export var key: Label
 @export var icon: TextureRect
-var click_type: String = ""
+var key_name: String = ""
 var ability: Ability
 
-signal mouse_cooldown
+signal cooldown
 
 # key setter
 var change_key: String = "":
@@ -42,10 +42,10 @@ func set_ability_icon() -> void:
 func set_ability_cooldown() -> void:
 	timer.wait_time = ability.cooldown_time
 	texture_progress_bar.max_value = timer.wait_time
-
-func handle_mouse_click(click_type_arg: String) -> void:
-	click_type = click_type_arg
-	if timer.time_left <= 0:
+		
+func handle_key_use(key_arg) -> void:
+	key_name = key_arg
+	if timer.is_stopped():
 		_on_pressed()
 
 # signals
@@ -58,4 +58,4 @@ func _on_timer_timeout() -> void:
 	disabled = false
 	time.text = ""
 	set_process(false)
-	emit_signal("mouse_cooldown", false, click_type)
+	emit_signal("cooldown", false, key_name)

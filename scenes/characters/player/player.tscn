@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://bq2pty2md6nxg"]
+[gd_scene load_steps=12 format=3 uid="uid://bq2pty2md6nxg"]
 
 [ext_resource type="Script" path="res://scripts/controllers/player_controller.gd" id="1_jqov3"]
 [ext_resource type="PackedScene" uid="uid://2g40ejm5tvy1" path="res://scenes/characters/player/player_animation.tscn" id="2_ukbkk"]
 [ext_resource type="PackedScene" uid="uid://d4h32id0fxdai" path="res://scenes/components/player/combat_component.tscn" id="7_c3mlq"]
 [ext_resource type="PackedScene" uid="uid://c4o5mmmcwmsxw" path="res://scenes/components/player/health_component.tscn" id="8_h8x5h"]
+[ext_resource type="PackedScene" uid="uid://s32nfv6fvkl5" path="res://scenes/particle_systems/flourish_particles.tscn" id="10_pjw22"]
 [ext_resource type="PackedScene" uid="uid://df1n5cqpbclte" path="res://scenes/components/character/audio_component.tscn" id="16_65pwe"]
 [ext_resource type="PackedScene" uid="uid://canqewjsmlivc" path="res://scenes/misc/death_animation.tscn" id="50_gv0ay"]
 [ext_resource type="PackedScene" uid="uid://dbxut02s44cty" path="res://scenes/components/character/animation_component.tscn" id="51_l3063"]
@@ -43,8 +44,9 @@ attack_point_component = NodePath("../AttackPointComponent")
 [node name="VelocityComponent" parent="." node_paths=PackedStringArray("combat_component") instance=ExtResource("52_8wheh")]
 combat_component = NodePath("../CombatComponent")
 
-[node name="CombatComponent" parent="." node_paths=PackedStringArray("velocity_component", "attack_point_component", "animation_component", "health_component", "audio_component") instance=ExtResource("7_c3mlq")]
-ability_names = Array[String](["basic_attack", "fireball"])
+[node name="CombatComponent" parent="." node_paths=PackedStringArray("flourish_particles", "velocity_component", "attack_point_component", "animation_component", "health_component", "audio_component") instance=ExtResource("7_c3mlq")]
+ability_names = Array[String](["basic_attack", "fireball", "flourish"])
+flourish_particles = NodePath("../FlourishParticles")
 velocity_component = NodePath("../VelocityComponent")
 attack_point_component = NodePath("../AttackPointComponent")
 animation_component = NodePath("../AnimationComponent")
@@ -60,5 +62,7 @@ combat_component = NodePath("../CombatComponent")
 [node name="HealthComponent" parent="." instance=ExtResource("8_h8x5h")]
 
 [node name="AudioComponent" parent="." instance=ExtResource("16_65pwe")]
+
+[node name="FlourishParticles" parent="." instance=ExtResource("10_pjw22")]
 
 [connection signal="body_entered" from="AttackPointComponent" to="AttackPointComponent" method="_on_attack_point_component_body_entered"]

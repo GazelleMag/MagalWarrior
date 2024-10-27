@@ -13,7 +13,7 @@ extends CharacterBody2D
 @export var audio_component: Node2D
 
 signal health_changed
-signal mouse_click
+signal key_use
 signal player_died
 
 func _ready() -> void:
@@ -37,6 +37,7 @@ func handle_movement(direction: Vector2) -> void:
 	velocity = direction * velocity_component.speed
 	move_and_slide()
 
+# below functions are bad code, signal should emit from health component
 func take_damage(damage: int) -> void:
 	combat_component.take_damage(damage)
 	health_changed.emit() # this updates UI health bar
@@ -45,15 +46,15 @@ func heal(heal_amount: int) -> void:
 	combat_component.heal(heal_amount)
 	health_changed.emit() # this updates UI health bar
 
-func handle_mouse_cooldown(cooldown_status: bool, click_type: String):
-	combat_component.handle_mouse_cooldown(cooldown_status, click_type)	
-
+func handle_cooldown(cooldown_status, key: String) -> void:
+	combat_component.handle_cooldown(cooldown_status, key)
+	
 func die() -> void:
 	set_physics_process(false)
 	animation_component.handle_death_animation()
 	await animation_component.wait_for_death_animation()
 	player_died.emit()
 	queue_free()
-
-func emit_mouse_click_signal(click_type: String) -> void:
-	emit_signal("mouse_click", click_type)
+	
+func emit_key_use_signal(key: String) -> void:
+	emit_signal("key_use", key)

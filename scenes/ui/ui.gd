@@ -7,18 +7,18 @@ extends CanvasLayer
 @export var warning_timer: Timer
 
 func _ready() -> void:
-	player.mouse_click.connect(handle_mouse_click)
+	player.key_use.connect(handle_key_use)
 	player.health_changed.connect(update_health_bar)
 	
 func update_health_bar() -> void:
 	player_health_bar.update_health_bar(player)
-	
-func handle_mouse_click(click_type: String) -> void:
-	action_bar.handle_mouse_click(click_type)
-	
-func handle_mouse_cooldown(cooldown_status: bool, click_type: String) -> void:
+
+func handle_key_use(key: String) -> void:
+	action_bar.handle_key_use(key)
+
+func handle_cooldown(cooldown_status: bool, key: String) -> void:
 	if player != null:
-		player.handle_mouse_cooldown(cooldown_status, click_type)
+		player.handle_cooldown(cooldown_status, key)
 
 func set_ability_action_bar(abilities: Array[Ability]) -> void:
 	action_bar.set_ability_action_bar(abilities)

@@ -5,6 +5,7 @@ extends Node2D
 @export var character_animation: AnimatedSprite2D
 @export var death_animation: AnimatedSprite2D
 @onready var red_flash_timer: Timer = $RedFlashTimer
+@onready var green_flash_timer: Timer = $GreenFlashTimer
 # Components
 @export var velocity_component: Node2D
 @export var attack_point_component: Area2D
@@ -89,6 +90,13 @@ func flash_red() -> void:
 	red_flash_timer.start(0.1)
 	await red_flash_timer.timeout
 	character_animation.modulate = Color(1, 1, 1, 1)
+	
+func flash_green() -> void:
+	character_animation.modulate = Color(0, 1, 0, 1)
+	green_flash_timer.start(0.1)
+	await green_flash_timer.timeout
+	character_animation.modulate = Color(1, 1, 1, 1)
+	
 
 # signals
 func _on_animation_finished() -> void:

@@ -6,3 +6,5 @@
 script = ExtResource("1_k26um")
 
 [node name="RedFlashTimer" type="Timer" parent="."]
+
+[node name="GreenFlashTimer" type="Timer" parent="."]
