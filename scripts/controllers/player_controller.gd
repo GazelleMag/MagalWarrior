@@ -15,6 +15,8 @@ extends CharacterBody2D
 signal health_changed
 signal key_use
 signal player_died
+signal effect_started
+signal effect_ended
 
 func _ready() -> void:
 	set_player_properties()
@@ -56,5 +58,11 @@ func die() -> void:
 	player_died.emit()
 	queue_free()
 	
-func emit_key_use_signal(key: String) -> void:
+func emit_key_use(key: String) -> void:
 	emit_signal("key_use", key)
+	
+func emit_effect_started(effect_name: String) -> void:
+	emit_signal("effect_started", effect_name)
+	
+func emit_effect_ended(effect_name: String) -> void:
+	emit_signal("effect_ended", effect_name)

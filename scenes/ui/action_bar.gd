@@ -31,4 +31,3 @@ func set_ability_action_bar(ability: Array[Ability]) -> void:
 			ability_button.cooldown.connect(on_cooldown)
 			add_child(ability_button)
 	abilities = get_children()
-			

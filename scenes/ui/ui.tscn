@@ -1,17 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://bw07sh3bxv65d"]
+[gd_scene load_steps=7 format=3 uid="uid://bw07sh3bxv65d"]
 
 [ext_resource type="Script" path="res://scenes/ui/ui.gd" id="1_ml4ta"]
 [ext_resource type="Script" path="res://scenes/ui/action_bar.gd" id="2_mdsr0"]
 [ext_resource type="Texture2D" uid="uid://cn0jv0x8ihlj6" path="res://assets/sprites/health_bars/health_bar_under.png" id="3_cn1g8"]
 [ext_resource type="Script" path="res://scenes/ui/player_health_bar.gd" id="4_h6n7y"]
 [ext_resource type="Texture2D" uid="uid://bwepjye33ar2h" path="res://assets/sprites/health_bars/health_bar_progress.png" id="4_y0na5"]
+[ext_resource type="Script" path="res://scenes/ui/effects_bar.gd" id="6_hefyh"]
 
-[node name="UI" type="CanvasLayer" node_paths=PackedStringArray("player_health_bar", "action_bar", "warning_label", "warning_timer")]
+[node name="UI" type="CanvasLayer" node_paths=PackedStringArray("player_health_bar", "action_bar", "warning_label", "warning_timer", "effects_bar")]
 script = ExtResource("1_ml4ta")
 player_health_bar = NodePath("MarginContainer/MainVBoxContainer/BarsVBoxContainer/PlayerHealthBar")
 action_bar = NodePath("MarginContainer/MainVBoxContainer/BarsVBoxContainer/ActionBar")
 warning_label = NodePath("MarginContainer/MainVBoxContainer/WarningVBoxContainer/WarningLabel")
 warning_timer = NodePath("MarginContainer/MainVBoxContainer/WarningVBoxContainer/WarningTimer")
+effects_bar = NodePath("MarginContainer/MainVBoxContainer/BarsVBoxContainer/EffectsBar")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 7
@@ -62,5 +64,11 @@ nine_patch_stretch = true
 texture_under = ExtResource("3_cn1g8")
 texture_progress = ExtResource("4_y0na5")
 script = ExtResource("4_h6n7y")
+
+[node name="EffectsBar" type="HBoxContainer" parent="MarginContainer/MainVBoxContainer/BarsVBoxContainer"]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+size_flags_horizontal = 4
+script = ExtResource("6_hefyh")
 
 [connection signal="timeout" from="MarginContainer/MainVBoxContainer/WarningVBoxContainer/WarningTimer" to="." method="_on_warning_timer_timeout"]

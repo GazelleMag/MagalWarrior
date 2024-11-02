@@ -31,16 +31,16 @@ func _process(_delta: float) -> void:
 		animation_component.handle_walk_animation(velocity_component.character_direction)
 	if Input.is_action_just_pressed("mouse1") and !cooldowns["mouse1"]:
 		cooldowns["mouse1"] = true
-		character.emit_key_use_signal("mouse1")
+		character.emit_key_use("mouse1")
 		attack(velocity_component.character_direction) # this should be some kind of primary action
 		audio_component.play_weapon_sound()
 	if Input.is_action_just_pressed("mouse2") and !cooldowns["mouse2"]:
 		cooldowns["mouse2"] = true
-		character.emit_key_use_signal("mouse2")
+		character.emit_key_use("mouse2")
 		cast_projectile(abilities[1]) # this might not be a projectile
 	if Input.is_action_just_pressed("q") and !cooldowns["q"]:
 		cooldowns["q"] = true
-		character.emit_key_use_signal("q")
+		character.emit_key_use("q")
 		cast_heal_over_time() # this might not be a heal
 
 func set_player_abilities() -> void:
@@ -92,6 +92,7 @@ func cast_heal_over_time() -> void:
 	animation_component.flash_green()
 	is_healing = true
 	flourish_particles.emitting = true
+	character.emit_effect_started("flourish")
 	heal_timer.start()
 	await get_tree().create_timer(heal_duration).timeout
 	stop_heal_over_time()
@@ -99,6 +100,7 @@ func cast_heal_over_time() -> void:
 func stop_heal_over_time() -> void:
 	is_healing = false
 	flourish_particles.emitting = false
+	character.emit_effect_ended("flourish")
 	heal_timer.stop()
 
 func handle_cooldown(cooldown_status: bool, key: String) -> void:

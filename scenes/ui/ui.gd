@@ -5,10 +5,13 @@ extends CanvasLayer
 @export var action_bar: HBoxContainer
 @export var warning_label: Label
 @export var warning_timer: Timer
+@export var effects_bar: HBoxContainer
 
 func _ready() -> void:
 	player.key_use.connect(handle_key_use)
 	player.health_changed.connect(update_health_bar)
+	player.effect_started.connect(add_effect)
+	player.effect_ended.connect(remove_effect)
 	
 func update_health_bar() -> void:
 	player_health_bar.update_health_bar(player)
@@ -30,6 +33,12 @@ func show_warning_message(message: String) -> void:
 func reset_warning_message() -> void:
 	warning_label.text = ""
 	warning_label.visible = false
+
+func add_effect(effect_name: String) -> void:
+	effects_bar.add_effect(effect_name)
+	
+func remove_effect(effect_name: String) -> void:
+	effects_bar.remove_effect(effect_name)
 
 # signals
 func _on_invisible_wall_area_body_entered(body):
