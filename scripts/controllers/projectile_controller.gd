@@ -96,7 +96,7 @@ func disable_projectile_collision_shape() -> void:
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.name == "TileMap":
 		explode_projectile()
-	elif body.is_in_group("Enemies"):
+	elif body.is_in_group("Enemies") or body.name == "Player":
 		call_deferred("disable_projectile_collision_shape")
 		body.take_damage(projectile.damage)
 		explode_projectile()
