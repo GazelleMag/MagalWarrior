@@ -112,4 +112,4 @@ func ranged_attack(ability: Ability) -> void:
 	projectile.position = attack_point_component.global_position
 	projectile.linear_velocity = velocity_component.last_character_direction * ability.speed
 	projectile.handle_projectile_orientation(velocity_component.last_character_direction)
-	character.level.add_child(projectile)
+	character.level.add_child(projectile) #
